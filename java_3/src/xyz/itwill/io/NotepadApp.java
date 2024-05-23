@@ -149,6 +149,10 @@ public class NotepadApp extends JFrame {
 					return;
 				}
 			} else if (eventSource == save) {
+				if(file == null) {
+					
+				}
+				
 				int option = fileChooser.showSaveDialog(NotepadApp.this);
 
 				setTitle(file.toString() + " - Java 메모장");
