@@ -15,7 +15,7 @@ public class ConsoleCalculateApp {
 		Scanner scanner = new Scanner(System.in);
 
 //		// 만들어야 할 변수 : String
-//		String str; // 연산식 값
+//		String str; // 연산식 값s
 //		int index; // 사칙연산자
 //
 //		while (true) {
