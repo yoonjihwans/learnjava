@@ -2,7 +2,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
-public class admin {
+public class admin extends JFrame{
 
     public static void main(String[] args) {
        
@@ -36,11 +36,12 @@ public class admin {
         inputPanel.add(new JLabel("회원유형:"));
         JTextField memberType = new JTextField();
         inputPanel.add(memberType);
+        
 
         topPanel.add(inputPanel, BorderLayout.CENTER);
 
         
-        JPanel buttonPanel = new JPanel();
+        JPanel buttonPanel = new JPanel(); 
         buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
         JButton addButton = new JButton("추가");
         JButton updateButton = new JButton("수정");
@@ -48,6 +49,7 @@ public class admin {
         buttonPanel.add(addButton);
         buttonPanel.add(updateButton);
         buttonPanel.add(deleteButton);
+                
 
         topPanel.add(buttonPanel, BorderLayout.EAST);
 
