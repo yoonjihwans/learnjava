@@ -43,7 +43,7 @@ public class SelectStudentApp {
 				
 				//ResultSet 객체에 저장된 검색행을 차례대로 제공받아 출력하는 반복문
 				// => ResultSet 객체에 저장된 검색행의 갯수가 불확실하므로 while 반복문 사용
-				// => if 선택문에서 ResultSet 커서를 다음행으로 이동했으면 do~while 반복문 사용
+				// => if 선택문에서 ResultSet 커서를 다음행으로 이동했 으면 do~while 반복문 사용
 				do {
 					//ResultSet 커서가 위치한 처리행의 컬럼값을 반환받아 저장
 					//ResultSet.getXXX(int columnIndex) 또는 ResultSet.getXXX(String columnLabel)
