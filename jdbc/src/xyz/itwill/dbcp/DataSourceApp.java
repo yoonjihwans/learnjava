@@ -64,15 +64,15 @@ public class DataSourceApp {
 		System.out.println("con1 = "+con1);
 		//Connection 객체로 close() 메소드를 호출하면 PoolDataSource 객체에 저장된 Connection
 		//객체를 활성화 처리
-		//con1.close();
+		con1.close();
 		
 		Connection con2=pds.getConnection();
 		System.out.println("con2 = "+con2);
-		//con2.close();
+		con2.close();
 		
 		Connection con3=pds.getConnection();
 		System.out.println("con3 = "+con3);
-		//con3.close();
+		con3.close();
 		
 		Connection con4=pds.getConnection();
 		System.out.println("con4 = "+con4);
