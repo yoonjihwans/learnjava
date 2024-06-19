@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>HTML</title>
+</head>
+<body>
+	<h1>input 태그</h1>
+	<hr>
+	<!-- input 태그 : 사용자로부터 값(파일)을 입력받기 위한 태그 - 입력태그 -->
+	<!-- type 속성 : 값(파일)을 입력받기 위한 입력형태를 속성값으로 설정 -->
+	<!-- name 속성 : 태그의 이름을 속성값으로 설정 - 태그를 구분하기 위한 식별자 : 입력값 검증(JavaScript) -->
+	<!-- => 웹프로그램(Servlet - Java)에서 전달값을 구분하기 위한 이름(식별자)로 사용 -->
+	<!-- value 속성 : 입력태그의 초기값을 속성값으로 설정 -->
+	<!-- size 속성 : 입력태그의 크기를 속성값으로 설정 -->
+	<!-- maxlength 속성 : 입력태그에 입력 가능한 문자의 갯수를 속성값으로 설정 -->
+	<!-- autofocus 속성 : 태그에 포커스(Focus)를 제공하기 위한 속성 - 속성값 생략 가능 -->
+	<!-- required 속성 : 입력태그에 값을 반드시 입력하도록 설정하기 위한 속성 - 속성값 생략 가능 -->
+	<!-- => required 속성이 설정된 입력태그에 입력값이 없는 경우 에러 메세지 출력 - form 태그 미실행 -->
+	<!-- placeholder 속성 : 입력태그에 입력될 값에 대한 설정을 속성값으로 설정 -->
+	<!-- => 입력태그에 값이 입력되면 설명문은 자동으로 소멸 -->
+	<!-- readonly 속성 : 입력태그의 값을 바꾸지 못하도록 설정하기 위한 속성 - 속성값 생략 가능 -->
+	<!-- checked 속성 : 우선 선택 기능을 제공하기 위한 속성 - 속성값 생략 가능 -->
+	<!-- => input 태그의 type 속성값이 [radio] 또는 [checkbox]인 경우 사용하는 속성 -->
+	<!-- min 속성 : 입력태그에 입력 가능한 최소값을 속성값으로 설정 -->
+	<!-- max 속성 : 입력태그에 입력 가능한 최대값을 속성값으로 설정 -->
+	
+	<!-- input 태그의 type 속성값 -->
+	<!-- hidden 속성값 : 입력태그를 숨겨 사용자로부터 값을 입력받기 않고 값을 전달 -->
+	<!-- text 속성값 : 키보드로 값을 입력받아 전달 -->
+	<!-- password 속성값 : 키보드로 값을 입력받아 전달 - 입력값이 특정 문자로 변환되어 표시 -->
+	<!-- radio 속성값 : name 속성값이 같은 입력태그 중 하나를 선택하여 값을 전달 -->
+	<!-- checkbox 속성값 : name 속성값이 같은 입력태그 중 0개 이상을 선택하여 값을 전달 -->
+	<!-- file 속성값 : 파일을 입력받아 전달 - form 태그의 enctype 속성값을 [multipart/form-data]로 설정 -->
+	<!-- email 속성값 : 이메일을 입력받아 전달 - 이메일 형식에 대한 검증 처리 -->
+	<!-- number 속성값 : 숫자값을 입력받아 전달 - 증가 및 감소 버튼 제공 -->
+	<!-- => 숫자값만 입력 가능하며 max 속성값 또는 min 속성값을 사용해 입력값 검증 가능 -->
+	<!-- tel 속성값 : 전화번호를 입력받아 전달 - 스마트기기의 입력패드 변경 -->
+	<!-- url 속성값 : URL 주소를 입력받아 전달 - 스마트기기의 입력패드 변경 -->
+	<!-- search 속성값 : 검색단어를 입력받아 전달 - 스마트기기의 자동완성 기능 사용 -->
+	<!-- color 속성값 : 색을 선택하여 색상값(#RRGGBB)을 전달  -->
+	<!-- range 속성값 : min 속성값과 max 속성값의 범위값을 선택하여 전달  -->
+	<!-- date 속성값 : 날짜값(yyyy-MM-dd)을 입력받아 전달 - 날짜를 선택하는 박스모델 제공 -->
+	<!-- time 속성값 : 시간값({AM|PM} HH:mm)을 입력받아 전달 - 시간을 선택하는 박스모델 제공 -->
+	<!-- datetime-local 속성값 : 날짜값과 시간값을 입력받아 전달 - 날짤와 시간을 선택하는 박스모델 제공 -->
+	<form action="#" method="post">
+		<input type="hidden" name="num" value="1000">
+		<p>아이디 : <input type="text" name="id" size="10" maxlength="20" autofocus required><p>
+		<p>비밀번호 : <input type="password" name="passwd" placeholder="비밀번호 입력"><p>
+		<p>이름 : <input type="text" name="name" value="홍길동" readonly></p>
+		<p>성별 : <input type="radio" name="gender" value="M">남자
+			<input type="radio" name="gender" value="W" checked>여자</p>
+		<p>취미 : <input type="checkbox" name="hobby" value="독서">독서
+			<input type="checkbox" name="hobby" value="등산">등산
+			<input type="checkbox" name="hobby" value="낚시">낚시
+			<input type="checkbox" name="hobby" value="게임">게임</p>	
+		<p>증명사진 : <input type="file" name="photo"></p>
+		<p>이메일 : <input type="email" name="email"></p>
+		<p>나이 : <input type="number" name="age" min="0" max="200"></p>
+		<p>전화번호 : <input type="tel" name="phone"></p>
+		<p>SNS : <input type="url" name="sns"></p>
+		<p>좋아하는 단어 : <input type="search" name="keyword"></p>
+		<p>좋아하는 색 : <input type="color" name="color"></p>
+		<p>Java 실력 : 하<input type="range" name="grade" min="1" max="5">상</p>
+		<p>생년월일 : <input type="date" name="birthday"></p> 
+		<p>기상시간 : <input type="time" name="uptime"></p> 
+		<p>알람 : <input type="datetime-local" name="alram"></p> 
+		
+		<!-- 제출 이벤트가 발생되는 태그 - input 태그, button 태그, img 태그 등 -->
+		<!-- input 태그의 type 속성값을 [submit]으로 설정하면 버튼 형식으로 출력되고 버튼을
+		클릭하면 제출 이벤트 발생 - value 속성값으로 버튼의 라벨명 설정 -->
+		<!-- <input type="submit" value="회원가입"> -->
+		<button type="submit">회원가입</button>
+		
+		<!-- form 태그에 작성된 모든 입력태그의 입력값을 초기화 처리하기 위한 태그 -->
+		<!-- => 초기화 이벤트(Reset Event)를 발생하는 태그 - input 태그, button 태그, img 태그 등 -->
+		<!-- input 태그의 type 속성값을 [reset]으로 설정하면 버튼 형식으로 출력되고 버튼을
+		클릭하면 초기화 이벤트 발생 - value 속성값으로 버튼의 라벨명 설정 -->
+		<!-- <input type="reset" value="다시입력"> -->
+		<button type="reset">다시입력</button>
+	</form>
+</body>
+</html>

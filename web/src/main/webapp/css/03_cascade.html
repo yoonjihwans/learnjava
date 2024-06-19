@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style type="text/css">
+/* 부모 태그에 적용된 스타일은 자식 태그에 상속되어 적용 */
+body {
+	color: red;
+}
+
+/* 스타일은 작성 순서에 의해 단계적으로 적용 - 기존 스타일 덮어씌우기 */
+p {
+	color: green;
+}
+
+li {
+	/* !important : 단계적 적용을 무시하고 최우선적으로 스타일 적용하기 위한 스타일 속성값 */
+	color: blue !important;
+}
+
+/* 단계적 적용의 예외사항 - HTML 태그의 계층적 순서의 의해 스타일 적용 */
+ul {
+	font-size: 20px;
+	color: lime;
+}
+
+li {
+	color: aqua;
+}
+</style>
+</head>
+<body>
+	<h1>CSS 스타일의 단계적 적용 및 상속</h1>
+	<hr>
+	<p>브라우저에 출력될 아주 중요한 내용입니다.</p>
+	<ul>
+		<li>아주 중요한 내용-1</li>
+		<li>아주 중요한 내용-2</li>
+		<li>아주 중요한 내용-3</li>
+	</ul>
+</body>
+</html>
