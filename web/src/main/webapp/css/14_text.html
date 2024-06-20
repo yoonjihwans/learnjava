@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style type="text/css">
+div {
+	margin: 15px;
+	width: 500px;
+	border: 1px solid red;
+}
+
+/* direction : 문장 쓰기 방향에 대한 스타일 속성 */
+/* 속성값 : ltr(왼쪽 > 오른쪽 - 기본), rtl(오른쪽 > 왼쪽) */
+.dir1 { direction: ltr; }
+.dir2 { direction: rtl; }
+
+.align { width: 150px; }
+/* text-align : 문장 정렬에 대한 스타일 속성 */
+/* 속성값 : left(기본), right, center, justify(양쪽) */
+.align1 { text-align: left; }
+.align2 { text-align: right; }
+.align3 { text-align: center; }
+.align4 { text-align: justify; }
+
+/* text-shadow : 문장에 그림자 효과를 제공하기 위한 스타일 속성 */
+/* 속성값 : 가로 세로 범짐 색상 */
+.shadow {
+	font-size: 30px;
+	font-weight: bold;
+	color: gray;
+	text-shadow: 3px 3px 3px #000;
+}
+
+.overflow {
+	width: 200px;
+	white-space: nowrap;
+}
+
+/* overflow : 태그를 벗어난 태그내용에 대한 처리 관련 스타일 속성 */
+/* 속성값 : visiable(기본) - 출력, hidden - 숨김, scroll - 스크롤 제공  */
+.overflow1 { overflow: hidden; }
+.overflow2 { overflow: scroll; }
+.overflow3 {
+	overflow: hidden;
+	/* text-overflow : 숨겨진 문장에 대한 처리 관련 스타일 속성 */
+	/* 속성값 : clip(기본) - 잘라내기, ellipsis : [...] 기호를 사용하여 출력 */
+	text-overflow: ellipsis;
+}
+</style>
+</head>
+<body>
+	<h1>문장(Text) 관련 스타일 속성</h1>
+	<hr>
+	<div class="dir1">브라우저에 출력될 아주 중요한 내용입니다.</div>
+	<div class="dir2">브라우저에 출력될 아주 중요한 내용입니다.</div>
+	<hr>
+	<div class="align align1">브라우저에 출력될 아주 중요한 내용입니다.</div>
+	<div class="align align2">브라우저에 출력될 아주 중요한 내용입니다.</div>
+	<div class="align align3">브라우저에 출력될 아주 중요한 내용입니다.</div>
+	<div class="align align4">브라우저에 출력될 아주 중요한 내용입니다.</div>
+	<hr>
+	<div class="shadow">HTML5와 CSS3를 배우고 있습니다.</div>
+	<hr>
+	<div class="overflow overflow1">HTML5와 CSS3를 배우고 있습니다.</div>
+	<div class="overflow overflow2">HTML5와 CSS3를 배우고 있습니다.</div>
+	<div class="overflow overflow3">HTML5와 CSS3를 배우고 있습니다.</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style type="text/css">
+.font1 {
+	/* font-size : 글자 크기에 대한 스타일 속성 - 기본 크기 : 16px */
+	/* 속성값(단위) : px, pt, em, %, 키워드(small, medium, large 등) */
+	font-size: 14px;
+}
+
+.font2 {
+	font-size: 20px;
+	
+	/* font-style : 글자 기울기에 대한 스타일 속성 - normal(기본), italic */
+	font-style: italic;
+}
+
+.font3 {
+	/* 글자 크기 관련 키워드는 medium(16px)을 기준으로 1.2배씩 증가 또는 감소 */
+	font-size: xx-large;
+	
+	/* font-variant : 영문자에 대한 스타일 속성 - normal(기본), small-caps(영문자를 대문자로
+	바꾸어 출력하고 첫번째 문자를 제외한 나머지 문자는 작게 출력) */
+	font-variant: small-caps;
+}
+
+.font4 {
+	/* em : M 문자의 폭을 기준으로 설정된 글자 크기 - 반응형 웹디자인에서 사용 */
+	font-size: 1.5em;
+	
+	/* font-weight : 글자 굵기에 대한 스타일 속성 - 100~900(기본 : 400), 키워드(normal, bold 등) */
+	font-weight: bold;
+}
+
+.font5 {
+	/* font : 글자 관련 모든 스타일 속성값을 적용하기 위한 속성 */
+	/* => 글꼴을 반드시 설정해야만 글자 관련 스타일 속성값 적용 */
+	font: italic 700 200% "궁서체";
+}
+</style>
+</head>
+<body>
+	<h1>글자 관련 스타일 속성</h1>
+	<hr>
+	<p class="font1">글자 관련 스타일 속성-1(Font Style Attribute)</p>
+	<p class="font2">글자 관련 스타일 속성-2(Font Style Attribute)</p>
+	<p class="font3">글자 관련 스타일 속성-3(Font Style Attribute)</p>
+	<p class="font4">글자 관련 스타일 속성-4(Font Style Attribute)</p>
+	<p class="font5">글자 관련 스타일 속성-5(Font Style Attribute)</p>
+</body>
+</html>
+
+
+
+
+
