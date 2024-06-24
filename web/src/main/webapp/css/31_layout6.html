@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style type="text/css">
+div {
+	width: 400px;
+	height: 200px;
+	margin: 10px;
+}
+
+#red {
+	background: red;
+	position: absolute;
+	top: 100px;
+	left: 200px;
+	
+	/* z-index : 박스모델 중첩 순서 관련 스타일 속성 */
+	/* 속성값 : 정수값 - 정수값이 큰 박스모델을 위에 배치 */
+	z-index: 3;
+}
+
+#green {
+	background: green;
+	position: absolute;
+	top: 200px;
+	left: 400px;
+	
+	z-index: 100;
+	
+}
+
+#blue {
+	background: blue;
+	position: absolute;
+	top: 250px;
+	left: 300px;
+
+	z-index: 2;
+}
+</style>
+</head>
+<body>
+	<h1>박스모델 배치 관련 스타일 속성</h1>
+	<hr>
+	<!-- 박스모델이 중첩되어 출력될 경우 박스모델 배치순서에 의해 중첩되어 출력 -->
+	<div id="red"></div>
+	<div id="green"></div>
+	<div id="blue"></div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CSS</title>
+<style type="text/css">
+/* 다수의 박스모델을 출력하기 위한 컨테이너 역활의 박스모델 - Flex Contrainer */
+#container {
+	width: 800px;
+	min-height: 600px;
+	border: 1px solid red;
+	
+	/* 컨테이너 역활의 박스모델에 display 스타일 속성값으로 [flex]를 설정하면 Flex Contrainer로
+	처리되어 아이템 역활의 박스모델을 한쪽 방향의 일정한 간격으로 자동 배치 */ 
+	display: flex;
+	
+	/* flex-direction : Flex Item 배치 방향 관련 스타일 속성 */
+	/* 속성값 : row(기본), column, row-reverse, column-reverse  */
+	flex-direction: row;
+
+	/* flex-wrap : Flex Item 줄바꿈 관련 스타일 속성 */
+	/* 속성값 : nowrap(기본), wrap(아래 방향으로 줄바꿈), wrap-reverse(위 방향으로 줄바꿈) */
+	flex-wrap: wrap;
+	
+	/* flex-flow : Flex Item 배치 방향 및 줄바꿈 관련 스타일 속성 */
+	flex-flow: row wrap;
+	
+	/* justify-content : Flex Item 양쪽 정렬 관련 스타일 속성 */
+	/* 속성값 : flex-start(기본), flex-end, center, space-between, space-around, space-evenly */
+	justify-content: space-between;
+}
+
+/* 컨테이너 역활의 박스모델에 출력된 아이템 역활의 박스모델 - Flex Item */
+.box {
+ 	width: 200px;
+ 	height: 200px;
+ 	margin: 20px;
+ 	border: 1px solid green;
+}
+</style>
+</head>
+<body>
+	<h1>박스모델 배치 관련 스타일 속성</h1>
+	<hr>
+	<div id="container">
+		<div class="box">홍길동</div>
+		<div class="box">임꺽정</div>
+		<div class="box">전우치</div>
+		<div class="box">일지매</div>
+		<div class="box">장길산</div>
+		<div class="box">홍경래</div>
+		<div class="box">로빈훗</div>
+	</div>	
+</body>	
+</html>
