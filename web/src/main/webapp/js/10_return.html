@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body> 
+	<h1>Return</h1>
+	<hr>
+	<p>return : 함수를 강제로 종료하기 위한 명령 - 함수의 명령으로 실행된 결과값을 함수를 
+	호출한 명령으로 반환하는 기능 제공</p>
+	
+	<script type="text/javascript">
+	/*
+	function display(name) {
+		if(name=="홍길동") {
+			alert("관리자님, 안녕하세요.");
+			return;//함수 종료
+		}
+		alert(name+"님, 환영합니다.")		
+	}
+	
+	//display("홍길동");
+	display("임꺽정");
+	*/
+	
+	/*
+	function sum(num1, num2) {
+		return num1+num2;//함수를 종료하면서 결과값 반환
+	}
+	
+	//함수를 호출해 반환되는 결과값을 변수에 저장하여 사용
+	var tot=sum(10, 20);
+	alert("합계 = "+tot);//합계 = 30
+	*/
+	
+	//화살표함수를 선언하여 const 변수에 저장
+	//const sum = (num1, num2) => { return num1+num2 };
+	//화살표함수에 return 키워드로 값을 반환하는 명령을 하나만 작성할 경우 { } 기호와 return
+	//키워드 생략 가능
+	const sum = (num1, num2) => num1+num2 ;
+	
+	//함수를 호출하여 반환되는 결과값을 변수에 저장하지 않고 직접 출력 처리
+	alert("합계 = "+sum(10, 20));//합계 = 30
+	</script>
+</body>
+</html>

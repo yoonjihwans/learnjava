@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>내부함수(Inner Function)</h1>
+	<hr>
+	<p>내부함수 : 함수 내부에서 선언된 함수로 선언된 함수에서만 호출 가능한 함수</p>
+	
+	<script type="text/javascript">
+	function outer() {
+		alert("outer 함수의 명령 실행");
+		
+		//내부함수 선언 - 외부함수가 종료되면 자동 소멸되는 함수
+		function inner() {
+			alert("inner 함수의 명령 실행");
+		}
+		
+		//내부함수가 선언된 외부함수에서만 내부함수 호출 가능
+		inner();
+	}
+	
+	//inner();//에러 발생
+	outer();
+	</script>
+</body>
+</html>
+
+

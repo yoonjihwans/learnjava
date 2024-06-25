@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>Object 생성자 함수</h1>
+	<hr>
+	<p>브라우저에서 객체를 생성할 수 있는 생성자 함수가 미리 선언되어 사용 가능</p>
+	<hr>
+	<p>Object 생성자 함수 : Object 객체를 생성하기 위한 생성자 함수 - 모든 생성자 함수는
+	Object 생성자 함수를 상속받아 사용 가능</p>
+	<p>Object 객체 : 객체의 속성이 하나도 없는 객체 - toString 객체 함수만 존재</p>
+	<p>Object.toString() : 객체를 생성한 생성자 함수의 이름을 반환하는 객체함수 
+	- 객체형 변수를 출력할 경우 자동 호출되는 메소드</p>
+	<p>Object 객체에 필요한 속성과 함수를 추가하여 사용 가능</p>
+	 
+	<script type="text/javascript">
+	/*
+	//new 연산자로 Object 생성자 함수를 호출하여 Object 객체를 생성해 변수에 저장
+	// => 객체 속성이 하나도 없는 객체 생성
+	var student=new Object();
+	
+	//객체가 저장된 변수를 출력할 경우 자동으로 toString 객체함수가 호출되어 반환값을 출력
+	//alert(student);//[object Object]
+	
+	//Object 객체에 객체속성을 추가하여 사용 가능
+	//형식) 객체형변수명.속성명=값
+	student.num=1000;
+	student.name="홍길동";
+	student.address="서울시 강남구";
+	
+	//alert("학번 = "+student.num+", 이름 = "+student.name+", 주소 = "+student.address);
+	
+	//delete 함수를 호출해 객체의 속성 제거 가능 
+	//delete(student.address);
+	//객체 속성이 없는 경우 [undefined] 자료형으로 처리되어 출력
+	//alert("학번 = "+student.num+", 이름 = "+student.name+", 주소 = "+student.address);
+	
+	//Object 객체에 객체함수를 추가하여 사용 가능
+	student.display=function() {
+		alert("학번 = "+this.num+", 이름 = "+this.name+", 주소 = "+this.address);
+	}	
+	
+	//객체함수 호출
+	student.display();
+	*/
+	
+	
+	</script> 
+</body>
+</html>
+
+
+
