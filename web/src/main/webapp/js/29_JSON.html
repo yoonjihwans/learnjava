@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>JSON 생성자 함수</h1>
+	<hr>
+	<p>JSON 생성자 함수 : 멤버변수와 멤버함수를 제공하기 위한 생성자 함수</p>
+	
+	<script type="text/javascript">
+	//JSON 기능을 사용해 Object 객체를 생성하여 변수에 저장
+	var student={num:1000, name:"홍길동"};
+	//alert("student 변수의 자료형 = "+typeof(student));//student 변수의 자료형 = object
+	//alert("student = "+student);//student = [object Object]
+	
+	//alert("학번 = "+student.num+", 이름 = "+student.name);//학번 = 1000, 이름 = 홍길동
+	
+	//JSON.stringify(object) : 매개변수로 전달받은 자바스크립트 객체를 JSON 형식의 문자값으로
+	//변환하여 반환하는 멤버함수
+	// => REST 웹프로그램을 요청할 경우 자바스크립트 객체를 JSON 형식의 문자값으로 변환하여
+	//REST 웹프로그램에게 전달하기 위해 사용하는 멤버함수
+	var str=JSON.stringify(student);
+	//alert("str 변수의 자료형 = "+typeof(str));//str 변수의 자료형 = string
+	//alert("str = "+str);//str = {"num":1000,"name":"홍길동"}
+	
+	//JSON.parse(string) : 매개변수로 전달받은 JSON 형식의 문자값을 자바스크립트 객체로 변환
+	//하여 반환하는 멤버함수 - eval 함수 사용 가능
+	// => REST 웹프로그램을 요청하여 JSON 문서로 응답받은 경우 JSON 형식의 문자값을 자바스크립트
+	//객체로 변환하여 사용
+	//var stu=JSON.parse(str);
+	var stu=eval("("+str+")");
+	
+	//alert("stu 변수의 자료형 = "+typeof(stu));//stu 변수의 자료형 = object
+	//alert("stu = "+stu);//stu = [object Object]
+	alert("학번 = "+stu.num+", 이름 = "+stu.name);//학번 = 1000, 이름 = 홍길동
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

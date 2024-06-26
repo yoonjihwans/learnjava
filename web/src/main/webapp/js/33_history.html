@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>BOM(Browser Object Model) - history 객체</h1>
+	<hr>
+	<p>history 객체 : 브라우저 히스토리 기능을 객체로 표현하여 멤버변수와 멤버함수를 제공하는 객체</p>
+	<p>브라우저 히스토리 기능 : 브라우저로 요청한 웹프로그램의 응답결과(웹페이지)를 저장하는 기능</p>
+
+	<script type="text/javascript">
+	//alert(history);//[object History]
+	
+	setTimeout(function() {
+		//history.back() : 이전 페이지로 이동하는 멤버함수
+		//history.back();
+		
+		//history.forward() : 다음 페이지로 이동하는 멤버함수
+		//history.forward();
+		
+		//history.go(number) : 원하는 페이지로 이동하는 멤버함수
+		//history.go(-1);//history.back() 멤버함수와 동일
+		//history.go(1);//history.forward() 멤버함수와 동일
+		history.go(0);//location.reload() 멤버함수와 동일
+	}, 3000);
+	</script>	
+</body>
+</html>
+
+

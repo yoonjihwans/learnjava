@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>Date 생성자 함수</h1>
+	<hr>
+	<p>Date 생성자 함수 : Date 객체를 생성하기 위한 생성자 함수</p>
+	<p>Date 객체 : 날짜와 시간을 저장하기 위한 객체</p>
+	
+	<script type="text/javascript">
+	//클라이언트 플렛폼(OS)의 현재 날짜와 시간이 저장된 Date 객체를 생성하여 변수에 저장	
+	var now=new Date();
+	
+	//Date.toString() : Date 객체에 저장된 날짜와 시간을 문자값으로 변환하여 반환하는 멤버함수
+	//alert("now.toString() = "+now.toString());//now.toString() = Wed Jun 26 2024 16:01:19 GMT+0900 (한국 표준시)
+	//alert("now = "+now);//now = Wed Jun 26 2024 16:01:19 GMT+0900 (한국 표준시)
+	
+	//Date.toLocaleString() : Date 객체에 저장된 날짜와 시간을 클라이언트 플렛폼(OS)의의
+	//지역에 맞는 날짜와 시간 패턴의 문자값으로 변환하여 반환하는 멤버함수
+	//alert("now.toLocaleString() = "+now.toLocaleString());//now.toLocaleString() = 2024. 6. 26. 오후 4:04:05
+	
+	/*
+	//Date.getXXX() : Date 객체에 저장된 날짜와 시간 중 원하는 갓을 반환하는 멤버함수
+	var day=["일", "월", "화", "수", "목", "금", "토"];
+	var today=now.getFullYear()+"년 "+(now.getMonth()+1)+"월 "
+		+now.getDate()+"일 "+day[now.getDay()]+"요일";
+	alert("today = "+today);
+	*/
+	
+	//Date(year, month, date) 생성자 함수를 호출해 원하는 날짜와 시간이 저장된 Date 객체 생성 가능
+	var birthday=new Date(2000, 0, 1);//2000년 1월 1일 0시 0분 0초
+	
+	//Date.getTime() : Date 객체에 저장된 날짜와 시간을 초(ms)단위 숫자값(TimeStamp)로 변환하여 반환하는 멤버함수
+	var intervalDay=(now.getTime()-birthday.getTime())/(1000*60*60*24);
+	//alert("당신은 오늘까지 "+intervalDay+"일 살았습니다.");
+	alert("당신은 오늘까지 "+Math.ceil(intervalDay)+"일 살았습니다.");
+	</script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>Array 생성자 함수</h1>
+	<hr>
+	<p>Array 생성자 함수 : Array 객체를 생성하기 위한 생성자 함수</p>
+	<p>Array 객체 : 다수의 값을 요소에 저장하기 위한 객체(배열과 유사) - Array 객체의
+	요소는 첨자를 사용하여 구분하고 [] 연산자를 사용해 Array 객체의 요소 사용 가능</p>
+	
+	<script type="text/javascript">
+	//요소가 하나도 없는 Array 객체 생성 - Empty Array 
+	var array=new Array();
+	
+	//Array.length : Array 객체에 저장된 요소의 갯수를 저장한 멤버변수
+	//alert(array.length);//0
+	
+	//Array.toString() : Array 객체에 모든 요소값을 문자값으로 반환하는 멤버함수
+	//alert(array.toString());
+	//alert(array);//toString() 멤버함수 자동 호출
+	
+	//Array(size) : 매개변수로 전달받은 숫자값의 갯수만큼 요소가 저장된 Array 객체 생성
+	// => Array 객체의 모든 요소에는 자동으로 [null] 저장
+	//var array=new Array(5);
+	//alert(array.length);//5
+	//alert(array);//,,,,
+	
+	/*
+	//Array(value, value, ....) : 매개변수에 2개 이상의 값을 전달받아 Array 객체 생성
+	// => 전달값의 갯수만큼 Array 객체의 요소가 만들어지고 요소에는 차례대로 전달값 저장
+	var array=new Array(10, 20, 30);
+	//alert(array.length);//3
+	//alert(array);//10,20,30
+	
+	//Array 객체의 요소는 첨자(Index - 0부터 1씩 증가되는 숫자값)를 사용해 구분
+	// => Array 객체의 요소는 [] 연산자에 첨자를 사용해 요소 표현하여 사용
+	//alert("array[0] = "+array[0]+", array[1] = "+array[1]+", array[2] = "+array[2]);
+	
+	//Array 객체의 요소를 구분하는 첨자가 범위를 벗어난 경우 [undefined] 자료형으로 처리
+	alert("array[3] = "+array[3]);//array[3] = undefined
+	*/
+	
+	//JSON 기능을 사용해 Array 객체를 생성해 변수에 저장
+	// => Array 객체의 요소에 저장될 초기값을 나열하여 작성 가능 
+	var array=[10, 20, 30];
+	
+	/*
+	//for 명령으로 첨자를 제공해 Array 객체의 요소에 대한 일괄 처리
+	for(i=0;i<array.length;i++) {
+		alert("array["+i+"] = "+array[i]);
+	}
+	*/
+	
+	/*
+	//for 명령에 in 연산자를 사용해 Array 객체의 요소명(첨자)를 차례대로 제공받아 일괄 처리
+	for(index in array) {
+		alert("array["+index+"] = "+array[index]);
+	}
+	*/
+	
+	/*
+	//for 명령에 of 연산자를 사용해 Array 객체의 요소값을 차례대로 제공받아 일괄 처리
+	for(value of array) {
+		alert(value);
+	}
+	*/
+	
+	/*
+	//Array.forEach(callback(element[, index][, array])) : Array 객체의 저장된 모든 요소를 일괄처리하기 위한 멤버함수
+	// => forEach 멤버함수의 매개변수에는 함수(콜백함수)를 전달하여 요소의 갯수만큼 반복 호출하며 
+	//호출된 콜백함수에는 Array 객체의 요소를 일괄 처리하는 명령 작성
+	// => 콜백함수의 매개변수에는 Array 객체의 요소값과 첨자, Array 객체가 자동 저장되어 콜백함수에서 사용 가능
+	array.forEach(function(elt, i) {
+		alert("array["+i+"] = "+elt);
+	});
+	*/
+	
+	//alert(array);//10,20,30
+	
+	//Array.push(value) : Array 객체의 마지막 위치에 요소를 추가하고 매개변수로 전달받은 값을
+	//요소값을 저장하는 멤버함수
+	array.push(40);
+	//alert(array);//10,20,30,40
+	
+	//Array.pop() : Array 객체의 마지막 위치에 요소를 삭제하고 삭제된 요소의 값을 반환하는 멤버함수
+	var value=array.pop();
+	//alert(array);//10,20,30
+	//alert(value);//40
+	
+	//Array.unshift(value) : Array 객체의 첫번째 위치에 요소를 추가하고 매개변수로 전달받은 값을
+	//요소값을 저장하는 멤버함수
+	array.unshift(40);
+	//alert(array);//40,10,20,30
+	
+	//Array.shift() : Array 객체의 첫번째 위치에 요소를 삭제하고 삭제된 요소의 값을 반환하는 멤버함수
+	var value=array.shift();
+	alert(array);//10,20,30
+	alert(value);//40
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

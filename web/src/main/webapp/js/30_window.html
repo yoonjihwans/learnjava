@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>BOM(Browser Object Model) - window 객체</h1>
+	<hr>
+	<p>BOM : 브라우저를 기반으로 제공되는 자바스크립트 객체</p>
+	<p>window 객체 : 브라우저를 객체로 표현하여 멤버변수와 멤버함수를 제공하는 객체</p>
+	
+	<script type="text/javascript">
+	//alert(window);//[object Window]
+	
+	/*
+	//window.alert(message) : 경고창을 생성하여 매개변수로 전달받은 메세지를 출력하는 멤버함수
+	// => window 객체를 생략하여 일반함수처럼 멤버함수 호출 가능
+	//window.alert("경고창을 사용하여 메세지 출력");
+	alert("경고창을 사용하여 메세지 출력");
+	*/
+
+	/*
+	//window.propmt(message[, value]) : 입력창을 생성하여 사용자로부터 값을 입력받아 문자값으로 매개변수로 
+	//반환하는 멤버함수
+	var input=prompt("숫자를 입력해 주세요.", 100);
+	alert("input = "+input);
+	*/
+	
+	/*
+	//window.confirm(message) : 확인창을 생성하여 사용자로부터 선택된 값을 반환하는 멤버함수 
+	// => 확인창에서 [취소]를 선택하면 [false]를 반환하고 [확인]을 선택하면 [true] 반환
+	if(confirm("게시글을 삭제 하시겠습니까?")) {
+		alert("게시글을 삭제 하였습니다.");
+	} else {
+		alert("게시글을 삭제를 취소 하였습니다.");
+	}
+	*/
+	
+	//window.open(url[, name][, option]) : 자식 브라우저(팝업창)를 생성하여 자식 브라우저로
+	//웹프로그램을 요청하여 실행결과를 응답받아 출력하는 멤버함수
+	// => option : width, height, top, left, menubar, toolbar, resizable 등
+	//window.open("https://www.daum.net", "popup", "width=1000, heught=640, top=100, left=200");
+	
+	if(confirm("브라우저를 종료 하시겠습니까?")) {
+		//window.close() : 현재 사용중인 브라우저를 종료하는 멤버함수
+		window.close();
+	}
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
