@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>DOM(Document Object Model)</h1>
+	<hr>
+	<div id="imageDiv"></div>
+	
+	<script type="text/javascript">
+	//document.createElement(tagName) : 매개변수로 전달받은 이름의 태그를 생성하여 Element
+	//객체로 반환하는 멤버함수
+	var h2E=document.createElement("h2");//<h2></h2>
+	//alert(h2E);//[object HTMLHeadingElement]
+	
+	//document.createTextNode(content) : 매개변수로 전달받은 태그내용이 저장된 Text 객체를
+	//생성하여 반환하는 멤버함수
+	var h2T=document.createTextNode("h2 태그에 의해 출력되는 내용");
+	//alert(h2T);//[object Text]
+	
+	//Element.appendChild(newElement) : 매개변수로 전달받은 Element 객체(Text 객체)를 Element
+	//객체의 마지막 자식 객체로 추가하는 멤버함수
+	h2E.appendChild(h2T);//<h2>h2 태그에 의해 출력되는 내용</h2>
+	
+	//document.body : HTML 문서의 body 태그를 자바스크립트 객체로 표현
+	//alert(document.body);//[object HTMLBodyElement]
+	//HTML 문서의 body 태그의 마지막 자식태그로 추가 - 태그를 DOM 트리에 추가하여 출력 처리
+	document.body.appendChild(h2E);
+	
+	var imgE=document.createElement("img");//<img>
+	
+	//Element.attributeName : 태그(Element 객체)의 속성을 표현하여 태그 속성을 추가하거나
+	//속성값 변경 가능 
+	imgE.src="/web/js/images/Koala.jpg";//<img src="/web/js/images/Koala.jpg">
+	
+	//Element.setAttribute(attributeName, attributeValue) : 태그(Element 객체)에 속성을 추가
+	//하거나 속성값을 변경하는 멤버함수
+	//Element.getAttribute(attributeName) : 태그(Element 객체)의 속성값을 반환하는 멤버함수
+	//Element.removeAttribute(attributeName) : 태그(Element 객체)의 속성을 삭제하는 멤버함수
+	imgE.setAttribute("width", "300")//<img src="/web/js/images/Koala.jpg" width="300">
+	
+	//DOM 트리에서 태그를 검색하여 검색된 태그의 마지막 자식태그로 추가하여 출력 처리
+	//<div id="imageDiv"><img src="/web/js/images/Koala.jpg" width="300"></div>
+	document.getElementById("imageDiv").appendChild(imgE);
+	
+	var hrE=document.createElement("hr");
+	//Element.insertBefore(newElement, before) : DOM 트리에서 태그(before)를 검색하여  
+	//검색된 태그 앞에 새로운 태그(newElement)를 삽입하는 멤버함수  
+	document.body.insertBefore(hrE, h2E);
+	</script>
+</body>
+</html>

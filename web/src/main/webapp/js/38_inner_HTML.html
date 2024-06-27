@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>DOM(Document Object Model)</h1>
+	<hr>
+	<ul>
+		<li>메뉴-1</li>
+		<li>메뉴-2</li>
+		<li>메뉴-3</li>
+	</ul>
+	<ul>
+		<li>메뉴-4</li>
+		<li>메뉴-5</li>
+		<li>메뉴-6</li>
+	</ul>
+	<hr>
+	<div id="text"></div>
+	
+	<script type="text/javascr ipt">
+	/*
+	//li 태그 중 태그내용이 [메뉴-2]인 li 태그를 찾아 태그내용을 [신메뉴]로 변경하는 프로그램 작성
+	var ulList=document.getElementsByTagName("ul");
+	var liList=ulList.item(0).getElementsByTagName("li");
+	var liE=liList.item(1);//<li>메뉴-2</li>
+	
+	//Element 객체의 첫번째 자식(Text 객체)의 태그내용 변경
+	//liE.firstChild.nodeValue="신메뉴";
+	
+	var newText=document.createTextNode("신메뉴");
+	//Element.replaceChild(newElement, oldElement) : Element 객체의 자식 Element 객체(Text 객체)를
+	//새로운 Element 객체(Text 객체)로 변경하는 멤버함수
+	liE.replaceChild(newText, liE.firstChild);
+	*/
+	
+	/*
+	var divE=document.getElementById("text");//<div id="text"></div>
+	var pE=document.createElement("p");//<p></p>
+	var pT=document.createTextNode("p 태그에 의해 출력되는 내용");
+	pE.appendChild(pT);//<p>p 태그에 의해 출력되는 내용</p>
+	divE.appendChild(pE);//<div id="text"><p>p 태그에 의해 출력되는 내용</p></div>
+	*/
+	
+	var divE=document.getElementById("text");//<div id="text"></div>
+	//Element.innerHTML : Element 객체에 자식태그(태그내용)를 저장한 멤버변수
+	// => innerHTML 멤버변수에 저장된 값을 변경하면 태그 또는 태그내용 변경 가능
+	divE.innerHTML="<p>p 태그에 의해 출력되는 내용</p>";
+	</script>
+</body>
+</html>

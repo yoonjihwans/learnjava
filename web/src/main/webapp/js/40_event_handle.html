@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>자바스크립트 이벤트 처리</h1>
+	<hr>
+	<p>이벤트(Event) : 태그(Element 객체)에서 발생될 수 있는 다양한 사건</p>
+	<p>이벤트 처리(Event Handle) : 태그에서 이벤트가 발생될 경우 실행될 명령을 자바스크립트로 작성</p>
+	<hr>
+	<p>이벤트 처리 방법-1 : 이벤트가 발생될 태그의 이벤트 리스너 속성(onXXX)에 속성값으로 이벤트
+	처리 명령을 작성하여 실행 - 이벤트 처리 명령으로 이벤트 처리 함수를 호출하는 것을 권장</p>
+	<p>이벤트 처리 방법-2 : DOM 트리에서 Element 객체를 찾아 Element 객체의 이벤트 리스너 속성에
+	이벤트 처리 함수 저장 - 태그에 이벤트 처리 함수 등록</p>
+	<p>이벤트 처리 방법-3 : DOM 트리에서 Element 객체를 찾아 Element 객체로 addEventLister()
+	멤버함수를 호출하여 이벤트에 대한 이벤트 처리 함수 등록</p>
+	<hr>
+	<!-- <button type="button" onclick="alert('이벤트 처리 명령 실행-1');">버튼-1</button> -->
+	<button type="button" onclick="eventHandler();">버튼-1</button>
+	<button type="button" id="eventBtn2">버튼-2</button>
+	<button type="button" id="eventBtn3">버튼-3</button>
+	
+	<script type="text/javascript">
+	//이벤트 처리 함수 - 태그에서 이벤트가 발생될 때 호출될 함수
+	function eventHandler() {
+		//이벤트 처리 명령 작성
+		alert('이벤트 처리 명령 실행-1');
+	}
+	
+	//태그(Element 객체)에 이벤트 처리 함수를 등록하면 태그에서 이벤트가 발생될 경우 이벤트
+	//처리 함수가 자동 호출되어 이벤트 처리 명령 실행
+	document.getElementById("eventBtn2").onclick=function() {
+		alert('이벤트 처리 명령 실행-2');
+	}
+	
+	//Element.addEventListener(eventName, callback[, useCapture]) : Elemet 객체에서 매개변수로
+	//전달받은 이벤트가 발생되면 callback 함수(이벤트 처리 함수)를 호출하는 멤버함수
+	document.getElementById("eventBtn3").addEventListener("click", function() {
+		alert('이벤트 처리 명령 실행-3');
+	});
+	</script>
+</body>
+</html>

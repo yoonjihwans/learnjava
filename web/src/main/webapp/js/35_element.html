@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+<script type="text/javascript">
+/*
+//window.onload : window 객체가 완성된 경우 발생되는 이벤트 리스너 속성에 이벤트 처리 함수 등록 
+window.onload=function() {
+	alert("동적인 페이지 구현을 위한 명령 작성");
+}
+*/
+</script>
+</head>
+<body>
+	<h1>DOM(Document Object Model)</h1>
+	<hr>
+	<p>DOM : Document 객체를 기반으로 제공되는 자바스크립트 객체 - Node 객체</p>
+	<p>클라이언트는 브라우저를 사용하여 서버의 웹프로그램을 요청해 실행결과를 HTML 문서로 응답받아
+	브라우저 엔진의 DOM 파서(Parser)로 HTML 문서를 읽어 DOM 트리(Tree)를 생성한 후 CSS 스타일 
+	시트를 적용해 브라우저에 출력 처리</p> 
+	<p>자바스크립트를 사용해 태그에서 이벤트가 발생될 경우 DOM 트리에 존재하는 태그(Node 객체)를
+	찾아 태그을 조작해 동적인 페이지 구현 가능 - DHTML(Dynamic HTML)</p>
+	<p>DOM 트리가 완성돼야 동적인 페이지 구현 가능</p>
+	<p>Node 객체 : 태그(TagNode)와 태그내용(TextNode)을 자바스크립트 객체로 표현
+	- Element 객체와 Text 객체로 분리하여 표현 가능</p>
+	<p>Element 객체 : 태그(TagNode)만을 자바스크립트 객체로 표현</p>
+	<p>Text 객체 : 태그내용(TextNode)만을 자바스크립트 객체로 표현</p>
+	<hr>
+	<h2 id="headline">h2 태그에 의해 출력되는 내용</h2>
+	<ul>
+		<li>li 태그에 의해 출력되는 내용-1</li>
+		<li>li 태그에 의해 출력되는 내용-2</li>
+		<li>li 태그에 의해 출력되는 내용-3</li>
+	</ul>
+	<p class="text">p 태그에 의해 출력되는 내용</p>
+	
+	<!-- body 태그의 마지막 자식태그로 script 태그를 작성하면 onload 이벤트 리스너 속성에 
+	이벤트 처리 함수를 등록하지 않아도 동적인 페이지 구현을 위한 명령 작성 가능 -->
+	<script type="text/javascript">
+	//alert("동적인 페이지 구현을 위한 명령 작성");
+	
+	/*
+	//document.getElementById(id) : DOM 트리의 document 객체에서 태그의 id 속성값으로 하나의 
+	//태그를 검색해 Element 객체로 반환하는 멤버함수
+	// => document 객체 대신 Element 객체(태그)를 사용하여 자식태그를 검색하여 Element 객체로 반환 가능
+	var h2E=document.getElementById("headline");
+	//alert(h2E);//[object HTMLHeadingElement]
+	
+	//Element.nodeName : Element 객체의 노드명(태그명)을 저장한 멤버변수
+	//alert(h2E.nodeName);//H2
+	//Element.nodeName : Element 객체의 노드값(태그내용)을 저장한 멤버변수
+	//alert(h2E.nodeValue);//null
+	
+	//Element.firstChild : Element 객체의 첫번째 자식을 저장한 멤버변수
+	// => 첫번째 자식이 태그인 경우 Element 객체가 저장되어 있고 태그내용인 경우 Text 객체가 저장
+	//alert(h2E.firstChild);//[object Text]
+	//alert(h2E.firstChild.nodeName);//#text
+	//alert(h2E.firstChild.nodeValue);//h2 태그에 의해 출력되는 내용
+	
+	h2E.firstChild.nodeValue="자바스크립트에 의해 변경된 내용";
+	*/
+	
+	/*
+	//document.getElementsByTagName(tagName) : DOM 트리의 document 객체에서 태그의 이름으로  
+	//다수의 태그를 검색해 HTMLCollection 객체(NodeList 객체)로 반환하는 멤버함수
+	//HTMLCollection 객체(NodeList 객체) : 태그(Element 객체)가 여러개 저장된 콜렉션 객체
+	var liList=document.getElementsByTagName("li");
+	//alert(liList);//[object HTMLCollection]
+	
+	//HTMLCollection.length : HTMLCollection(NodeList 객체)의 저장된 요소의 갯수를 저장한 멤버변수
+	//alert(liList.length);//3
+	
+	for(i=0;i<liList.length;i++) {
+		//HTMLCollection.item(index) : HTMLCollection(NodeList 객체)에서 매개변수로 전달받은
+		//첨자 위치의 요소(Element)를 반환하는 멤버함수
+		var liE=liList.item(i); 
+		//alert(liE);
+		alert(liE.firstChild.nodeValue);		
+	}
+	*/
+	
+	/*
+	//document.getElementsByClassName(class) : DOM 트리의 document 객체에서 태그의 class 속성값으로  
+	//다수의 태그를 검색해 HTMLCollection 객체(NodeList 객체)로 반환하는 멤버함수
+	var pList=document.getElementsByClassName("text");
+	//alert(pList);//[object HTMLCollection]
+	//alert(pList.length);
+	alert(pList.item(0).firstChild.nodeValue);
+	*/
+	
+	/*
+	//document.querySelector(selectors) : DOM 트리의 document 객체에서 CSS 선택자로 하나의
+	//태그를 검색해 Element 객체로 반환하는 멤버함수
+	var h2E=document.querySelector("#headline");
+	alert(h2E.firstChild.nodeValue);
+	*/
+	
+	//document.querySelectorAll(selectors) : DOM 트리의 document 객체에서 CSS 선택자로 다수의
+	//태그를 검색해 HTMLCollection 객체(NodeList 객체)로 반환하는 멤버함수
+	var pList=document.querySelectorAll(".text");
+	alert(pList.item(0).firstChild.nodeValue);
+	</script>
+</body>
+</html>

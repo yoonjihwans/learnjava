@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>자바스크립트와 form 태그</h1>
+	<hr>
+	<p>form 태그 : 사용자로부터 값을 입력받아 제출 이벤트(Submit Event)가 발생되면 웹프로그램을 
+	요청하여 입력값을 전달하기 위한 태그</p>
+	<p>form 태그의 자식태그로 사용자로부터 값을 입력받기 위해 입력태그와 제출 이벤트를 발생하는
+	태그가 반드시 작성되야만 form 태그가 정상적으로 실행</p>
+	<p>form 태그로 웹프로그램을 요청하기 전에 자바스크립트를 사용해 입력값을 검증한 후 정상적인
+	경우에만 form 태그를 실행해 웹프로그램을 요청해 입력값을 전달할 수 있도록 작성하는 것을 권장</p> 
+	<hr>
+	<form action="46_form_action.html" method="post" name="loginForm">
+	<table>
+		<tr>
+			<td>아이디</td>
+			<td><input type="text" name="id"></td>
+		</tr>
+		<tr>
+			<td>비밀번호</td>
+			<td><input type="password" name="passwd"></td>
+		</tr>
+		<tr>
+			<td colspan="2"><button type="submit">로그인</button></td>
+		</tr>
+	</table>	
+	</form>
+
+	<script type="text/javascript">
+	//form 태그와 입력태그의 name 속성값으로 Element 객체 표현 가능
+	// => document 객체 생략 가능
+	//alert(document.loginForm);//[object HTMLFormElement]
+	//alert(loginForm.id);//[object HTMLInputElement]
+	
+	//HTMLInputElement.focus() : 입력태그에 포커스를 제공하는 멤버함수
+	loginForm.id.focus();
+	
+	//form 태그에서 제출 이벤트가 발생될 경우 자동 호출될 이벤트 처리 함수 저장
+	// => 입력태그의 입력값을 제공받아 검증하고 비정상적인 경우 form 태그의 실행을 취소하여
+	//웹프로그램을 요청하지 않도록 처리
+	loginForm.onsubmit=function() {
+		//HTMLInputElement.value : 입력태그에 입력된 값이 저장된 멤버변수 
+		if(loginForm.id.value=="") {//아이디가 입력되지 않은 경우
+			alert("아이디를 입력해 주세요.");
+			loginForm.id.focus();
+			
+			/*
+			event.preventDefault();//제출 이벤트에 의해 form 태그 실행 취소
+			return;//이벤트 처리 함수 종료
+			*/
+			
+			//이벤트 처리 함수에서 reutrn 명령을 사용해 [false]를 반환하면 이벤트 처리 함수를
+			//종료하면서 태그의 이벤트에 대한 기본 명령 실 취소 및 이벤트 전달 중지
+			return false;
+		}
+	
+		if(loginForm.passwd.value=="") {//비밀번호가 입력되지 않은 경우
+			alert("비밀번호를 입력해 주세요.");
+			loginForm.passwd.focus();
+			return false;
+		}
+	}	
+	</script>
+</body>
+</html>
+
+
+
