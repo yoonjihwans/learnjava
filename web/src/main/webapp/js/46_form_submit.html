@@ -49,24 +49,36 @@
 			loginForm.id.focus();
 			
 			/*
-			event.preventDefault();//제출 이벤트에 의해 form 태그 실행 취소
+			event.preventDefault();//제출 이벤트에 의한 form 태그 실행 취소
 			return;//이벤트 처리 함수 종료
 			*/
 			
 			//이벤트 처리 함수에서 reutrn 명령을 사용해 [false]를 반환하면 이벤트 처리 함수를
-			//종료하면서 태그의 이벤트에 대한 기본 명령 실 취소 및 이벤트 전달 중지
+			//종료하면서 태그의 이벤트에 대한 기본 명령 실행을 취소하고 이벤트 전달 중지
+			return false;
+		}
+	
+		//자바스크립트에서 [/정규표현식/g] 형식으로 작성하면 RegExp 객체로 생성하여 사용
+		//RegExp 객체 : 정규표현식(Regular Expression)이 저장된 객체
+		var idReg=/^[a-zA-Z]\w{5,19}$/g;			
+
+		//RegExp.test(input) : RegExp 객체에 저장된 정규표현식과 매개변수로 전달받은 입력값의
+		//패턴이 일치하지 않으면 [false]를 반환하고 일치하면 [true]를 반환하는 멤버함수
+		if(!idReg.test(loginForm.id.value)) {//아이디가 정규표현식의 패턴과 맞지 않은 경우
+			alert("아이디는 영문자, 숫자, 일부 특수문자로 6~20 범위의 문자로만 작성 가능합니다.");
+			loginForm.id.focus();
 			return false;
 		}
 	
 		if(loginForm.passwd.value=="") {//비밀번호가 입력되지 않은 경우
 			alert("비밀번호를 입력해 주세요.");
 			loginForm.passwd.focus();
-			return false;
+			return false; 
 		}
+		
+		//모든 입력값 검증이 성공하면 정상적으로 form 태그가 실행되어 웹프로그램 요청
+		//return true;//생략 가능
 	}	
 	</script>
 </body>
 </html>
-
-
-

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+	<h1>선택자(Selector)</h1>
+	<hr>
+	<h2>jQuery 연습-1</h2>
+	<h2 class="normal">jQuery 연습-2</h2>
+	<h2 class="normal">jQuery 연습-3</h2>
+	<h2>jQuery 연습-4</h2>
+	<h2>jQuery 연습-5</h2>
+	<h3 class="normal">jQuery 연습-6</h3>
+	<h3>jQuery 연습-7</h3>
+	<hr>
+	<ul>
+		<li>선택자(Selector)-1</li>
+		<li>선택자(Selector)-2</li>
+		<li>선택자(Selector)-3</li>
+		<li>선택자(Selector)-4</li>
+		<li>선택자(Selector)-5</li>
+	</ul>
+	
+	<script type="text/javascript">
+	$("h2").css("background", "yellow");
+	
+	//필터 선택자 : 선택자로 검색된 다수의 태그 중 클래스 선택자를 사용하여 특정 태그만을
+	//검색하여 제공하는 선택자
+	//$("h2.normal").css("background", "green");
+
+	//$(selector).filter(selector) : 선택자로 검색된 태그 중 매개변수로 전달받은 선택자의 
+	//태그를 검색하여 jQuery 객체로 반환하는 멤버함수
+	//$("h2").filter(".normal").css("background", "green");
+	$(".normal").filter("h2").css("background", "green");
+
+	$("h3").filter(".normal").css("background", "silver");
+
+	//$(selector).not(selector) : 선택자로 검색된 태그 중 매개변수로 전달받은 선택자의 태그를
+	//제외한 나머지 태그를 검색하여 jQuery 객체로 반환하는 멤버함수
+	$("h3").not(".normal").css("background", "gold");
+	
+	$("ul").find("li").css("font-size","25px");
+	
+	//가상 선택자 : 검색된 태그의 상태 또는 위치에 의해 태그를 제공하기 위한 선택자
+	//:nth-child(N) : N번째 위치한 태그를 제공하기 위한 가상 선택자
+	//$("ul li:nth-child(3)").css("color","red");
+	//가상 선택자를 filter 멤버함수의 매개변수에 전달하여 사용 가능
+	//$("ul li").filter(":nth-child(3)").css("color","red");
+	
+	//:eq(index) : 첨자 위치의 태그를 제공하기 위한 가상 선택자
+	//$("ul li:eq(2)").css("color","red");
+	//$("ul li").filter(":eq(2)").css("color","red");
+	
+	//$(selector).eq(index) : 선택자로 검색된 다수의 태그 중 매개변수로 전달받은 첨자 위치의
+	//태그를 jQuery 객체로 반환하는 멤버함수
+	//$("ul li").eq(2).css("color","red");
+	$("ul").find("li").eq(2).css("color","red");
+	
+	//$("ul li").eq(0).css("color","green");
+	//$(selector).first() : 선택자로 검색된 다수의 태그 중 첫번째 태그를 jQuery 객체로 반환하는 멤버함수
+	$("ul li").first().css("color","green");
+
+	//$("ul li").eq(4).css("color","blue");
+	//eq() 멤버함수의 매개변수에 [-1]를 전달하면 다수의 태그 중 마지막 태그를 검색하여 jQuery 객체로 반환 
+	//$("ul li").eq(-1).css("color","blue");
+	//$(selector).last() : 선택자로 검색된 다수의 태그 중 마지막 태그를 jQuery 객체로 반환하는 멤버함수
+	$("ul li").last().css("color","blue");
+	
+	//$(selector).next() : 선택자로 검색된 태그의 다음 태그를 jQuery 객체로 반환하는 멤버함수
+	$("ul li").first().next().css("color", "aqua");	
+
+	//$(selector).prev() : 선택자로 검색된 태그의 이전 태그를 jQuery 객체로 반환하는 멤버함수
+	$("ul li").last().prev().css("color", "lime");	
+	</script>
+</body>
+</html>

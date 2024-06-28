@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+	<h1>선택자(Selector)</h1>
+	<hr>
+	<h2 class="item">jQuery Selector-1</h2>
+	<h2 id="tag">jQuery Selector-2</h2>
+	<h3 class="item">jQuery Selector-3</h3>
+	<p>jQuery Selector-4</p>
+	
+	<script type="text/javascript">
+	//태그 선택자 : 태그명으로 태그를 검색하여 제공하기 위한 선택자
+	// => DOM 트리에서 태그를 찾아 jQuery 객체로 반환받아 멤버함수 호출
+	// => 다수의 태그가 검색될 경우 묵시적 반복에 의해 태그의 갯수만큼 jQuery 객체를 반환받아
+	//멤버함수 호출
+	$("h2").css("color","red");
+	
+	//클래스 선택자 : 태그의 class 속성값으로 태그를 검색하여 제공하기 위한 선택자
+	// => 클래스 선택자는 태그 선택자와 구분하기 위해 class 속성값 앞에 [.] 기호을 붙여 표현
+	$(".item").css("color","orange");
+
+	//아이디 선택자 : 태그의 id 속성값으로 태그를 검색하여 제공하기 위한 선택자
+	// => 클래스 선택자는 태그 선택자와 구분하기 위해 id 속성값 앞에 [#] 기호을 붙여 표현
+	$("#tag").css("color","green");
+	
+	//선택자로 반환받아 jQuery 객체로 멤버함수를 순차적으로 호출 가능 - 메소드 체인(Method Chain)
+	$("p").css("color", "blue").css("font-size","30px");
+	
+	//jQuery 객체로 멤버함수를 호출할 때 매개변수에 값 대신 Object 객체를 전달하여 호출 가능
+	// => Object 객체의 요소(멤버변수)를 사용해 멤버함수에 필요한 다수의 값을 전달하기 위해 사용
+	$("p").css({"color":"blue", "font-size":"30px"});
+	</script>
+</body>
+</html>

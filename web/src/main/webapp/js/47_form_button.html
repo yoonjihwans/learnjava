@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JavaScript</title>
+</head>
+<body>
+	<h1>자바스크립트와 form 태그</h1>
+	<hr>
+	<form name="loginForm">
+	<table>
+		<tr>
+			<td>아이디</td>
+			<td><input type="text" name="id"></td>
+		</tr>
+		<tr>
+			<td>비밀번호</td>
+			<td><input type="password" name="passwd"></td>
+		</tr>
+		<tr>
+			<td colspan="2"><button type="button" id="loginBtn">로그인</button></td>
+		</tr>
+	</table>	
+	</form>
+	
+	<script type="text/javascript">
+	loginForm.id.focus();
+
+	//Element 객체(button 태그)에서 클릭 이벤트가 발생될 경우 호출될 이벤트 처리 함수 저장
+	// => 입력태그의 입력값을 제공받아 검증한 후 정상적인 경우 제출 이벤트(Submit Event)를 
+	//발생하여 form 태그를 실행해 웹프로그램을 요청할 수 있는 명령 작성
+	document.getElementById("loginBtn").onclick=function() {
+		if(loginForm.id.value=="") {//아이디가 입력되지 않은 경우
+			alert("아이디를 입력해 주세요.");
+			loginForm.id.focus();
+			return;
+		}
+	
+		var idReg=/^[a-zA-Z]\w{5,19}$/g;			
+
+		if(!idReg.test(loginForm.id.value)) {//아이디가 정규표현식의 패턴과 맞지 않은 경우
+			alert("아이디는 영문자, 숫자, 일부 특수문자로 6~20 범위의 문자로만 작성 가능합니다.");
+			loginForm.id.focus();
+			return;
+		}
+	
+		if(loginForm.passwd.value=="") {//비밀번호가 입력되지 않은 경우
+			alert("비밀번호를 입력해 주세요.");
+			loginForm.passwd.focus();
+			return; 
+		}
+		
+		//Elemenet 객체에 태그 속성을 추가하여 속성값 변경
+		// => 변수값에 의해 form 태그로 웹프로그램을 다르게 요청해야 하는 경우 사용
+		loginForm.action="47_form_action.html";
+		loginForm.method="post";
+		
+		//모든 입력값에 대한 검증이 성공한 경우 제출 이벤트를 발생시켜 form 태그가 실행되도록 명령 작성
+		//HTMLFormElement.submit() : Element 객체로 제출 이벤트를 발생하는 멤버함수
+		// => form 태그가 실행되어 웹프로그램 요청 
+		loginForm.submit();
+	}
+	</script>
+</body>
+</html>
