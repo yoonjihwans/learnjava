@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>홍현석의 싸구려 아이스크림 가게</title>
+<link rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Fredoka+One&family=Oswald&display=swap"
+	rel="stylesheet">
+
+<style type="text/css">
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	box-sizing: border-box;
+	text-decoration: none;
+}
+
+header {
+	width: 100%;
+	height: 50px;
+	background-color: #2D2A26;
+}
+
+header p {
+	color: #E3E3E3;
+	font-family: 'Oswald', sans-serif;
+	text-align: center;
+	line-height: 50px;
+}
+
+main {
+	width: 100%;
+	height: 750px;
+	background-color: #a95e13;
+}
+
+.up {
+	width: 100%;
+	height: 100px;
+}
+
+.down {
+	width: 100%;
+	height: 700px;
+}
+
+#left {
+	width: 33.3%;
+	height: 50px;
+	float: left;
+}
+
+#left nav ul {
+	position: fixed;
+}
+
+#left nav ul li {
+	width: 110px;
+	height: 50px;
+	float: left;
+	text-align: center;
+	line-height: 90px;
+	color: black;
+	font-size: 17px;
+	font-family: 'Oswald', sans-serif;
+}
+
+#left nav ul li:hover {
+	color: #78746E;
+	transition: 1s;
+}
+
+#middle {
+	width: 33.3%;
+	height: 50px;
+	float: left;
+}
+
+#middle h1 {
+	text-align: center;
+	font-family: 'Dancing Script', cursive;
+	line-height: 90px;
+}
+
+#right {
+	width: 400px;
+	
+	float: right;
+}
+
+#right nav ul {
+    
+	float: right;
+	margin-top: 30px;
+}
+
+#right nav ul li {
+	float: left;
+	width: 85px;
+}
+
+#icimg {
+	width: 300px;
+	height: 600px;
+	margin: 0 auto;
+	margin-top: 60px;
+}
+
+#icimg p:first-child {
+	position: relative;
+	right: 30px;
+}
+
+#font {
+	width: 300px;
+	height: 500px;
+	border: 1px solid red;
+}
+
+.sectiondiv1 {
+	width: 100%;
+	height: 650px;
+}
+
+#sectiondiv1-1 {
+	width: 50%;
+	height: 650px;
+	float: left;
+}
+
+#sectiondiv2-2 {
+	width: 50%;
+	height: 650px;
+	background-color: #FCFEFF;
+	float: left;
+}
+
+.sectiondiv2 {
+	width: 100%;
+	height: 750px;
+	background-color: #B7E9D8;
+}
+
+.sectiondiv3 {
+	width: 100%;
+	height: 650px;
+}
+
+#sectiondiv3-1 {
+	width: 50%;
+	height: 650px;
+	background-color: #FCFEFF;
+	float: left;
+}
+
+#sectiondiv3-2 {
+	width: 50%;
+	height: 650px;
+	float: left;
+}
+
+#sectiondiv3-2 img {
+	float: right;
+}
+
+.sectiondiv4 {
+	width: 100%;
+	height: 750px;
+	background-color: #FCC3B8;
+}
+
+#sectiondiv5-1 {
+	width: 50%;
+	height: 650px;
+	float: left;
+}
+
+#sectiondiv5-2 {
+	width: 50%;
+	height: 650px;
+	background-color: #FCFEFF;
+	float: left;
+}
+
+.sectiondiv6 {
+	width: 100%;
+	height: 750px;
+	background-color: WHITE;
+	float: left;
+	margin: 0 auto;
+}
+
+#wrap {
+	width: 1600px;
+	height: 770px;
+	margin: 0 auto;
+}
+
+.sectiondiv6 img {
+	margin-top: -50px;
+	margin: 0 auto;
+}
+
+.sectiondiv7 {
+	width: 100%;
+	height: 480px;
+	float: left;
+}
+
+.sectiondiv7 nav ul li {
+	float: left;
+	width: 25%;
+	height: 400px;
+}
+
+footer {
+	width: 100%;
+	height: 340px;
+	background-color: black;
+	float: left;
+}
+
+#wow {
+	font-family: 'Oswald', sans-serif;
+	font-size: 40px;
+	color: white;
+	margin-left: 65px;
+	position: relative;
+	top: 200px;
+	text-align: center;
+}
+
+#wow2 {
+	font-family: 'Fredoka One', cursive;
+	font-size: 150px;
+	color: white;
+	text-align: center;
+	position: relative;
+	top: 200px;
+	letter-spacing: 16px;
+	word-spacing: 10px;
+}
+
+#wow3 {
+	font-family: 'Oswald', sans-serif;
+	font-size: 35px;
+	color: white;
+	text-align: center;
+	position: relative;
+	top: 200px;
+	border: 2px solid white;
+	width: 200px;
+	margin: 0 auto;
+}
+
+#wow3:hover {
+	background-color: #2F2E2E;
+	transition: 1s;
+}
+
+#font-box {
+	width: 1000px;
+	height: 300px;
+	position: relative;
+	right: 350px;
+}
+
+#tasty {
+	width: 500px;
+	height: 500px;
+	position: relative;
+	top: 75px;
+	text-align: center;
+	right: 50px;
+}
+
+#tasty p:first-child {
+	font-family: 'Oswald', sans-serif;
+	font-size: 45px;
+	letter-spacing: 2px;
+	color: #2F2E2E;
+	margin-top: 130px;
+}
+
+#tasty p:nth-child(2) {
+	font-family: 'Dancing Script', cursive;
+	font-size: 23px;
+	margin-bottom: 40px;
+}
+
+#tasty p:nth-child(3) {
+	font-family: 'Oswald', sans-serif;
+}
+
+#tasty p:nth-child(4) {
+	font-family: 'Oswald', sans-serif;
+	margin-top: 50px;
+	font-size: 20px;
+	border: 2px solid #2F2E2E;
+	width: 110px;
+	height: 36px;
+	position: relative;
+	left: 185px;
+}
+
+#tasty p:nth-child(4):hover {
+	background-color: #2F2E2E;
+	transition: 1s;
+	color: white;
+}
+
+#icimg {
+	width: 300px;
+	height: 600px;
+	background-image: url('img/icecream.png'); background-size : cover;
+	margin: 0 auto;
+	background-size: cover;
+}
+
+#div2img {
+	width: 1000px;
+	height: 750px;
+	background-image: url('img/thirdimg.png');
+	background-size: cover;
+	margin: 0 auto;
+	background-attachment: fixed;
+	margin-bottom: 200px;
+}
+
+#sectionimg {
+	width: 1300px;
+	height: 750px;
+	background-image: url('img/5img.jpg');
+	background-size: cover;
+	margin: 0 auto;
+	background-attachment: fixed
+}
+
+#font-box2 {
+	width: 1300px;
+	height: 300px;
+	position: relative;
+	right: 350px;
+}
+
+#font1 {
+	font-family: 'Oswald', sans-serif;
+	font-size: 40px;
+	color: white;
+	text-align: center;
+	position: relative;
+	left: 180px;
+	top: 200px;
+}
+
+#font2 {
+	font-family: 'Fredoka One', cursive;
+	font-size: 150px;
+	color: white;
+	text-align: center;
+	letter-spacing: 16px;
+	word-spacing: 10px;
+	position: relative;
+	left: 180px;
+	top: 200px;
+}
+
+#font3 {
+	font-family: 'Oswald', sans-serif;
+	font-size: 35px;
+	color: white;
+	text-align: center;
+	border: 2px solid white;
+	width: 200px;
+	margin: 0 auto;
+	position: relative;
+	top: 250px;
+	left: 190px;
+}
+
+#font3:hover {
+	background-color: #2F2E2E;
+	transition: 1s;
+}
+
+#daily {
+	width: 500px;
+	height: 500px;
+	position: relative;
+	top: 75px;
+	float: right;
+	text-align: center;
+}
+
+#daily p:first-child {
+	font-family: 'Oswald', sans-serif;
+	font-size: 45px;
+	margin-top: 130px;
+	letter-spacing: 3px;
+}
+
+#daily p:nth-child(2) {
+	font-family: 'Dancing Script', cursive;
+	font-size: 20px;
+}
+
+#daily p:nth-child(3) {
+	font-family: 'Oswald', sans-serif;
+	margin-top: 30px;
+}
+
+#daily p:nth-child(4) {
+	font-family: 'Oswald', sans-serif;
+	font-size: 20px;
+	border: 2px solid #2F2E2E;
+	width: 110px;
+	height: 36px;
+	margin-top: 50px;
+	position: relative;
+	left: 185px;
+}
+
+#daily p:nth-child(4):hover {
+	background-color: #2F2E2E;
+	transition: 1s;
+	color: white;
+}
+
+#sectionfont {
+	width: 900px;
+	height: 600px;
+	border: 1px solid #00ff0000;
+	margin: 0 auto;
+}
+
+#sectionfont1 {
+	font-family: 'Oswald', sans-serif;
+	font-size: 40px;
+	color: white;
+	text-align: center;
+	margin-top: 200px;
+}
+
+#sectionfont2 {
+	font-family: 'Fredoka One', cursive;
+	font-size: 150px;
+	color: white;
+	letter-spacing: 16px;
+	word-spacing: 10px;
+	text-align: center;
+}
+
+#sectionfont3 {
+	font-family: 'Oswald', sans-serif;
+	font-size: 35px;
+	color: white;
+	border: 2px solid white;
+	width: 200px;
+	text-align: center;
+	margin: 0 auto;
+	margin-top: 30px;
+}
+
+#sectionfont3:hover {
+	background-color: #2F2E2E;
+	transition: 1s;
+}
+
+#desrt {
+	width: 500px;
+	height: 500px;
+	position: relative;
+	top: 75px;
+	text-align: center;
+	right: 50px;
+}
+
+#desrt p:first-child {
+	font-family: 'Oswald', sans-serif;
+	font-size: 45px;
+	letter-spacing: 2px;
+	color: #2F2E2E;
+	margin-top: 130px;
+}
+
+#desrt p:nth-child(2) {
+	font-family: 'Dancing Script', cursive;
+	font-size: 23px;
+	margin-bottom: 40px;
+}
+
+#desrt p:nth-child(3) {
+	font-family: 'Oswald', sans-serif;
+}
+
+#desrt p:nth-child(4) {
+	font-family: 'Oswald', sans-serif;
+	margin-top: 50px;
+	font-size: 20px;
+	border: 2px solid #2F2E2E;
+	width: 110px;
+	height: 36px;
+	position: relative;
+	left: 185px;
+}
+
+#desrt p:nth-child(4):hover {
+	background-color: #2F2E2E;
+	transition: 1s;
+	color: white;
+}
+
+.sectiondiv6 {
+	width: 100%;
+	height: 600px;
+	background-image: url('img/bgcimg.png');
+	background-size: cover;
+	margin: 0 auto;
+	background-attachment: fixed;
+}
+
+h1 {
+	text-align: center;
+	font-family: 'Oswald', sans-serif;
+	font-size: 40px;
+	line-height: 150px;
+	color: #2F2E2E;
+}
+
+#last {
+	width: 1000px;
+	height: 250px;
+	margin: 0 auto;
+	margin-top: 70px;
+}
+
+#box1 {
+	width: 200px;
+	height: 170px;
+	float: left;
+}
+
+#box1 p {
+	color: white;
+}
+
+#box1 p:first-child {
+	font-family: 'Oswald', sans-serif;
+	font-size: 25px;
+}
+
+#box1 p:nth-child(2) {
+	font-family: 'Oswald', sans-serif;
+	margin-top: 20px;
+}
+
+#box1 p:nth-child(3) {
+	font-family: 'Oswald', sans-serif;
+}
+
+#box1 p:nth-child(4) {
+	font-family: 'Oswald', sans-serif;
+}
+
+#box2 {
+	width: 200px;
+	height: 170px;
+	float: left;
+}
+
+#box2 p {
+	color: white;
+}
+
+#box2 p:first-child {
+	font-family: 'Oswald', sans-serif;
+	font-size: 25px;
+}
+
+#box2 p:nth-child(2) {
+	font-family: 'Oswald', sans-serif;
+	margin-top: 20px;
+}
+
+#box2 p:nth-child(3) {
+	font-family: 'Oswald', sans-serif;
+}
+
+#box3 {
+	width: 200px;
+	height: 170px;
+	float: left;
+}
+
+#box3 p {
+	color: white;
+}
+
+#box3 p:first-child {
+	font-family: 'Oswald', sans-serif;
+	font-size: 25px;
+}
+
+#box3 p:nth-child(2) {
+	font-family: 'Oswald', sans-serif;
+	margin-top: 20px;
+}
+
+#box3 p:nth-child(3) {
+	font-family: 'Oswald', sans-serif;
+}
+
+#box4 {
+	width: 398px;
+	height: 170px;
+	float: left;
+}
+
+#box4 p {
+	color: white;
+}
+
+#box4 p:first-child {
+	font-family: 'Oswald', sans-serif;
+	font-size: 25px;
+}
+
+#box4 input {
+	width: 300px;
+	height: 40px;
+	background-color: none;
+	border: 2px solid white;
+	text-align: center;
+	margin-top: 5px;
+	font-family: 'Oswald', sans-serif;
+	background-color: black;
+	color: white;
+	font-size: 15px;
+}
+
+#box4 p:nth-child(3) {
+	border: 2px solid white;
+	width: 300px;
+	height: 40px;
+	line-height: 35px;
+	text-align: center;
+	margin-top: 10px;
+	font-family: 'Oswald', sans-serif;
+	font-size: 20px;
+}
+
+#box4 p:nth-child(3):hover {
+	background-color: #2F2E2E;
+	transition: 1s;
+}
+
+#lastfont {
+	color: white;
+	font-family: 'Oswald', sans-serif;
+	font-size: 18px;
+}
+</style>
+</head>
+<body>
+	<header>
+		<p>500 Terry Iteawon Street Seoul Iteawon, CA 94158 | Daily
+			10AM-10PM</p>
+	</header>
+
+
+	<main>
+		<div class="up">
+			<div id="left">
+				<nav>
+					<ul>
+						<li><a href="index.html">HOME</li>
+						<li><a href="flavor.html">FLAVORS</a></li>
+						<li>BOOK AN EVENT</li>
+						<li>ABOUT</li>
+					</ul>
+				</nav>
+			</div>
+			<div id="middle">
+				<h1>COFFEE</h1>
+			</div>
+			<div id="right">
+				<nav>
+					<ul>
+						<li>회원가입</li>
+						<li>로그인</li>
+						<li>장바구니</li>
+						<li>게시판</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+
+
+		<div class="down">
+			<div id="icimg">
+				<div id="font-box">
+					<p id="wow">HAND CRAFTED</p>
+					<p id="wow2">ICE CREAM</p>
+					<p id="wow3">MENU</p>
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+	<section>
+		<div class="sectiondiv1">
+			<div id="sectiondiv1-1">
+				<img src="img/secondimg.jpg" alt="">
+			</div>
+			<div id="sectiondiv2-2">
+				<div id="tasty">
+					<p>OUR FLAVORS</p>
+					<p>Made in Tasty!</p>
+					<p>I'm a paragraph. Click here to add your own text and edit
+						me. It’s easy. Just click “Edit Text” or double click me to add
+						your own content and make changes to the font.Click here to add
+						your own text and edit me. It’s easy. Just click “Edit Text” or
+						double click me to add your own content and make changes to the
+						font.</p>
+					<p>MENU</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="sectiondiv2">
+			<div id="div2img">
+				<div id="font-box2">
+					<p id="font1">ENJOY</p>
+					<p id="font2">DIARY FREE</p>
+					<p id="font3">MENU</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="sectiondiv3">
+			<div id="sectiondiv3-1">
+				<div id="daily">
+					<p>OUR PLACE</p>
+					<p>Ice cream by the sea</p>
+					<p>I'm a paragraph. Click here to add your own text and edit
+						me. It’s easy. Just click “Edit Text” or double click me to add
+						your own content and make changes to the font.Click here to add
+						your own text and edit me. It’s easy.</p>
+					<p>MENU</p>
+				</div>
+			</div>
+			<div id="sectiondiv3-2">
+				<img src="img/4img.jpg" alt="">
+			</div>
+		</div>
+
+		<div class="sectiondiv4">
+			<div id="sectionimg">
+				<div id="sectionfont">
+					<p id="sectionfont1">CATERING & MORE</p>
+					<p id="sectionfont2">EVENTS</p>
+					<p id="sectionfont3">MAKE A WISH</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="sectiondiv5">
+			<div id="sectiondiv5-1">
+				<img src="img/6img.jpg" alt="">
+			</div>
+			<div id="sectiondiv5-2">
+				<div id="desrt">
+					<p>DESSERTS</p>
+					<p>Ice cream goodies</p>
+					<p>I'm a paragraph. Click here to add your own text and edit
+						me. It’s easy. Just click “Edit Text” or double click me to add
+						your own content and make changes to the font.Click here to add
+						your own text and edit me. It’s easy. Just click “Edit Text” or
+						double click me to add your own content and make changes to the
+						font.</p>
+					<p>MENU</p>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="sectiondiv6">
+
+			<div id="wrap">
+				<img src="img/7img.jpg" alt="" width="1600px" ; height="770px"; >
+			</div>
+		</div>
+
+		<h1>#DOUBLE TAP</h1>
+
+
+
+		<div class="sectiondiv7">
+			<nav>
+				<ul>
+					<li><img src="img/footer1.jpg" alt="" width="100%"
+						height="480px"></li>
+					<li><img src="img/footer2.jpg" alt="" width="100%"
+						height="480px"></li>
+					<li><img src="img/footer3.jpg" alt="" width="100%"
+						height="480px"></li>
+					<li><img src="img/footer4.jpg" alt="" width="100%"
+						height="480px"></li>
+				</ul>
+			</nav>
+		</div>
+	</section>
+
+
+	<footer>
+		<div id="last">
+			<div id="box1">
+				<p>ADDRESS</p>
+				<p>500 Terry Seoul Iteawon.</p>
+				<p>Se Iteawon,</p>
+				<p>CA 94158</p>
+			</div>
+			<div id="box2">
+				<p>CONTACT</p>
+				<p>yty0745@naver.com</p>
+				<p>Tel: 010-8942-0747</p>
+			</div>
+			<div id="box3">
+				<p>HOURS</p>
+				<p>OPEN DAILY</p>
+				<p>10AM-8PM</p>
+			</div>
+			<div id="box4">
+				<p>MAILING LIST</p>
+				<input type="text" value="Enter Yout Email Here">
+				<p>SUBSCRIBE</p>
+			</div>
+			<p id="lastfont">@2023 by Gelato. Proudly created with YoonJiHwan</p>
+		</div>
+	</footer>
+
+</body>
+</html>
