@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+	<h1>attr 멤버함수</h1>
+	<hr>
+	<div id="imgDiv" data-value="KoalaImage">
+		<img alt="코알라" src="/web/jquery/images/Koala.jpg" width="200" id="img">
+	</div>
+	
+	<script type="text/javascript">
+	//$(selector).attr(name) : 선택자로 검색된 태그에서 매개변수로 전달받은 이름의 태그
+	//속성값을 반환하는 멤버함수 
+	//alert("태그 속성값 = "+$("#imgDiv").attr("data-value"));//태그 속성값 = KoalaImage
+	//alert("태그 속성값 = "+$("#img").attr("src"));//태그 속성값 = /web/jquery/images/Koala.jpg
+	
+	/*
+	//$(selector).attr(name, value) : 선택자로 검색된 태그에서 매개변수로 전달받은 이름의 태그
+	//속성의 속성값을 매개변수로 전달받은 값으로 변경(추가)하는 멤버함수
+	$("#img").attr("src", "/web/jquery/images/Penguins.jpg");
+	$("#img").attr("width", "300");
+	*/
+	
+	//$(selector).attr(object) 메소드를 호출하여 선택자로 검색된 태그에서 매개변수로 전달받은
+	//JSON 기능으로 표현된 Object 객체의 요소(태그 속성명)와 요소값(태그 속성값)으로 태그의 
+	//속성 변경 가능
+	$("#img").attr({"src":"/web/jquery/images/Penguins.jpg", "width":"300"});
+	</script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<style type="text/css">
+div {
+	font-size: 1.2em;
+	margin: 10px;
+	width: 200px;
+	text-align: center;
+}
+
+.mystyle {
+	border: 2px solid red;
+	background: yellow;
+}
+</style>
+</head>
+<body>
+	<h1>Mouse Event</h1>
+	<hr>
+	<p>click : 태그에서 마우스 버튼을 누른 경우 발생되는 이벤트</p>
+	<p>dblclick : 태그에서 마우스 버튼을 두번 연속 누른 경우 발생되는 이벤트</p>
+	<p>mouseover : 태그에 마우스 커서가 진입한 경우 발생되는 이벤트 - 버블링 단계 포함</p>
+	<p>mouseout : 태그에서 마우스 커서가 벗어난 경우 발생되는 이벤트 - 버블링 단계 포함</p>
+	<p>mouseenter : 태그에 마우스 커서가 진입한 경우 발생되는 이벤트 - 버블링 단계 미포함</p>
+	<p>mouseleave : 태그에서 마우스 커서가 벗어난 경우 발생되는 이벤트 - 버블링 단계 미포함</p>
+	<p>mousedown : 태그에서 마우스 버튼을 누르는 순간 발생되는 이벤트</p>
+	<p>mouseup : 태그에서 눌러진 마우스 버튼을 놓는 순간 발생되는 이벤트</p>
+	<p>mousewheel : 브라우저에서 마우스 휠이 움직이는 동안 발생되는 이벤트</p>
+	<p>mousemove : 브라우저에서 마우스가 움직이는 동안 발생되는 이벤트</p>
+	<p>contextmenu : 브라우저에서 마우스 오른쪽 버튼을 누른 경우 발생되는 이벤트</p>
+	<hr>
+	<!-- <div class="mystyle">마우스 이벤트</div>  -->
+	<div>마우스 이벤트-1</div>
+	<div>마우스 이벤트-2</div>
+	<div>마우스 이벤트-3</div>
+	<div>마우스 이벤트-4</div>
+	<div>마우스 이벤트-5</div>
+	
+	<script type="text/javascript">
+	/*
+	$("div").click(function() {
+		if($(this).attr("class") != "mystyle") {
+			//$(selector).addClass(className) : 선택자로 검색된 태그에서 매개변수로 전달받은 값을
+			//class 속성의 속성값으로 추가하는 멤버함수
+			$(this).addClass("mystyle");
+		} else {
+			//$(selector).removeClass(className) : 선택자로 검색된 태그에서 매개변수로 전달받은 값을
+			//사용해 class 속성의 속성값을 삭제하는 멤버함수
+			$(this).removeClass("mystyle");
+		}
+	});
+	*/
+	
+	/*
+	$("div").click(function() {
+		//$(selector).toggleClass(className) : 선택자로 검색된 태그에서 매개변수로 전달받은 값을
+		//class 속성의 속성값을 추가하거나 삭제하는 멤버함수
+		$(this).toggleClass("mystyle");
+	});
+	*/
+	
+	/*
+	$("div").dblclick(function() {
+		$(this).toggleClass("mystyle");
+	});
+	*/
+	
+	/*
+	$("div").mouseover(function() {
+		$(this).addClass("mystyle");
+	});
+	
+	$("div").mouseout(function() {
+		$(this).removeClass("mystyle");
+	})
+	*/
+	
+	/*
+	//$(selector).hover(callback1, callback2) : 선택자로 검색된 태그에 마우스 커서가 진입하면
+	//첫번째 매개변수로 전달된 콜백함수를 호출하고 마우스 커서가 벗어난 경우 두번째 매개변수에
+	//전달된 콜백함수를 호출하는 멤버함수 
+	$("div").hover(function() {
+		$(this).addClass("mystyle");
+	}, function(jQuery.Event) {
+		$(this).removeClass("mystyle");
+	});
+	*/
+	
+	$(document).contextmenu(function() {
+		alert("마우스 오른쪽 버튼 사용 금지");
+		return false;
+	});
+	</script>
+</body>
+</html>
+
+
+
+
+

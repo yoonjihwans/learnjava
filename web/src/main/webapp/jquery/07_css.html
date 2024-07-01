@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<style type="text/css">
+#displayDiv {
+	margin: 20px;
+	padding: 10px;
+	color: red;
+	border: 1px solid blue;
+	font-size: 1.5em;
+	text-align: center; 
+}
+</style>
+</head>
+<body>
+	<h1>css 멤버함수</h1>
+	<hr>
+	<div id="displayDiv">브라우저에 출력될 아주 중요한 내용</div>
+	
+	<script type="text/javascript">
+	//$(selector).css(name) : 선택자로 검색된 태그에서 매개변수로 전달받은 이름의 CSS 스타일
+	//속성값을 반환하는 멤버함수
+	//alert("CSS 스타일 속성값 = "+$("#displayDiv").css("margin"));//CSS 스타일 속성값 = 20px
+	//alert("CSS 스타일 속성값 = "+$("#displayDiv").css("padding"));//CSS 스타일 속성값 = 10px
+	//alert("CSS 스타일 속성값 = "+$("#displayDiv").css("color"));//CSS 스타일 속성값 = rgb(255, 0, 0)
+	//alert("CSS 스타일 속성값 = "+$("#displayDiv").css("border"));//CSS 스타일 속성값 = 1px solid rgb(0, 0, 255)
+	//alert("CSS 스타일 속성값 = "+$("#displayDiv").css("font-size"));//CSS 스타일 속성값 = 24px
+	//CSS 스타일 속성명에 [-] 기호가 있는 경우 자바스크립트의 카멜 표기법으로 바꾸어 표현 가능
+	//alert("CSS 스타일 속성값 = "+$("#displayDiv").css("fontSize"));//CSS 스타일 속성값 = 24px
+	//alert("CSS 스타일 속성값 = "+$("#displayDiv").css("text-align"));//CSS 스타일 속성값 = center
+	//alert("CSS 스타일 속성값 = "+$("#displayDiv").css("textAlign"));//CSS 스타일 속성값 = center
+	
+	//$(selector).css(name, value) : 선택자로 검색된 태그에서 매개변수로 전달받은 이름의 CSS 스타일
+	//속성의 속성값을 매개변수로 전달받은 값으로 변경하는 멤버함수
+	/*
+	$("#displayDiv").css("width", "50%");
+	$("#displayDiv").css("position", "absolute");
+	$("#displayDiv").css("top", "200px");
+	$("#displayDiv").css("left", "100px");
+	*/
+	
+	//$(selector).css(object) 메소드를 호출하여 선택자로 검색된 태그에서 매개변수로 전달받은
+	//JSON 기능으로 표현된 Object 객체의 요소(스타일 속성명)와 요소값(스타일 속성값)으로 태그의 
+	//CSS 스타일 변경 가능
+	$("#displayDiv").css({"width":"50%", "position":"absolute", "top":"200px", "left":"100px"});
+	</script>
+</body>
+</html>

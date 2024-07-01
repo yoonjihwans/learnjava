@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+	<h1>태그의 이동</h1>
+	<hr>
+	<div id="imageList"></div>
+	
+	<script type="text/javascript">
+	for(i=0;i<10;i++) {
+		//선택자로 검색된 태그에 새로운 태그를 생성하여 마지막 자식태그로 추가하여 출력
+		$("#imageList").append("<img src='/web/jquery/images/"+i+".png' width='150'>");
+	}
+	
+	setInterval(function() {
+		//선택자로 검색된 태그를 타겟 선택자로 검색된 태그의 마지막 자식태그로 이동하여 출력
+		$("#imageList").children(":eq(0)").appendTo("#imageList");		
+	}, 1000);
+	</script> 
+</body>
+</html>
