@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.3/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.3/jquery-ui.min.js"></script>
+<style type="text/css">
+#box {
+	width: 150px;
+	height: 150px;
+	background: orange;
+	margin-bottom: 20px;
+	position: relative;
+	top: 0;
+	left: 0;
+}
+</style>
+</head>
+<body>
+	<h1>Effect - animate</h1>
+	<hr>
+	<select id="easing">
+		<option selected>linear</option>
+		<option>easeInCubic</option>
+		<option>easeOutCubic</option>
+		<option>easeInBack</option>
+		<option>easeOutBack</option>
+		<option>easeInElastic</option>
+		<option>easeOutElastic</option>
+	</select>
+	<hr>
+	<div id="box"></div>
+	<button type="button" id="left">◀</button>
+	<button type="button" id="right">▶</button>
+	
+	<script type="text/javascript">
+	/*
+	$("#right").click(function() {
+		//태그의 left 스타일 속성값을 반환받아 변수에 저장
+		// => pareInt 함수를 사용해 [px] 문자값을 제거한 숫자값만 반환받아 변수에 저장
+		//alert($("#box").css("left"));
+		var x=parseInt($("#box").css("left"));
+		//alert(x);
+		
+		x+=50;
+		
+		//태그의 left 스타일 속성값을 변경
+		$("#box").css("left", x);//태그 이동
+	});
+	*/
+	
+	$("#left").attr("disabled", "disabled");//태그를 비활성화 처리
+	
+	$("#right").click(function() {
+		$("#right").attr("disabled", "disabled");//태그를 비활성화 처리
+		$("#left").removeAttr("disabled");//태그를 활성화 처리
+		
+		//선택자로 검색된 태그(select 태그)의 자식태그(option 태그) 증 선택된 태그의 태그내용을
+		//반환받아 변수에 저장
+		var easing=$("#easing").children(":selected").text();
+		
+		//$(selector).animate(properties, duration[, easing][, callback]) : 선택자로 검색된
+		//태그에 애니메이션 효과를 제공하기 위한 멤버함수
+		// => properties : 태그의 CSS 스타일 속성과 속성값을 Object 객체의 요소로 전달 - 태그의 스타일 변화
+		// => duration : 애니메이션 효과의 적용시간(ms) 전달 - 태그의 스타일이 변화되는 시간
+		// => easing : 애니메이션 효과의 적용속도 전달 - https://easings.net 사이트 참조(jquery-ui 라이브러리 포함)
+		// => callback : 애니메이션 효과의 적용 후 실행될 명령이 작성된 함수 전달
+		//$(selector).width() : 선택자로 검색된 태그의 폭을 반환하는 멤버함수
+		//$(selector).stop() : 선택자로 검색된 태그에 적용된 애니메이션 효과를 취소하는 멤버함수
+		$("#box").stop().animate({"left":$(window).width()-170}, 3000, easing);		
+	});
+	
+	$("#left").click(function() {
+		$("#left").attr("disabled", "disabled");//태그를 비활성화 처리
+		$("#right").removeAttr("disabled");//태그를 활성화 처리
+		var easing=$("#easing").children(":selected").text();
+		$("#box").stop().animate({"left":0}, 3000, easing);		
+	});
+	</script>
+</body>
+</html>
