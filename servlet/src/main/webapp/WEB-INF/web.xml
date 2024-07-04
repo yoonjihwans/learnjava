@@ -1,26 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
-	id="WebApp_ID" version="4.0">
-	<display-name>servlet</display-name>
+<!-- web.xml : 웹프로젝트가 WAS 프로그램에 의해 웹자원(WebContext)으로 변환될 때 필요한 정보를
+제공하기 위한 환경설정파일 - XSD(XML Schema Description) 파일로 제공된 태그(엘리먼트)만 사용 가능 -->
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <!-- display-name : 웹모듈(프로젝트의 이름)을 설정하기 위한 엘리먼트 -->
+  <display-name>servlet</display-name>
+  
+  <!-- context-param : 모든 웹자원(서블릿)에게 필요한 값을 제공하기 위한 엘리먼트 -->
+  <context-param>
+  	<!-- param-name : 값을 제공할 이름을 설정하는 엘리먼트 -->
+  	<param-name>name</param-name>
+  	<!-- param-name : 제공될 값을 설정하는 엘리먼트 -->
+  	<param-value>홍길동</param-value>
+  </context-param>
 
-	<servlet>
-		<servlet-name>hello</servlet-name>
-		<servlet-class>xyz.itwill.servlet.HelloServlet</servlet-class>
-	</servlet>
+  <!-- error-page : 클라이언트에게 전달하여 응답될 에러페이지를 설정하기 위한 엘리먼트 -->	
+  <error-page>
+  	<!-- error-code : 에러코드를 설정하기 위한 엘리먼트 -->
+  	<error-code>400</error-code>
+  	<!-- location : 에러페이지의 컨텍스트 경로를 설정하기 위한 엘리먼트 -->
+  	<location>/error.html</location>
+  </error-page>
 
-	<servlet-mapping>
-		<servlet-name>hello</servlet-name>
-		<url-pattern>/hello.itwill</url-pattern>
-	</servlet-mapping>
+  <error-page>
+  	<error-code>405</error-code>
+  	<location>/error.html</location>
+  </error-page>
+  
+  <!-- servlet : 서블릿 클래스를 서블릿으로 등록하기 위한 엘리먼트 -->
+  <servlet>
+  	<!-- servlet-name : 서블릿을 구분하기 위한 이름(식별자)을 설정하기 위한 엘리먼트 -->
+  	<servlet-name>hello</servlet-name>
+  	<!-- servlet-class : 서블릿으로 등록될 서블릿 클래스를 설정하기 위한 엘리먼트 -->
+  	<servlet-class>xyz.itwill.servlet.HelloServlet</servlet-class>
+  	<!-- init-param : 서블릿에게 필요한 값을 제공하기 위한 엘리먼트 -->
+  	<init-param>
+  		<param-name>name</param-name>
+  		<param-value>홍길동</param-value>
+  	</init-param>
+  </servlet>
 
-	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>index.htm</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-	</welcome-file-list>
+  <!-- servlet-mapping : 서블릿을 요청할 수 있는 URL 주소를 매핑 설정하기 위한 엘리먼트 -->
+  <servlet-mapping>
+  	<!-- servlet-name : 요청 URL 주소로 실행될 서블릿의 이름을 설정하기 위한 엘리먼트 -->
+  	<servlet-name>hello</servlet-name>
+  	<!-- url-pattern : 서블릿을 요청하기 위한 URL 패턴을 설정하기 위한 엘리먼트 -->
+  	<url-pattern>/hello.itwill</url-pattern>
+  </servlet-mapping>		
+  
+  <!-- welcome-file-list : welcome-file 엘리먼트 목록을 설정하기 위한 엘리먼트 -->
+  <welcome-file-list>
+  	<!-- welcome-file : 클라이언트가 서버에 접속하여 웹프로그램을 요청하기 않은 경우 기본적으로 
+  	실행되어 응답될 웹프로그램(웹문서)의 URL 주소를 설정한 엘리먼트 - 순차적으로 적용 -->
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+  </welcome-file-list>
 </web-app>
