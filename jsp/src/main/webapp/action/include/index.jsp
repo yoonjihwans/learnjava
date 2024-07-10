@@ -132,12 +132,6 @@ div {
 			<jsp:param value="<%=webMaster %>" name="master"/>
 		</jsp:include>		
 	</div>
-	<%
-		if(request.getAttribute("errorCode") != null) {
-			//클라이언트에게 에러코드를 전달하여 응답 처리
-			response.sendError((Integer)request.getAttribute("errorCode"));
-			return;
-		}
-	%>
+
 </body>
 </html>
