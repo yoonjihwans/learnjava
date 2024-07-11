@@ -1,15 +1,21 @@
 <%@page import="xyz.itwill.dto.StudentDTO"%>
-<%@page import="java.util.List"%>
-<%@page import="xyz.itwill.dao.StudentDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- STUDENT 테이블에 저장된 모든 행(학생정보)를 검색하여 HTML 태그에 포함하여 응답하는 JSP 문서 --%>
-<%-- => [학생추가] 태그를 클릭한 경우 [insertFormStudent.jsp] 문서를 요청하여 페이지 이동 --%>    
-<%-- => 학생정보의 [삭제] 태그를 클릭한 경우 [deleteStudent.jsp] 문서를 요청하여 페이지 이동 - 학번 전달 --%>    
-<%-- => 학생정보의 [변경] 태그를 클릭한 경우 [updateFormStudent.jsp] 문서를 요청하여 페이지 이동 - 학번 전달 --%>
+<%-- 사용자로부터 학생정보를 입력받기 위한 JSP 문서 --%>
+<%-- => [학생추가] 태그를 클릭한 경우 [insertStudent.jsp] 문서를 요청하여 페이지 이동 - 입력값(학생정보) 전달 --%>    
+<%-- => [학생목록] 태그를 클릭한 경우 [displayStudent.jsp] 문서를 요청하여 페이지 이동 --%>
 <%
-	//STUDENT 테이블에 저장된 모든 행을 검색하여 List 객체로 반환하는 StudentDAO 클래스의 메소드 호출
-	List<StudentDTO> studentList=StudentDAO.getDAO().selectStudentList();
+	String message=(String)session.getAttribute("message");
+	if(message == null) {
+		message="";
+	} else {
+		session.removeAttribute("message");
+	}
+	
+	StudentDTO student=(StudentDTO)session.getAttribute("student");
+	if(student != null) {
+		session.removeAttribute("student");
+	}
 %>    
 <!DOCTYPE html>
 <html>
@@ -19,14 +25,8 @@
 <style type="text/css">
 h1 {
 	margin: 0 auto;
-	width: 850px; 
+	width: 300px; 
 	text-align: center; 
-}
-
-div {
-	margin: 10px auto;
-	width: 850px;
-	text-align: right;
 }
 
 table {
@@ -35,54 +35,122 @@ table {
 	border-collapse: collapse; 	
 }
 
-th {
-	background-color: black;
-	color: white; 
-}
-
 th, td {
 	border: 1px solid black;
 	text-align: center;
 	padding: 5px;	
 }
 
-.no { width: 100px; }
-.name { width: 100px; }
-.phone { width: 150px; }
-.address { width: 250px; }
-.birthday { width: 150px; }
-.remove { width: 50px; }
-.modify { width: 50px; }
+.title { width: 100px; }
+.input { width: 200px; }
 </style>
 </head>
 <body>
-	<h1>학생목록</h1>
-	<div>
-		<button type="button">학생추가</button>
-	</div>
+	<h1>학생정보 입력</h1>
+	<hr>
+	<form name="studentForm" action="<%=request.getContextPath()%>/student/insertStudent.jsp" method="post">
 	<table>
 		<tr>
-			<th class="no">학번</th>
-			<th class="name">이름</th>
-			<th class="phone">전화번호</th>
-			<th class="address">주소</th>
-			<th class="birthday">생년월일</th>
-			<th class="remove">삭제</th>
-			<th class="modify">변경</th>
+			<th class="title">학생번호</th>
+			<td class="input">
+				<input type="text" name="no" <% if(student != null) { %>value="<%=student.getNo()%>"<% } %>>
+			</td>
 		</tr>
-		<%-- List 객체에 저장된 요소값(StudentDTO 객체)을 차례대로 제공받아 변수에 저장하는 반복문 --%>
-		<%-- => StudentDTO 객체의 필드값을 반환받아 HTML 태그에 포함하여 출력 처리 --%> 
-		<% for(StudentDTO student : studentList) { %>
-		<tr align="center">
-			<td><%=student.getNo() %></td>				
-			<td><%=student.getName() %></td>				
-			<td><%=student.getPhone() %></td>				
-			<td><%=student.getAddress() %></td>				
-			<td><%=student.getBirthday().substring(0, 10) %></td>				
-			<td><button type="button">삭제</button></td>		
-			<td><button type="button">변경</button></td>		
-		</tr>	
-		<% } %>
+		<tr>
+			<th class="title">이름</th>
+			<td class="input">
+				<input type="text" name="name" <% if(student != null) { %>value="<%=student.getName()%>"<% } %>>
+			</td>
+		</tr>
+		<tr>
+			<th class="title">전화번호</th>
+			<td class="input">
+				<input type="text" name="phone" <% if(student != null) { %>value="<%=student.getPhone()%>"<% } %>>
+			</td>
+		</tr>
+		<tr>
+			<th class="title">주소</th>
+			<td class="input">
+				<input type="text" name="address" <% if(student != null) { %>value="<%=student.getAddress()%>"<% } %>>
+			</td>
+		</tr>
+		<tr>
+			<th class="title">생년월일</th>
+			<td class="input">
+				<input type="text" name="birthday" <% if(student != null) { %>value="<%=student.getBirthday()%>"<% } %>>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<button type="submit">학생추가</button> 
+				<button type="reset">초기화</button> 
+				<button type="button" id="listBtn">학생목록</button> 
+			</td>
+		</tr>
 	</table>
+	</form>
+	<p align="center" style="color: red;"><%=message %></p>
+	
+	<script type="text/javascript">
+	studentForm.no.focus();
+
+	studentForm.onsubmit=function() {
+		if(studentForm.no.value=="") {
+			alert("학생번호를 입력해 주세요.");
+			studentForm.no.focus();
+			return false;
+		}
+		
+		var noReg=/\d{4}/g;
+		if(!noReg.test(studentForm.no.value)) {
+			alert("학생번호는 정수 4자리로 입력해주세요.");
+			studentForm.no.focus();
+			return false;
+		}
+		
+		if(studentForm.name.value=="") {
+			alert("이름을 입력해 주세요.");
+			studentForm.name.focus();
+			return false;
+		}
+
+		if(studentForm.phone.value=="") {
+			alert("전화번호를 입력해 주세요.");
+			studentForm.phone.focus();
+			return false;
+		}
+
+		var phoneReg=/(01[016789])-\d{3,4}-\d{4}/g;
+		if(!phoneReg.test(studentForm.phone.value)) {
+			alert("전화번호를 형식에 맞게 입력해주세요.");
+			studentForm.phone.focus();
+			return false;
+		}
+		
+		if(studentForm.address.value=="") {
+			alert("주소를 입력해 주세요.");
+			studentForm.address.focus();
+			return false;
+		}
+
+		if(studentForm.birthday.value=="") {
+			alert("생년월일을 입력해 주세요.");
+			studentForm.birthday.focus();
+			return false;
+		}
+		
+		var birthdayReg=/(18|19|20)\d{2}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])/g;
+		if(!birthdayReg.test(studentForm.birthday.value)) {
+			alert("생년월일을 형식에 맞게 입력해주세요.");
+			studentForm.birthday.focus();
+			return false;
+		}
+	} 
+	
+	document.getElementById("listBtn").onclick=function() {
+		location.href="<%=request.getContextPath()%>/student/displayStudent.jsp";	
+	}
+	</script>
+
 </body>
 </html>
