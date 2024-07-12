@@ -3,7 +3,10 @@
 <%-- 사용자로부터 회원정보를 입력받기 위한 JSP 문서 --%>
 <%-- => [회원가입] 태그를 클릭한 경우 [/member/member_join_action.jsp] 문서를 요청하여 페이지 이동 - 입력값 전달 --%>
 <%-- => [아이디 중복 검사] 태그를 클릭한 경우 새로운 브라우저(팝업창)를 생성하여 
-[/member/id_check.jsp] 문서 요청 - 아이디 전달  --%>    
+[/member/id_check.jsp] 문서 요청 - 아이디 전달  --%>
+<%-- => [우편번호 검색] 태그를 클릭한 경우 [Daum 우편번호 서비스]를 사용하여 입력태그(우편번호와
+기본주소)의 입력값 변경 --%>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>    
 <style type="text/css">
 fieldset {
 	text-align: left;
@@ -105,12 +108,13 @@ legend {
 		</li>
 		<li>
 			<label>우편번호</label>
-			<input type="text" name="zipcode" id="zipcode" size="7">
+			<input type="text" name="zipcode" id="zipcode" size="7" readonly="readonly">
+			<span id="postSearch">우편번호 검색</span>
 			<div id="zipcodeMsg" class="error">우편번호를 입력해 주세요.</div>
 		</li>
 		<li>
 			<label for="address1">기본주소</label>
-			<input type="text" name="address1" id="address1" size="50">
+			<input type="text" name="address1" id="address1" size="50" readonly="readonly">
 			<div id="address1Msg" class="error">기본주소를 입력해 주세요.</div>
 		</li>
 		<li>
@@ -229,4 +233,14 @@ $("#id").change(function() {
 	//입력태그(아이디 중복 검사 실행 여부)의 입력값이 변경
 	$("#idCheckResult").val("0");
 });
+
+$("#postSearch").click(function() {
+	new daum.Postcode({
+	    oncomplete: function(data) {
+	        $("#zipcode").val(data.zonecode);
+	        $("#address1").val(data.address);
+	    }
+	}).open();	
+});
+
 </script>

@@ -1,3 +1,4 @@
+<%@page import="xyz.itwill.util.Utility"%>
 <%@page import="xyz.itwill.dao.MemberDAO"%>
 <%@page import="xyz.itwill.dto.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -25,7 +26,8 @@
 	
 	//전달값을 반환받아 저장
 	String id=request.getParameter("id");
-	String passwd=request.getParameter("passwd");
+	//전달받은 비밀번호를 암호화 처리한 후 변수에 저장
+	String passwd=Utility.encrypt(request.getParameter("passwd"));
 	String name=request.getParameter("name");
 	String email=request.getParameter("email");
 	String mobile=request.getParameter("mobile1")+"-"+request.getParameter("mobile2")+"-"+request.getParameter("mobile3");

@@ -1,14 +1,37 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+﻿﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%-- 사용자로부터 인증정보(아이디와 비밀번호)를 입력받기 위한 JSP 문서 --%>
+<%-- => [로그인] 태그를 클릭한 경우 [/member/member_login_action.jsp] 문서를 요청하여 페이지 이동 - 입력값 전달 --%>
+<%
+	//전달값(URL 주소)을 반환받아 저장
+	String url=request.getParameter("url");
+	if(url == null) {
+		url="";
+	}
+
+	String message=(String)session.getAttribute("message");
+	if(message == null) {
+		message="";
+	} else {
+		session.removeAttribute("message");
+	}
+	
+	String id=(String)session.getAttribute("id");
+	if(id == null) {
+		id="";
+	} else {
+		session.removeAttribute("id");
+	}
+
+%>
 <style type="text/css">
 #space {
 	height: 50px;
-}
-
+}    
 .login_tag {
 	margin: 5px auto;
 	width: 300px;
-}
+}    
 
 #login label {
 	text-align: right;
@@ -33,16 +56,16 @@
 	font-size: 1.2em;
 	cursor: pointer;
 	letter-spacing: 20px;
-	font-weight: bold;
+	font-weight: bold; 	 
 }
 
 #search {
-	margin-top: 10px;
-	margin-bottom: 20px;
+	margin-top: 10px;	
+	margin-bottom: 20px;	
 }
 
 #message {
-	color: red;
+	color: red;	
 	font-weight: bold;
 }
 
@@ -51,35 +74,43 @@ a:hover {
 }
 </style>
 <div id="space"></div>
-<form id="login" name="loginForm" action="#" method="post">
+<form id="login" name="loginForm"  method="post"
+	action="<%=request.getContextPath() %>/index.jsp?workgroup=member&work=member_login_action">
+	<input type="hidden" name="url" value="<%=url%>">
 	<ul class="login_tag">
-		<li><label for="id">아이디</label> <input type="text" name="id"
-			id="id"></li>
-		<li><label for="id">비밀번호</label> <input type="password"
-			name="passwd" id="passwd"></li>
+		<li>
+			<label for="id">아이디</label>
+			<input type="text" name="id" id="id" value="<%=id%>">
+		</li>
+		<li>
+			<label for="id">비밀번호</label>
+			<input type="password" name="passwd" id="passwd">
+		</li>
 	</ul>
 	<div id="login_btn">로그인</div>
 	<div id="search">
-		<a href="#">아이디 찾기</a> | <a href="#">비밀번호 찾기</a>
+		<a href="#">아이디 찾기</a> |
+		<a href="#">비밀번호 찾기</a> 
 	</div>
-	<div id="message"></div>
+	<div id="message"><%=message %></div>
 </form>
 <script type="text/javascript">
-	$("#id").focus();
+$("#id").focus();
 
-	$("#login_btn").click(function() {
-		if ($("#id").val() == "") {
-			$("#message").text("아이디를 입력해 주세요.");
-			$("#id").focus();
-			return;
-		}
+$("#login_btn").click(function() {
+	if($("#id").val()=="") {
+		$("#message").text("아이디를 입력해 주세요.");
+		$("#id").focus();
+		return;
+	}
+	
+	if($("#passwd").val()=="") {
+		$("#message").text("비밀번호를 입력해 주세요.");
+		$("#passwd").focus();
+		return;
+	}
+	
+	$("#login").submit();
+});
 
-		if ($("#passwd").val() == "") {
-			$("#message").text("비밀번호를 입력해 주세요.");
-			$("#passwd").focus();
-			return;
-		}
-
-		$("#login").submit();
-	});
 </script>
