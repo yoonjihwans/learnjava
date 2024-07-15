@@ -25,5 +25,5 @@
 	<a href="index.jsp?workgroup=product&work=product_list">제품소개</a>
 	<a href="index.jsp?workgroup=cart&work=cart_list">장바구니</a>
 	<a href="index.jsp?workgroup=order&work=order_list">구매내역</a>
-	<a href="index.jsp?workgroup=board&work=board_list">게시판</a>
+	<a href="index.jsp?workgroup=board&work=review_list">리뷰</a>
 </div>

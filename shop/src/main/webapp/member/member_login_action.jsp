@@ -15,6 +15,7 @@ URL 주소로 응답 처리 --%>
 		//request 내장객체의 속성값으로 에러메세지를 출력하는 페이지의 URL 주소를 저장하여 요청  
 		//JSP 문서(index.jsp)에게 제공 - 요청 JSP 문서(index.jsp)에서 리다이렉트 이동 처리
 		request.setAttribute("returnUrl", request.getContextPath()+"/index.jsp?workgroup=error&work=error_400");
+		request.setAttribute("returnUrl", request.getContextPath()+"/index.jsp?workgroup=error&work=error_400");
 		return;
 	}
 	
@@ -56,16 +57,3 @@ URL 주소로 응답 처리 --%>
 		request.setAttribute("returnUrl", url);
 	}
 %>
-
-
-
-
-
-
-
-
-
-
-
-
-

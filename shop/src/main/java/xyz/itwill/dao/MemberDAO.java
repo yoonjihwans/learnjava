@@ -106,7 +106,7 @@ public class MemberDAO extends JdbcDAO {
 			String sql="select member_num,member_id,member_passwd,member_name,member_email"
 				+",member_mobile,member_zipcode,member_address1,member_address2"
 				+",member_register_date,member_update_date,member_last_login,member_auth"
-				+" from member where member_id=?";
+				+" from member where member_num=?";
 			pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, num);
 			
@@ -157,6 +157,82 @@ public class MemberDAO extends JdbcDAO {
 		}
 		return rows;
 	}
+	
+	//회원정보(MemberDTO 객체)를 전달받아 MEMBER 테이블에 저장된 행을 변경하고 변경행의 갯수를 
+	//반환하는 메소드
+	public int updateMember(MemberDTO member) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int rows=0;
+		try {
+			con=getConnection();
+			
+			String sql="update member set member_name=?,member_email=?,member_mobile=?"
+					+ ",member_zipcode=?,member_address1=?,member_address2=? where member_num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, member.getMemberName());
+			pstmt.setString(2, member.getMemberEmail());
+			pstmt.setString(3, member.getMemberMobile());
+			pstmt.setString(4, member.getMemberZipcode());
+			pstmt.setString(5, member.getMemberAddress1());
+			pstmt.setString(6, member.getMemberAddress2());
+			pstmt.setInt(7, member.getMemberNum());
+			
+			rows=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("[에러]updateMember() 메서드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt);
+		}
+		return rows;
+	}
+	
+	//회원정보(MemberDTO 객체)를 전달받아 MEMBER 테이블에 저장된 행의 비빌번호를 변경하고 
+	//변경행의 갯수를 반환하는 메소드
+	public int updatePassword(MemberDTO member) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int rows=0;
+		try {
+			con=getConnection();
+			
+			String sql="update member set member_passwd=? where member_num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, member.getMemberPasswd());
+			pstmt.setInt(2, member.getMemberNum());
+			
+			rows=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("[에러]updatePassword() 메서드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt);
+		}
+		return rows;
+	}
+	
+	//회원정보(MemberDTO 객체)를 전달받아 MEMBER 테이블에 저장된 행의 회원권한을 변경하고 
+	//변경행의 갯수를 반환하는 메소드
+	public int updateAuth(MemberDTO member) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		int rows=0;
+		try {
+			con=getConnection();
+			
+			String sql="update member set member_auth=? where member_num=?";
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, member.getMemberAuth());
+			pstmt.setInt(2, member.getMemberNum());
+			
+			rows=pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("[에러]updateAuth() 메서드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt);
+		}
+		return rows;
+	}
+
 }
 
 

@@ -21,6 +21,11 @@
 	
 	//전달값을 사용하여 페이지 몸체부에 포함될 JSP 문서의 컨텍스트 경로를 생성하여 저장
 	String contentPath=workgroup+"/"+work+".jsp";
+	
+	String headerPath="/header.jsp";
+	if(workgroup.equals("admin")) {
+		headerPath="/header_admin.jsp";
+	}
 %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -33,7 +38,8 @@
 <body>
 	<%-- Header 영역 : 회사로고,메뉴 등 --%>
 	<div id="header">
-		<jsp:include page="header.jsp"/>
+		<%-- <jsp:include page="header.jsp"/> --%>
+		<jsp:include page="<%=headerPath %>"/>
 	</div>
 	
 	<%-- Content 영역 : 요청에 대한 결과 출력 --%>
