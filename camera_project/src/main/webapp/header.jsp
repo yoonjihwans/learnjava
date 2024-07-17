@@ -26,7 +26,7 @@
                                 <li><a href="index.jsp?workgroup=product&work=product_list1" id="good">Camera</a></li>
                                 <li><a href="index.jsp?workgroup=product&work=product_list2" id="good">Filim</a></li>
                                 <li><a href="index.jsp?workgroup=product&work=product_lis3t" id="good">Acc</a></li>
-                                <li><a href="index.jsp?workgroup=board&work=review_list" id="good">Notice</a></li>
+                                <li><a href="index.jsp?workgroup=board&work=notice_list" id="good">Notice</a></li>
                                 <li><a href="index.jsp?workgroup=order&work=order_list" id="good">Order List</a></li>
                             </ul>
                         </nav>

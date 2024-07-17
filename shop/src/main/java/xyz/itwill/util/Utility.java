@@ -2,6 +2,8 @@ package xyz.itwill.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 //웹프로그램 작성에 필요한 기능을 제공하기 위한 클래스
 public class Utility {
@@ -19,8 +21,8 @@ public class Utility {
 			//양방향 암호화 알고리즘(복호화 처리 가능) : AES-123, RSA 등
 			MessageDigest messageDigest=MessageDigest.getInstance("SHA-256");
 			
-			//MessageDigest.update(byte[] input) : 매개변수에 MessageDigest 객체에 암호화 처리하기 
-			//위한 문자열을 byte 배열로 전달받아 저장하기 위한 메소드
+			//MessageDigest.update(byte[] input) : 매개변수에 MessageDigest 객체로 암호화 처리하기 
+			//위한 문자열을 byte 배열로 전달받아 MessageDigest 객체에 저장하기 위한 메소드
 			//String.getBytes() : String 객체에 저장된 문장열을 byte 배열로 변환하여 반환하는 메소드
 			messageDigest.update(password.getBytes());	
 			
@@ -39,13 +41,42 @@ public class Utility {
 		}
 		return encryptPassword;
 	}
+
+	//문자열을 전달받아 태그(스크립트 관련 문자열)를 제거하여 반환하는 정적메소드
+	public static String stripTag(String source) {
+		//Pattern.compile(String regex) : 매개변수로 전달받은 정규표현식이 저장된 Pattern
+		//객체를 생성하여 반환하는 정적메소드
+		// => Pattern 객체 : 정규표현식을 저장하기 위한 객체
+		// => Pattern.CASE_INSENSITIVE : 대소문자 구분없이 비교 처리하기 위한 상수필드
+		Pattern htmlTag=Pattern.compile("\\<.*?\\>");
+		//Pattern htmlTag=Pattern.compile("\\<.*?\\>", Pattern.CASE_INSENSITIVE);
+		
+		//Pattern.matcher(CharSequence input) : 매개변수로 문자열(입력값)을 전달받아 Pattern
+		//객체에 저장된 정규표현식과 비교값이 저장된 Matcher 객체를 생성하여 반환하는 메소드
+		// => Matcher 객체 : 정규표현식과 문자열을 비교하여 문자열의 검색,변경(삭제) 기능을
+		//제공하기 위한 객체
+		Matcher matcher=htmlTag.matcher(source);
+		
+		/*
+		//Matcher.find() : Matcher 객체에 저장된 정보(정규표현식과 문자열)를 사용해 문자열에서
+		//정규표현식과 같은 패턴의 문자열을 찾아 논리값을 반환하는 메소드
+		// => 정규표현식과 같은 패턴의 문자열이 여러개 있는 경우 반복문을 사용해 차례대로 검색 처리
+		while(matcher.find()) {
+			//Matcher.group() : Matcher 객체에 저장된 정보(정규표현식과 문자열)를 사용해 문자열에서
+			//정규표현식과 같은 패턴의 문자열을 반환하는 메소드
+			String group=matcher.group();
+			System.out.println(group);
+		}
+		*/
+		
+		//Matcher.replaceAll(String replacement) : Matcher 객체에 저장된 정보(정규표현식과 
+		//문자열)를 사용해 문자열에서 정규표현식의 패턴과 동일한 문자열을 모두 찾아 매개변수로
+		//전달받은 문자열로 변경하는 메소드
+		return matcher.replaceAll("");
+	}
+	
+	//문자열을 전달받아 태그 관련 문자(< 또는 >)를 회피문자로 변경하여 반환하는 정적메소드
+	public static String escapeTag(String source) {
+		return source.replace("<", "&lt;").replace(">", "&gt;");
+	}
 }
-
-
-
-
-
-
-
-
-
