@@ -52,9 +52,9 @@ public class Utility {
 		//Pattern htmlTag=Pattern.compile("\\<.*?\\>", Pattern.CASE_INSENSITIVE);
 		
 		//Pattern.matcher(CharSequence input) : 매개변수로 문자열(입력값)을 전달받아 Pattern
-		//객체에 저장된 정규표현식과 비교값이 저장된 Matcher 객체를 생성하여 반환하는 메소드
-		// => Matcher 객체 : 정규표현식과 문자열을 비교하여 문자열의 검색,변경(삭제) 기능을
-		//제공하기 위한 객체
+		//객체에 저장된 정규표현식과 문자열이 저장된 Matcher 객체를 생성하여 반환하는 메소드
+		// => Matcher 객체 : 문자열에서 정규표현식과 같은 패턴의 문자열을 찾아 반환하거나 변경(삭제)
+		//하기 위한 기능을 제공하는 객체
 		Matcher matcher=htmlTag.matcher(source);
 		
 		/*
