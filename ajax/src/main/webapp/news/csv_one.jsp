@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- Ajax 엔진을 사용하여 [csv_two.jsp] 문서를 요청해 실행결과를 CSV 형식의 데이타로 응답받아 
+<%-- Ajax 엔진을 사용하여 [csv_two.jsp] 문서를 요청해 실행결과를 CSV 형식의 데이타로 제공받아 
 HTML 태그로 변경하여 응답하는 JSP 문서 --%>    
 <%-- CSV(Comma Separated Values) : 콤마(,)를 사용해 값을 구분하여 제공하는 비구조적인 데이타 표현 방식 --%>
 <!DOCTYPE html>
