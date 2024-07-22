@@ -62,8 +62,8 @@ public class ReviewDAO extends JdbcDAO {
 	
 	//페이징 관련 정보(시작행번호, 종료행번호)와 게시글 조회기능 관련 정보(조회대상과 조회단어)를
 	//전달받아 REVIEW 테이블에 저장된 행에서 조회정보가 포함된 행을 페이징 처리로 검색하여
-	//검색된 게시글 목록(List 객체)을 반환하는 메소드
-	public List<ReviewDTO> selectReviewList(int startRow, int endRow, String search, String keyword) {
+	//검색된 게시글 목록(List 객체)을 반환하는 메소드 //NEED
+	public List<ReviewDTO> selectReviewList(int startRow, int endRow, String search, String keyword) { //NEED
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -71,7 +71,7 @@ public class ReviewDAO extends JdbcDAO {
 		try {
 			con=getConnection();
 			
-			if(keyword.equals("")) {
+			if(keyword.equals("")) { //NEED
 				String sql="select * from (select rownum rn, temp.* from (select review_num"
 					+ ",review_member_num,member_name,review_subject,review_content,review_image"
 					+ ",review_register_date,review_update_date,review_ip,review_count,review_ref"
@@ -148,7 +148,7 @@ public class ReviewDAO extends JdbcDAO {
 		return nextNum;
 	}
 	
-	//게시글(ReviewDTO 객체)을 전달받아 REVIEW 테이블의 행으로 삽입하고 삽입행의 갯수를 반환하는 메소드
+	//게시글(ReviewDTO 객체)을 전달받아 REVIEW 테이블의 행으로 삽입하고 삽입행의 갯수를 반환하는 메소드 //NEED
 	public int insertReview(ReviewDTO review) {
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -269,7 +269,7 @@ public class ReviewDAO extends JdbcDAO {
 		return rows;
 	}
 
-	//게시글(ReviewDTO 객체)을 전달받아 REVIEW 테이블에 저장된 행을 변경하고 변경행의 갯수를
+	//게시글(ReviewDTO 객체)을 전달받아 REVIEW 테이블에 저장된 행을 변경하고 변경행의 갯수를 /NEED
 	//반환하는 메소드
 	public int updateReview(ReviewDTO review) {
 		Connection con=null;
