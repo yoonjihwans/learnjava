@@ -16,7 +16,7 @@ CREATE SEQUENCE REVIEW_SEQ;
 REVIEW_NUM      NOT NULL NUMBER          // 리뷰 글 번호
 REVIEW_USERS_NO          NUMBER          // 회원 번호 (fk) 회원 테이블 참조
 REVIEW_TITLE             VARCHAR2(500)   // 리뷰 제목
-REBVIEW_CONENT           VARCHAR2(4000)  // 리뷰 내용
+REVIEW_CONENT           VARCHAR2(4000)  // 리뷰 내용
 REVIEW_IMAGE             VARCHAR2(100)   // 리뷰 이미지
 REVIEW_STATUS            NUMBER(1)       // 리뷰 상태 0:삭제글, 1:일반글 
 REVIEW_DATE              DATE            // 리뷰 작성일

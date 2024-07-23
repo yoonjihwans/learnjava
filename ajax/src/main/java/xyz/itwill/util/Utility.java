@@ -1,39 +1,15 @@
 package xyz.itwill.util;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
+//웹프로그램 작성에 필요한 기능을 제공하기 위한 클래스
 public class Utility {
-	public static String encrypt(String pw) {
-		String encryptPassword="";
-		
-		try {			
-			MessageDigest messageDigest=MessageDigest.getInstance("SHA-256");
-			
-			messageDigest.update(pw.getBytes());			
-			
-			byte[] digest=messageDigest.digest();
-			
-			for(int i=0;i<digest.length;i++) {
-				encryptPassword+=Integer.toHexString(digest[i] & 0xff);
-			}
-		} catch (NoSuchAlgorithmException e) { 
-			System.out.println("[에러]잘못된 암호화 알고리즘을 사용 하였습니다.");
-		}
-		return encryptPassword;
-	}
-
-	public static String stripTag(String source) {
-		Pattern htmlTag=Pattern.compile("\\<.*?\\>");
-				
-		Matcher matcher=htmlTag.matcher(source);
-				
-		return matcher.replaceAll("");
-	}	
-	
+	//문자열을 전달받아 태그 관련 문자(< 또는 >)를 회피문자로 변경하여 반환하는 정적메소드
 	public static String escapeTag(String source) {
 		return source.replace("<", "&lt;").replace(">", "&gt;");
+	}
+	
+	//문자열을 전달받아 JSON 형식의 문자값으로 표현 불가능한 문자를 회피문자로 변경하여 반환하는 정적메소드
+	public static String toJSON(String source) {
+		return source.replace("\\", "\\\\").replace("\"", "\\\"")
+					.replace("\n", "\\n").replace("\r\n", "\\n");
 	}
 }

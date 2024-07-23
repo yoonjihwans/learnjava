@@ -176,7 +176,7 @@ td {
 			<th width="200">작성일</th>
 		</tr>
 		
-		<% if(totalReview == 0) {//검색된 게시글이 없는 경우 %>
+		<% if(totalReview == 0) {//검색된 게시글이 없는 경우 %> 
 			<tr>
 				<td colspan="5">검색된 게시글이 없습니다.</td>
 			</tr>

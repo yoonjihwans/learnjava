@@ -33,7 +33,7 @@ public class ReviewDAO extends JdbcDAO {
 		ResultSet rs=null;
 		int count=0;
 		try {
-			con=getConnection();
+			con = getConnection();
 			
 			//매개변수에 저장된 값을 비교하여 DBMS 서버에 다른 SQL 명령을 전달하여 실행
 			// => 동적 SQL(Dynamic SQL)
