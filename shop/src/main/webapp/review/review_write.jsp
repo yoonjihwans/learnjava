@@ -61,7 +61,7 @@ td {
 			<td>
 				<input type="text" name="reviewSubject" id="reviewSubject" size="40">
 				<input type="checkbox" name="reviewStatus" value="2">비밀글
-			</td>	
+			</td>
 		</tr>
 		<tr>
 			<th>내용</th>

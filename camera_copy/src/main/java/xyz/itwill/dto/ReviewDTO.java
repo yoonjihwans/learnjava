@@ -26,6 +26,7 @@ REVIEW_DATE              DATE            // 리뷰 작성일
 public class ReviewDTO {
 	private int reviewNum;
 	private int reviewUserNo;
+	private String usersName;
 	private String reviewTitle;
 	private String reviewContent;
 	private String reviewImage;
@@ -36,11 +37,12 @@ public class ReviewDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ReviewDTO(int reviewNum, int reviewUserNo, String reviewTitle, String reviewContent, String reviewImage,
-			int reviewStatus, String reviewDate) {
+	public ReviewDTO(int reviewNum, int reviewUserNo, String usersName, String reviewTitle, String reviewContent,
+			String reviewImage, int reviewStatus, String reviewDate) {
 		super();
 		this.reviewNum = reviewNum;
 		this.reviewUserNo = reviewUserNo;
+		this.usersName = usersName;
 		this.reviewTitle = reviewTitle;
 		this.reviewContent = reviewContent;
 		this.reviewImage = reviewImage;
@@ -62,6 +64,14 @@ public class ReviewDTO {
 
 	public void setReviewUserNo(int reviewUserNo) {
 		this.reviewUserNo = reviewUserNo;
+	}
+
+	public String getUsersName() {
+		return usersName;
+	}
+
+	public void setUsersName(String usersName) {
+		this.usersName = usersName;
 	}
 
 	public String getReviewTitle() {
@@ -104,4 +114,5 @@ public class ReviewDTO {
 		this.reviewDate = reviewDate;
 	}
 
+	
 }

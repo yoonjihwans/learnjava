@@ -74,7 +74,7 @@ public class ReviewDAO extends JdbcDAO {
 			while (rs.next()) {
 				ReviewDTO review = new ReviewDTO();
 				review.setReviewNum(rs.getInt("review_num"));
-				review.setReviewUserNo(rs.getInt("review_users_no"));
+				review.setUsersName(rs.getString("users_name"));
 				review.setReviewTitle(rs.getString("review_title"));
 				review.setReviewContent(rs.getString("review_content"));
 				review.setReviewImage(rs.getString("review_image"));
@@ -169,6 +169,42 @@ public class ReviewDAO extends JdbcDAO {
 				close(con, pstmt, rs);
 			}
 			return nextNum;
+		}
+		
+		public ReviewDTO selectReviewByNum(int reviewNum) {
+			Connection con=null;
+			PreparedStatement pstmt=null;
+			ResultSet rs=null;
+			ReviewDTO review=null;
+			try {
+				con=getConnection();
+				
+				String sql="select review_num,review_users_no,users_name,review_title"
+						+ ",review_content,review_image,review_status,review_date"
+						+ " from review join users on review_users_no=users_no"
+						+ " where review_num=? and review_status<>0";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, reviewNum);
+				
+				rs=pstmt.executeQuery();
+				
+				if(rs.next()) {
+					review=new ReviewDTO();
+					review.setReviewNum(rs.getInt("review_num"));
+					review.setReviewUserNo(rs.getInt("review_users_no"));
+					review.setUsersName(rs.getString("users_name"));
+					review.setReviewTitle(rs.getString("review_title"));
+					review.setReviewContent(rs.getString("review_content"));
+					review.setReviewImage(rs.getString("review_image"));
+					review.setReviewStatus(rs.getInt("review_status"));
+					review.setReviewDate(rs.getString("review_date"));
+				}
+			} catch (SQLException e) {
+				System.out.println("[에러]selectReviewByNum() 메소드의 SQL 오류 = "+e.getMessage());
+			} finally {
+				close(con, pstmt, rs);
+			}
+			return review;
 		}
 
 }

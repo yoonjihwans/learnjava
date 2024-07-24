@@ -36,7 +36,7 @@
                     <li><a href="#" id="good">Film</a></li>
                     <li><a href="#" id="good">Accessory</a></li>
                     <li><a href="#" id="good">Notice</a></li>
-                    <li><a href="#" id="good">Cart</a></li>
+                    <li><a href="index.jsp?workgroup=review&work=review" id="good">review</a></li>
                     <li><a href="#" id="good">Order List</a></li>
                 </ul>
             </nav>

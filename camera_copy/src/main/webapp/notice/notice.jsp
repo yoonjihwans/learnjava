@@ -1,3 +1,5 @@
+<%@page import="xyz.itwill.dto.NoticeDTO"%>
+<%@page import="xyz.itwill.dao.NoticeDAO"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="xyz.itwill.dto.UsersDTO"%>
@@ -6,6 +8,7 @@
 <%@page import="xyz.itwill.dao.ReviewDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <!-- <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -30,11 +33,11 @@ if (request.getParameter("pageSize") != null) {//전달값이 있는 경우
 
 //조회정보(조회대상과 조회단어)를 전달받아 REVIEW 테이블에 저장된 행에서 조회정보가 포함된 
 //행의 갯수를 검색하여 반환하는 RviewDAO 클래스의 메소드 호출
-int totalReview = ReviewDAO.getDAO().selectTotalReview();//게시글의 총갯수
+int totalNotice = NoticeDAO.getDAO().selectTotalNotice();//게시글의 총갯수
 
 //페이지의 총갯수를 계산하여 저장
 //int totalPage=totalReview/pageSize+totalReview%pageSize==0?0:1;
-int totalPage = (int) Math.ceil((double) totalReview / pageSize);
+int totalPage = (int) Math.ceil((double) totalNotice / pageSize);
 
 //전달받은 페이지번호가 비상적인 경우 첫번째 페이지를 요청할 수 있는 기본값 저장
 if (pageNum <= 0 || pageNum > totalPage) {
@@ -50,13 +53,13 @@ int startRow = (pageNum - 1) * pageSize + 1;
 int endRow = pageNum * pageSize;
 
 //마지막 페이지의 게시글의 종료 행번호가 게시글의 총갯수보다 많은 경우 종료 행변호 변경
-if (endRow > totalReview) {
-	endRow = totalReview;
+if (endRow > totalNotice) {
+	endRow = totalNotice;
 }
 //페이징 관련 정보(시작행번호, 종료행번호)와 게시글 조회기능 관련 정보(조회대상과 조회단어)를
 //전달받아 REVIEW 테이블에 저장된 행에서 조회정보가 포함된 행을 페이징 처리로 검색하여
 //List 객체를 반환하는 ReviewDAO 클래스의 메소드 호출
-List<ReviewDTO> reviewList = ReviewDAO.getDAO().selectReviewList(startRow, endRow);
+List<NoticeDTO> noticeList = NoticeDAO.getDAO().selectNoticeList(startRow, endRow);
 
 //세션에 저장된 권한 관련 정보가 저장된 속성값을 객체로 반환받아 저장
 // => 로그인 사용자에게만 글쓰기 권한 제공
@@ -70,7 +73,7 @@ String currentDate = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 
 //게시글에 출력될 일련번호 시작값을 계산하여 저장
 // => 게시글의 총갯수가 91개인 경우 => 1Page : 91, 2Page : 81, 3Page : 71, ...\
-int displayNum = totalReview - (pageNum - 1) * pageSize;
+int displayNum = totalNotice - (pageNum - 1) * pageSize;
 %>
 
 <style type="text/css">
@@ -151,16 +154,7 @@ font-size:30px;
 
 	<div id="review_list">
 	<%-- 검색된 게시글의 총갯수 출력 --%>
-		<div id="review_title">리뷰(<%=totalReview %>)</div>
-		
-		<div style="text-align: right; font-size: 19px;">
-		
-		&nbsp;&nbsp;&nbsp;
-		<% if(loginUsers != null) {//로그인 사용자인 경우 %>
-			<button type="button" id="writeBtn">글쓰기</button>
-		<% } %>	
-	</div>
-	
+		<div id="review_title">리뷰(<%=totalNotice %>)</div>
 		<table class="board">
 			<thead>
 				<tr>
@@ -171,7 +165,7 @@ font-size:30px;
 				</tr>
 			</thead>
 			
-			<%for(ReviewDTO review : reviewList){ %>
+			<%for(NoticeDTO notice : noticeList){ %>
 			<tr>
 			<%-- 게시글의 일련번호 출력 --%>
 				<td><%=displayNum %></td>
@@ -180,30 +174,30 @@ font-size:30px;
 				<td class="subject">
 					<%-- 게시글 상태를 비교하여 제목 출력 --%>
 					<%
-						String url=request.getContextPath()+"/index.jsp?workgroup=review&work=review_detail"
-							+"&reviewNum="+review.getReviewNum()+"&pageNum="+pageNum+"&pageSize="+pageSize;
+						String url=request.getContextPath()+"/index.jsp?workgroup=notice&work=notice_detail"
+							+"&noticeNo="+notice.getNoticeNo()+"&pageNum="+pageNum+"&pageSize="+pageSize;
 						
 					%>
-					<% if(review.getReviewStatus() == 1) {//일반글인 경우 %>
-					<a href="<%=url%>"><%=review.getReviewTitle() %></a>
+					<% if(notice.getNoticeStatus() == 1) {//일반글인 경우 %>
+					<a href="<%=url%>"><%=notice.getNoticeTitle() %></a>
 				
-					<% }  else if(review.getReviewStatus() == 2) {//삭제글인 경우 %>
+					<% }  else if(notice.getNoticeStatus() == 2) {//삭제글인 경우 %>
 						<span class="subject_hidden">
-							게시글 작성자 또는 관리자에 의해 삭제된 게시글입니다.
+							게시글 관리자에 의해 삭제된 게시글입니다.
 						</span>
 					<% } %>
 				</td>
 				
-				<%if(review.getReviewStatus() != 0) {%>
+				<%if(notice.getNoticeStatus() != 0) {%>
 				
-				    <td><%=review.getUsersName() %></td>
+				    <td><%=notice.getNoticeNo() %></td>
 				  
 				   
 				   <td>
-				   <% if(currentDate.equals(review.getReviewDate().substring(0, 10))) { %>
-						<%=review.getReviewDate().substring(11) %>	
+				   <% if(currentDate.equals(notice.getNoticeDate().substring(0, 10))) { %>
+						<%=notice.getNoticeDate().substring(11) %>	
 					<% } else { %>
-						<%=review.getReviewDate() %>	
+						<%=notice.getNoticeDate() %>	
 					<% } %>
 				   </td>
 				 <% } else {//삭제글인 경우 %>
@@ -218,7 +212,7 @@ font-size:30px;
 		
 		<%-- 페이지 번호 출력 --%>
 	<%
-		String myUrl=request.getContextPath()+"/index.jsp?workgroup=review&work=review"
+		String myUrl=request.getContextPath()+"/index.jsp?workgroup=review&work=notice"
 			+"&pageSize="+pageSize;
 	%>
 	
@@ -237,13 +231,11 @@ font-size:30px;
 	<script type="text/javascript">
 //입력태그(게시글갯수)의 입력값을 변경한 경우 호출되는 이벤트 처리 함수 등록
 $("#pageSize").change(function() {	
-	location.href="<%=request.getContextPath()%>/index.jsp?workgroup=review&work=review"
+	location.href="<%=request.getContextPath()%>/index.jsp?workgroup=notice&work=notice"
 		+"&pageNum=<%=pageNum%>&pageSize=<%=pageSize%>";
 });
 
-$("#writeBtn").click(function() {
-	location.href="<%=request.getContextPath()%>/index.jsp?workgroup=review&work=review_write";
-});
+
 </script>
 
 </html>
