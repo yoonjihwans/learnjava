@@ -9,7 +9,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <style>
-    a {text-decoration: none !important}
+        a {text-decoration: none !important}
+    
         .custom-container {        	
             display: flex;
             justify-content: center;
@@ -29,10 +30,34 @@
 
         .msg {
             color: red;
-            font-size: 0.875em;
+            font-size: small;
             margin-top: 0.5em;
             display: none; 
         }    
+        .is-invalid {
+            border-color: red !important;
+        }
+        .form-label {   			
+    		font-size: medium;
+		}
+		.my-4 {    	
+   			font-size: xx-large;
+		}
+		.btn-warning {
+			 font-size: 14.5px;
+		}
+		.form-control {
+			font-size: small;
+		}
+		.col-form-label {
+			font-size: medium;
+		}
+		.btn-secondary {
+			font-size: small;
+		}
+		.form-select {
+			font-size: medium;
+		}				
                    
     </style>
 </head>
@@ -57,7 +82,7 @@
                     <div class="col-sm-8">
                         <input type="password" class="form-control" id="pw" name="pw" placeholder="비밀번호를 입력하세요">
                         <div id="pwNullMsg" class="msg">비밀번호를 입력해 주세요.</div>
-                        <div id="pwValidMsg" class="msg">비밀번호는 영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 6~16자로만 작성<br> 가능합니다.</div>
+                        <div id="pwValidMsg" class="msg">비밀번호는 영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 6~16자로만 작성 가능합니다.</div>
                     </div>
                 </div>
                 <div class="mb-3 row">
@@ -141,93 +166,113 @@ $("#id").focus();
 
 $("#joinForm").submit(function() {
 	$(".msg").hide();
-    	
-		var validResult=true;
-	
-		var id=$("#id").val();
-		var idReg=/^[a-z0-9]{4,16}$/g;
-		if(id=="") {
-			$("#idNullMsg").show();
-			validResult=false;
-		} else if(!idReg.test(id)) {
-			$("#idValidMsg").show();
-			validResult=false;
-		} else if(!idCheckResult) {
-			$("#idDuplMsg").show();
-			validResult=false;
-		}
-		
-		var passwd=$("#pw").val();
-		var passwdReg=/^(?=.*[a-zA-Z])(?=.*[\d!@#$%^&*()_+{}|:"<>?])[a-zA-Z\d!@#$%^&*()_+{}|:"<>?]{6,16}$/g;
-		if(passwd=="") {
-			$("#pwNullMsg").show();
-			validResult=false;
-		} else if(!passwdReg.test(passwd)) {
-			$("#pwValidMsg").show();
-			validResult=false;
-		}
+    $(".is-invalid").removeClass("is-invalid");
 
-        if ($("#repw").val() == "") {
-            $("#repwNullMsg").show();
-            validResult = false;
-        } else if ($("#pw").val() != $("#repw").val()) {
-            $("#repwValidMsg").show();
-            validResult = false;
-        }
+    var validResult = true;
 
-        var name=$("#name").val();
-		var nameReg=/^[가-힣]{2,10}$/g;
-		if(name=="") {
-			$("#nameNullMsg").show();
-			validResult=false;
-		} else if(!nameReg.test(name)) {
-			$("#nameValidMsg").show();
-			validResult=false;
-		}
+    var id = $("#id").val();
+    var idReg = /^[a-z0-9]{4,16}$/g;
+    if (id == "") {
+        $("#id").addClass("is-invalid");
+        $("#idNullMsg").show();
+        validResult = false;
+    } else if (!idReg.test(id)) {
+        $("#id").addClass("is-invalid");
+        $("#idValidMsg").show();
+        validResult = false;
+    } else if (!idCheckResult) {
+        $("#id").addClass("is-invalid");
+        $("#idDuplMsg").show();
+        validResult = false;
+    }
 
-		var email=$("#email").val();
-		var emailReg=/^([a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+(\.[-a-zA-Z0-9]+)+)*$/g;
-		if(email=="") {
-			$("#emailNullMsg").show();
-			validResult=false;
-		} else if(!emailReg.test(email)) {
-			$("#emailValidMsg").show();
-			validResult=false;
-		}
-		
-        var phone2Reg = /^\d{3,4}$/;
-        var phone3Reg = /^\d{4}$/;
-        if ($("#phone2").val() == "" || $("#phone3").val() == "") {
-            $("#phoneNullMsg").show();
-            validResult = false;
-        } else if (!phone2Reg.test($("#phone2").val()) || !phone3Reg.test($("#phone3").val())) {
-            $("#phoneValidMsg").show();
-            validResult = false;
-        }
+    var passwd = $("#pw").val();
+    var passwdReg = /^[A-Za-z\d!@#$%^&*()_+\[\]{};':",.<>\/?\\|`~\-]{6,16}$/g;
 
-        if ($("#zipcode").val() == "") {
-            $("#zipcodeMsg").show();
-            validResult = false;
-        }
+    if (passwd == "") {
+        $("#pw").addClass("is-invalid");
+        $("#pwNullMsg").show();
+        validResult = false;
+    } else if (!passwdReg.test(passwd)) {
+        $("#pw").addClass("is-invalid");
+        $("#pwValidMsg").show();
+        validResult = false;
+    }
 
-        if ($("#address1").val() == "") {
-            $("#address1Msg").show();
-            validResult = false;
-        }
+    if ($("#repw").val() == "") {
+        $("#repw").addClass("is-invalid");
+        $("#repwNullMsg").show();
+        validResult = false;
+    } else if ($("#pw").val() != $("#repw").val()) {
+        $("#repw").addClass("is-invalid");
+        $("#repwValidMsg").show();
+        validResult = false;
+    }
 
-        if ($("#address2").val() == "") {
-            $("#address2Msg").show();
-            validResult = false;
-        }
+    var name = $("#name").val();
+    var nameReg = /^[가-힣]{2,10}$/g;
+    if (name == "") {
+        $("#name").addClass("is-invalid");
+        $("#nameNullMsg").show();
+        validResult = false;
+    } else if (!nameReg.test(name)) {
+        $("#name").addClass("is-invalid");
+        $("#nameValidMsg").show();
+        validResult = false;
+    }
 
-        return validResult;		
+    var email = $("#email").val();
+    var emailReg = /^([a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z0-9]{2,6})$/g;
+    if (email == "") {
+        $("#email").addClass("is-invalid");
+        $("#emailNullMsg").show();
+        validResult = false;
+    } else if (!emailReg.test(email)) {
+        $("#email").addClass("is-invalid");
+        $("#emailValidMsg").show();
+        validResult = false;
+    }
+
+    var phone2Reg = /^\d{3,4}$/;
+    var phone3Reg = /^\d{4}$/;
+    if ($("#phone2").val() == "" || $("#phone3").val() == "") {
+        $("#phone2").addClass("is-invalid");
+        $("#phone3").addClass("is-invalid");
+        $("#phoneNullMsg").show();
+        validResult = false;
+    } else if (!phone2Reg.test($("#phone2").val()) || !phone3Reg.test($("#phone3").val())) {
+        $("#phone2").addClass("is-invalid");
+        $("#phone3").addClass("is-invalid");
+        $("#phoneValidMsg").show();
+        validResult = false;
+    }
+
+    if ($("#zipcode").val() == "") {
+        $("#zipcode").addClass("is-invalid");
+        $("#zipcodeMsg").show();
+        validResult = false;
+    }
+
+    if ($("#address1").val() == "") {
+        $("#address1").addClass("is-invalid");
+        $("#address1Msg").show();
+        validResult = false;
+    }
+
+    if ($("#address2").val() == "") {
+        $("#address2").addClass("is-invalid");
+        $("#address2Msg").show();
+        validResult = false;
+    }
+
+    return validResult;
 });
 
 $("#id").keyup(function() {
     idCheckResult = false;
 
     var id = $(this).val();
-    if (id.length < 5) return;
+    if (id.length < 4) return;
 
     $.ajax({
         type: "get",
@@ -254,8 +299,6 @@ $("#postSearch").click(function() {
         }
     }).open();
 });
-
-
 </script>
 </body>
 </html>

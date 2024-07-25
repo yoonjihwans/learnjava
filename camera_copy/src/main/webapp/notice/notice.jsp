@@ -153,81 +153,62 @@ font-size:30px;
 </style>
 
 	<div id="review_list">
-	<%-- 검색된 게시글의 총갯수 출력 --%>
-		<div id="review_title">리뷰(<%=totalNotice %>)</div>
-		<table class="board">
-			<thead>
-				<tr>
-					<th>글번호</th>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>작성일</th>
-				</tr>
-			</thead>
-			
-			<%for(NoticeDTO notice : noticeList){ %>
-			<tr>
-			<%-- 게시글의 일련번호 출력 --%>
-				<td><%=displayNum %></td>
-				<% displayNum--; %><%-- 게시글의 일련번호를 1씩 감소하여 저장 --%>
-		     <%-- 게시글 제목 출력 --%>
-				<td class="subject">
-					<%-- 게시글 상태를 비교하여 제목 출력 --%>
-					<%
-						String url=request.getContextPath()+"/index.jsp?workgroup=notice&work=notice_detail"
-							+"&noticeNo="+notice.getNoticeNo()+"&pageNum="+pageNum+"&pageSize="+pageSize;
-						
-					%>
-					<% if(notice.getNoticeStatus() == 1) {//일반글인 경우 %>
-					<a href="<%=url%>"><%=notice.getNoticeTitle() %></a>
-				
-					<% }  else if(notice.getNoticeStatus() == 2) {//삭제글인 경우 %>
-						<span class="subject_hidden">
-							게시글 관리자에 의해 삭제된 게시글입니다.
-						</span>
-					<% } %>
-				</td>
-				
-				<%if(notice.getNoticeStatus() != 0) {%>
-				
-				    <td><%=notice.getNoticeNo() %></td>
-				  
-				   
-				   <td>
-				   <% if(currentDate.equals(notice.getNoticeDate().substring(0, 10))) { %>
-						<%=notice.getNoticeDate().substring(11) %>	
-					<% } else { %>
-						<%=notice.getNoticeDate() %>	
-					<% } %>
-				   </td>
-				 <% } else {//삭제글인 경우 %>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>
-				<td>&nbsp;</td>		
-			         <% } %>
-				  
-					<%} %>
-					</tr>
-		</table>
-		
-		<%-- 페이지 번호 출력 --%>
-	<%
-		String myUrl=request.getContextPath()+"/index.jsp?workgroup=review&work=notice"
-			+"&pageSize="+pageSize;
-	%>
-	
-	<div id="page_list">
-		<% for(int i = 1 ; i <= totalPage ; i++) { %>
-			<%-- 현재 처리중인 페이지 번호와 출력된 페이지 번호가 같지 않은 경우 링크 제공 --%>
-			<% if(pageNum != i) { %>
-				<a href="<%=myUrl%>&pageNum=<%=i%>">[<%=i %>]</a>
-			<%} else { %>
-				[<%=i %>]
-			<% } %>
-		<% } %>
-	</div>
-	</div>
-	
+    <div id="review_title">Notice(<%=totalNotice %>)</div>
+    <table class="board">
+        <thead>
+            <tr>
+                <th>글번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성일</th>
+            </tr>
+        </thead>
+        
+     
+        <% for (NoticeDTO notice : noticeList) {
+            // 삭제된 글인 경우 건너뜁니다
+            if (notice.getNoticeStatus() == 2) continue;
+        %>
+        <tr>
+            <td><%=displayNum %></td>
+            <% displayNum--; %>
+            <td class="subject">
+                <% if (notice.getNoticeStatus() == 1) { // 일반글인 경우 %>
+                    <%
+                        String url = request.getContextPath() + "/index.jsp?workgroup=notice&work=notice_detail"
+                                + "&noticeNo=" + notice.getNoticeNo() + "&pageNum=" + pageNum + "&pageSize=" + pageSize;
+                    %>
+                    <a href="<%=url%>"><%=notice.getNoticeTitle() %></a>
+                <% } %>
+            </td>
+            <% if (notice.getNoticeStatus() != 0) { // 삭제된 글이 아닌 경우 %>
+                <td>관리자</td>
+                <td>
+                    <% if (currentDate.equals(notice.getNoticeDate().substring(0, 10))) { %>
+                        <%=notice.getNoticeDate().substring(11) %>   
+                    <% } else { %>
+                        <%=notice.getNoticeDate() %>   
+                    <% } %>
+                </td>
+            <% } else { // 삭제된 글인 경우 %>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            <% } %>
+        </tr>
+        <% } %>
+    </table>
+    
+    <div id="page_list">
+        <% String myUrl = request.getContextPath() + "/index.jsp?workgroup=notice&work=notice" + "&pageSize=" + pageSize; %>
+        <% for (int i = 1; i <= totalPage; i++) { %>
+            <% if (pageNum != i) { %>
+                <a href="<%=myUrl%>&pageNum=<%=i%>">[<%=i %>]</a>
+            <% } else { %>
+                [<%=i %>]
+            <% } %>
+        <% } %>
+    </div>
+</div>
 	<script type="text/javascript">
 //입력태그(게시글갯수)의 입력값을 변경한 경우 호출되는 이벤트 처리 함수 등록
 $("#pageSize").change(function() {	

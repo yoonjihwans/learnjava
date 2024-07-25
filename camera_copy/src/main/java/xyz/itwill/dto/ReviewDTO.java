@@ -1,77 +1,56 @@
 package xyz.itwill.dto;
 
 /*
-CREATE TABLE REVIEW(REVIEW_NUM NUMBER PRIMARY KEY, REVIEW_USERS_NO NUMBER CONSTRAINT 
-REVIEW_USERS_N0_FK REFERENCES USERS(USERS_NO),REVIEW_TITLE VARCHAR2(500), REBVIEW_CONENT
-VARCHAR2(4000), REVIEW_IMAGE VARCHAR2(100), REVIEW_STATUS NUMBER(1), REVIEW_DATE DATE);
-SELECT * FROM REVIEW;
+CREATE TABLE REVIEW (
+    REVIEW_NO NUMBER CONSTRAINT REVIEW_NO_PK PRIMARY KEY,
+    REVIEW_TITLE VARCHAR2(1000),
+    REVIEW_CONTENT VARCHAR2(2000),
+    REVIEW_STATUS NUMBER(1),
+    REVIEW_DATE DATE DEFAULT SYSDATE,
+    REVIEW_PROD_NO NUMBER CONSTRAINT REVIEW_PROD_NO_FK REFERENCES PRODUCT(PROD_NO), 
+    REVIEW_USERS_NO NUMBER CONSTRAINT REVIEW_USERS_NO_FK REFERENCES USERS(USERS_NO),
+    REVIEW_IMAGE VARCHAR2(100)
+);
 
 CREATE SEQUENCE REVIEW_SEQ;
-*/
 
-/*
+DESC REVIEW;
+
+SELECT * FROM REVIEW;
 
 이름              널?       유형             
 --------------- -------- -------------- 
-REVIEW_NUM      NOT NULL NUMBER          // 리뷰 글 번호
-REVIEW_USERS_NO          NUMBER          // 회원 번호 (fk) 회원 테이블 참조
-REVIEW_TITLE             VARCHAR2(500)   // 리뷰 제목
-REVIEW_CONENT           VARCHAR2(4000)  // 리뷰 내용
-REVIEW_IMAGE             VARCHAR2(100)   // 리뷰 이미지
-REVIEW_STATUS            NUMBER(1)       // 리뷰 상태 0:삭제글, 1:일반글 
-REVIEW_DATE              DATE            // 리뷰 작성일
-
-  */
+REVIEW_NO       NOT NULL NUMBER         
+REVIEW_TITLE             VARCHAR2(1000) 
+REVIEW_CONTENT           VARCHAR2(2000) 
+REVIEW_STATUS            NUMBER(1)      
+REVIEW_DATE              DATE           
+REVIEW_PROD_NO           NUMBER         
+REVIEW_USERS_NO          NUMBER         
+REVIEW_IMAGE             VARCHAR2(100)  
+*/
 
 public class ReviewDTO {
-	private int reviewNum;
-	private int reviewUserNo;
-	private String usersName;
+	private int reviewNo;
 	private String reviewTitle;
 	private String reviewContent;
-	private String reviewImage;
-	private int reviewStatus;
+	private int reviewStatus;//0:삭제글,1:일반글
 	private String reviewDate;
+	private int reviewProdNo;
+	private int reviewUsersNo;//로그인 사용자의 회원번호
+	private String usersName;//users 테이블의 회원이름 저장하기 위한 필드 - 작성자
+	private String reviewImage;
 
 	public ReviewDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ReviewDTO(int reviewNum, int reviewUserNo, String usersName, String reviewTitle, String reviewContent,
-			String reviewImage, int reviewStatus, String reviewDate) {
-		super();
-		this.reviewNum = reviewNum;
-		this.reviewUserNo = reviewUserNo;
-		this.usersName = usersName;
-		this.reviewTitle = reviewTitle;
-		this.reviewContent = reviewContent;
-		this.reviewImage = reviewImage;
-		this.reviewStatus = reviewStatus;
-		this.reviewDate = reviewDate;
+	public int getReviewNo() {
+		return reviewNo;
 	}
 
-	public int getReviewNum() {
-		return reviewNum;
-	}
-
-	public void setReviewNum(int reviewNum) {
-		this.reviewNum = reviewNum;
-	}
-
-	public int getReviewUserNo() {
-		return reviewUserNo;
-	}
-
-	public void setReviewUserNo(int reviewUserNo) {
-		this.reviewUserNo = reviewUserNo;
-	}
-
-	public String getUsersName() {
-		return usersName;
-	}
-
-	public void setUsersName(String usersName) {
-		this.usersName = usersName;
+	public void setReviewNo(int reviewNo) {
+		this.reviewNo = reviewNo;
 	}
 
 	public String getReviewTitle() {
@@ -90,14 +69,6 @@ public class ReviewDTO {
 		this.reviewContent = reviewContent;
 	}
 
-	public String getReviewImage() {
-		return reviewImage;
-	}
-
-	public void setReviewImage(String reviewImage) {
-		this.reviewImage = reviewImage;
-	}
-
 	public int getReviewStatus() {
 		return reviewStatus;
 	}
@@ -114,5 +85,37 @@ public class ReviewDTO {
 		this.reviewDate = reviewDate;
 	}
 
+	public int getReviewProdNo() {
+		return reviewProdNo;
+	}
+
+	public void setReviewProdNo(int reviewProdNo) {
+		this.reviewProdNo = reviewProdNo;
+	}
+
+	public int getReviewUsersNo() {
+		return reviewUsersNo;
+	}
+
+	public void setReviewUsersNo(int reviewUsersNo) {
+		this.reviewUsersNo = reviewUsersNo;
+	}
+
+	public String getUsersName() {
+		return usersName;
+	}
+
+	public void setUsersName(String usersName) {
+		this.usersName = usersName;
+	}
+
+	public String getReviewImage() {
+		return reviewImage;
+	}
+
+	public void setReviewImage(String reviewImage) {
+		this.reviewImage = reviewImage;
+	}
+	
 	
 }

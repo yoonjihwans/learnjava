@@ -43,6 +43,7 @@
 }
 
 table {
+    background-color: #e9ecef;
 	border: 1px solid black;
 	border-collapse: collapse;
 	font-size: 17px;
@@ -55,8 +56,9 @@ th, td {
 }
 
 th {
+background-color: #ffc107;
 	width: 100px;
-	background: black;
+	
 	color: white;
 }
 
@@ -81,14 +83,14 @@ td {
 
 <div id="review_detail">
 <div id="review-detail-middle-box">
-	<h1 style="text-align: center; margin-bottom:20px; font-size:27px;">제품후기</h1>
+	<h1 style="text-align: center; margin-bottom:20px; font-size:27px;">공지사항</h1>
 	
 	<%-- 검색된 게시글 출력 --%>
 	<table>
 		<tr>
 			<th>작성자</th>
 			<td>
-				<%=notice.getNoticeNo() %>
+				Admin
 				
 			</td>
 		</tr>
@@ -123,7 +125,7 @@ td {
 
 
 $("#listBtn").click(function() {
-	location.href="<%=request.getContextPath()%>/index.jsp?workgroup=review&work=notice"
+	location.href="<%=request.getContextPath()%>/index.jsp?workgroup=notice&work=notice"
 		+"&pageNum=<%=pageNum%>&pageSize=<%=pageSize%>";
 });
 </script>

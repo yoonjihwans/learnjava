@@ -232,4 +232,73 @@ public class UsersDAO extends JdbcDAO {
 		}
 		return rows;
 	}
+	//회원정보(UsersDTO 객체)를 전달받아 users 테이블에 저장된 행의 아이디를
+	//검색하여 문자열(String 객체)로 반환하는 메소드
+	public String selectUsersId(UsersDTO users) {
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		String id=null;
+		try {
+			con=getConnection();
+			
+			String sql="select users_id from users where users_name=? and users_email=?"; 
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, users.getUsersName());
+			pstmt.setString(2, users.getUsersEmail());
+			
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				 id = rs.getString("users_id");
+			}
+		} catch (SQLException e) {
+			System.out.println("[에러]selectUsersId() 메소드의 SQL 오류 = "+e.getMessage());
+		} finally {
+			close(con, pstmt, rs);
+		}
+		return id;		
+	}
+	public String selectUsersNo(UsersDTO users) {
+	    Connection con = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    String no = null;
+	    try {
+	        con = getConnection();
+	        String sql = "select users_no from users where users_id=? and users_name=? and users_email=?";
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setString(1, users.getUsersId());
+	        pstmt.setString(2, users.getUsersName());
+	        pstmt.setString(3, users.getUsersEmail());
+	        rs = pstmt.executeQuery();
+	        if (rs.next()) {
+	            no = rs.getString("users_no");
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("[에러]selectUsersNo() 메소드의 SQL 오류 = " + e.getMessage());
+	    } finally {
+	        close(con, pstmt, rs);
+	    }
+	    return no;
+	}
+
+	public int updateNewPassword(String users_id, String newPassword) {
+	    Connection con = null;
+	    PreparedStatement pstmt = null;
+	    int result = 0;
+	    try {
+	        con = getConnection();
+	        String sql = "update users set users_pw=? where users_id=?";
+	        pstmt = con.prepareStatement(sql);
+	        pstmt.setString(1, newPassword);
+	        pstmt.setString(2, users_id);
+	        result = pstmt.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        close(con, pstmt);
+	    }
+	    return result;
+	}
 }

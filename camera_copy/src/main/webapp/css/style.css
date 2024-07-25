@@ -4,19 +4,69 @@ html{font-size: 62.5%;}/* 15px는 1.5rem!! */
 #main-header{width: 100%; height: 150px;  box-shadow: 0px 0px 15px -3px rgba(0,0,0,0.7); } 
 #header-top{width: 100%; height: 50px; }
 #profile{width: 70%; height: 50px;   text-align: right; font-size: 25px; margin:0 auto;}
-#profile a{color:black; line-height: 50px;}
+#profile a{color:black; line-height: 50px; width: 30px; border:10px solid white;}
 #header-bottom{width: 100%; height: 100px;  }
 #header-bottom-middle{width: 1400px; height: 100px;  margin: 0 auto;}
 #logo{width: 160px; height: 100px;  float: left; text-align: center; line-height: 100px; font-size: 30px; color: orange; }
 #search_button{float: left; width: 370px; height: 100px;  }
 #search-middle{width: 280px; height: 100px;  margin: 0 auto;}
-#search{width: 280px; height: 60px; background-color: #00ff0000; border: 2px solid orange;  font-size: 25px; margin-top: 20px ;}
+#search{width: 180px; height: 45px;  border: 2px solid orange;  font-size: 25px; margin-top: 27px ;}
 
 
 #nav-bar{width: 1500px; height: 100px;  text-align: center; margin:0 auto; }
 #nav-bar nav ul{width: 800px; height: 100px;  float: left; }
-#nav-bar ul li {float: left; width: 110px;  font-family: "Noto Sans KR", sans-serif; font-size: 20px; color: black; margin-top: 35px;}
-#nav-bar ul li a{ color: black;}
+#nav-bar ul li {float: left; width: 110px;  font-family: "Noto Sans KR", sans-serif; font-size: 20px; color: black; margin-top: 35px; position: relative;}
+#nav-bar ul li a{ color: black; display: inline-block; padding: 0 10px; line-height: 30px;}
+
+ .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+        width: 160px; /* 드롭다운 메뉴 전체 너비 */
+        max-height: 300px; /* 최대 높이를 지정하여 넘치지 않도록 함 */
+        overflow-y: auto; /* 넘칠 경우 스크롤바 추가 */
+    }
+
+    .dropdown-content li {
+        float: none;
+        
+    }
+
+    .dropdown-content li a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: center;
+        
+        
+    }
+    
+ 
+
+    .dropdown-content li a:hover {
+        background-color: #f1f1f1;
+    }
+
+    /* 개별 드롭다운 메뉴 스타일 */
+    #nav-bar ul li.dropdown-item1 .dropdown-content {
+        width: 180px;
+        height: 40px;
+    }
+
+    #nav-bar ul li.dropdown-item2 .dropdown-content {
+        width: 220px;
+        height: 40px;
+    }
+
+    /* 각 드롭다운 메뉴 아이템에 대한 마우스 오버 효과 */
+    #nav-bar ul li.dropdown-item1:hover .dropdown-content,
+    #nav-bar ul li.dropdown-item2:hover .dropdown-content {
+        display: block;
+    }
+
 #good { 
     color: #000;
     display:inline-block; 
@@ -34,13 +84,14 @@ html{font-size: 62.5%;}/* 15px는 1.5rem!! */
   #good:after{  transform-origin:  0% 50%; }
 
 #content{width: 100%; height: 100%; }
-#img-box{width: 145rem; height: 63rem;  text-align: center;  margin: 0 auto; overflow: hidden; position: relative;  padding-top: 70px;}
+#img-box{width: 1690px; height: 70rem;  text-align: center;  margin: 0 auto; overflow: hidden; position: relative;  padding-top: 50px; background-size: cover;}
 #img-slider{display: flex; transition: transform 0.5s ease;}
-.img-slide{min-width: 750px; flex: 0 0 auto;}
-.productmain{width: 100%; height: 240rem;}
+.img-slide{min-width: 750px; flex: 0 0 auto;  background-image: url("./images/nana.jpg");
+  background-size: cover;}
+.productmain{width: 100%; height: 190rem;}
 #product{width: 100%; height: 200rem; }
 
-#pdbox{width: 100%; height: 210rem; }
+#pdbox{width: 100%; height: 160rem; }
 
 #product{width: 170rem; height: 60rem;  margin: 0 auto; position: relative; top: 200px; display: flex; flex-direction: row; flex-wrap: wrap; justify-content:  center;}
 #product1{width: 170rem; height: 60rem;  margin: 0 auto; position: relative; top: 200px; display: flex; flex-direction: row; flex-wrap: wrap; justify-content:  center; margin-top: 100px;}

@@ -11,8 +11,7 @@
     a {text-decoration: none !important}
    
  		.custom-container {           
-            display: flex;
-            width: 100%;
+            display: flex;           
             justify-content: center;
             align-items: center;
             height: auto;
@@ -20,9 +19,9 @@
         }   
           
         .terms-container {
-            width: 100%;
           	max-width: 550px;
-            padding: 24px;
+            width: 100%;
+            padding: 20px;
             border: 1px solid #ffffff;
             border-radius: 8px;
             
@@ -42,16 +41,26 @@
             background-color: #ccc;
         }
         .form-check-label {
-            font-size: 1.2em;
+            font-size: 14.5px; 
         
         }
         #top {           
             text-align: center;
+            font-size: xx-large;            
         }
         #top1 {
-            font-size: 1.03em;             
+            font-size: 14.5px;             
         }
-        
+        .req {
+   			 color: red;
+		}				
+		.btn-warning {
+			font-size: 14.5px;
+		}
+		.f {
+			font-size: small;
+		}
+		
     </style>
 </head>
 <body>
@@ -68,11 +77,11 @@
         <div class="terms-section">
             <div class="checkbox-group">
                 <input type="checkbox" id="agree1" class="required form-check-input" onclick="checkAllAgreed()"> 
-                <label class="form-check-label" for="agree1">[필수] 이용약관 동의</label>
+                <label class="form-check-label" for="agree1"><span class="req">[필수]</span> 이용약관 동의</label>
             </div>
             
             <div class="terms-text">
-                <p>제1조(목적)<br><br>
+                <p class="f">제1조(목적)<br><br>
 
                     표준약관 제10023호<br><br>
                     
@@ -297,10 +306,10 @@
         <div class="terms-section">
             <div class="checkbox-group">
                 <input type="checkbox" id="agree2" class="required form-check-input" onclick="checkAllAgreed()">   
-                <label class="form-check-label" for="agree2">[필수] 개인정보 수집 및 이용 동의</label>
+                <label class="form-check-label" for="agree2"><span class="req">[필수]</span> 개인정보 수집 및 이용 동의</label>
             </div>           
             <div class="terms-text">
-                <p>회사는 회원가입, 민원 등 고객상담 처리, 본인확인(14세 미만 아동 확인) 등 의사소통을 위한 정보 활용 및 이벤트 등과 같은 마케팅용도 활용, 회원의 서비스 이용에 대한 통계, 이용자들의 개인정보를 통한 서비스 개발을 위해 아래와 같은 개인정보를 수집하고 있습니다.<br><br>
+                <p class="f">회사는 회원가입, 민원 등 고객상담 처리, 본인확인(14세 미만 아동 확인) 등 의사소통을 위한 정보 활용 및 이벤트 등과 같은 마케팅용도 활용, 회원의 서비스 이용에 대한 통계, 이용자들의 개인정보를 통한 서비스 개발을 위해 아래와 같은 개인정보를 수집하고 있습니다.<br><br>
                     1. - 목적 : 이용자 식별 및 본인여부 확인<br>
                     - 항목 : 이름, 아이디, 비밀번호, 닉네임, 이메일, 휴대폰번호, 주소, 전화번호 등<br>
                     - 보유 및 이용기간 : 회원탈퇴 후 5일까지<br><br>
@@ -321,7 +330,7 @@
                 <label class="form-check-label" for="agree3">[선택] 쇼핑정보 수신 동의</label>
             </div>            
             <div class="terms-text">
-                <p>할인쿠폰 및 혜택, 이벤트, 신상품 소식 등 쇼핑몰에서 제공하는 유익한 쇼핑정보를 이메일로 받아보실 수 있습니다.<br><br>
+                <p class="f">할인쿠폰 및 혜택, 이벤트, 신상품 소식 등 쇼핑몰에서 제공하는 유익한 쇼핑정보를 이메일로 받아보실 수 있습니다.<br><br>
                     단, 주문/거래 정보 및 주요 정책과 관련된 내용은 수신동의 여부와 관계없이 발송됩니다.<br><br>
                     선택 약관에 동의하지 않으셔도 회원가입은 가능하며, 회원가입 후 회원정보수정 페이지에서 언제든지 수신여부를 변경하실 수 있습니다.
                 </p>

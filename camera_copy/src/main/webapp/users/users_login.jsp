@@ -30,7 +30,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 	
     <style>    	
-   a {text-decoration: none !important}
+        a {text-decoration: none !important}
    
         .custom-container {           
             display: flex;
@@ -51,23 +51,44 @@
 
         .form-signin h1 {
             text-align: center;
-            font-size: 2.5rem;
+            font-size: xx-large;
             font-weight: bold;
         }
 
         .invalid-feedback {
             display: none;
+            font-size: small;
         }
 
         .is-invalid ~ .invalid-feedback {
             display: block;
+            font-size: small;
         }
         .error-message {
             color: red;
-            font-size: 0.875em;
+            font-size: small;
             margin-top: 0.5em;
         }
-       
+
+        .is-invalid {
+            border-color: red !important;
+             font-size: small;
+        }
+        .form-label {   			
+    		font-size: medium;
+		}
+		.my-4 {    	
+   			font-size: xx-large;
+		}
+		.btn-warning {
+			 font-size: 14.5px;
+		}
+		.form-control {
+			font-size: small;
+		}
+		.text-muted {
+			font-size: small;
+		}
     </style>
 </head>
 <body>
@@ -79,19 +100,19 @@
                 <div class="mb-3">
                     <label for="id" class="form-label">아이디</label>
                     <input type="text" class="form-control" id="id" name="id" value="<%=id%>" placeholder="아이디를 입력하세요" autofocus>
-                    
+                    <div id="idNullMsg" class="invalid-feedback">아이디를 입력해 주세요.(영문소문자/숫자, 4~16자)</div>
                 </div>
                 <div class="mb-3">
                     <label for="pw" class="form-label">비밀번호</label>
                     <input type="password" class="form-control" id="pw" name="pw" placeholder="비밀번호를 입력하세요">
-                    
+                    <div id="pwNullMsg" class="invalid-feedback">비밀번호를 입력해 주세요.(영문대소문자/숫자/특수 문자, 6~16자)</div>
                 </div>
                 <button class="btn btn-warning w-100 py-2" type="submit" id="login_btn">로그인</button>                
                 <a href="index.jsp?workgroup=users&work=users_agreement" class="btn btn-warning w-100 py-2 mt-2">회원가입</a>
                 <div class="d-flex justify-content-center mt-2">
-                    <a href="index.jsp?workgroup=users&work=id_find" class="text-decoration-none text-muted mx-2">아이디 찾기</a>
+                    <a href="index.jsp?workgroup=users&work=search_id_one" class="text-decoration-none text-muted mx-2">아이디 찾기</a>
                     <span class="text-muted">|</span>
-                    <a href="index.jsp?workgroup=users&work=pw_find" class="text-decoration-none text-muted mx-2">비밀번호 찾기</a>
+                    <a href="index.jsp?workgroup=users&work=search_pw_one" class="text-decoration-none text-muted mx-2">비밀번호 찾기</a>
                 </div>                
                 <div id="message" class="error-message"><%=message %></div>
             </form>
@@ -102,21 +123,27 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript">
         $("#id").focus();
+        
+        $("#login_btn").click(function(event) {
+            event.preventDefault();
+            let valid = true;
+            $(".is-invalid").removeClass("is-invalid");
 
-        $("#login_btn").click(function() {
             if($("#id").val() == "") {
-                $("#message").text("아이디를 입력해 주세요. (영문소문자/숫자, 4~16자)");
-                $("#id").focus();
-                return false;
+                $("#id").addClass("is-invalid");
+                $("#idNullMsg").show();
+                valid = false;
             }
             
             if($("#pw").val() == "") {
-                $("#message").text("비밀번호를 입력해 주세요. (영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 6~16자)");
-                $("#pw").focus();
-                return false;
+                $("#pw").addClass("is-invalid");
+                $("#pwNullMsg").show();
+                valid = false;
             }
             
-            $("#login").submit();
+            if(valid) {
+                $("#login").submit();
+            }
         });
     </script>
 </body>

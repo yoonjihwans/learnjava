@@ -65,7 +65,7 @@ public class NoticeDAO extends JdbcDAO{
 
 			String sql = "select * from (select rownum rn, temp.* from (select notice_no"
 					+ ",notice_title,notice_content ,notice_status,notice_date from notice"
-					+ " ) temp) where rn between ? and ?";
+					+ " ) temp) where rn between ? and ? order by notice_date desc";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
@@ -169,7 +169,7 @@ public class NoticeDAO extends JdbcDAO{
 			return nextNum;
 		}
 		
-		public NoticeDTO selectNoticeByNum(int noticeNum) {
+		public NoticeDTO selectNoticeByNum(int noticeNo) {
 			Connection con=null;
 			PreparedStatement pstmt=null;
 			ResultSet rs=null;
@@ -177,11 +177,11 @@ public class NoticeDAO extends JdbcDAO{
 			try {
 				con=getConnection();
 				
-				String sql="select notice_no,review_title,notice_content,"
-						+ " review_status,review_date"
-						+ " from where notice_no=? and notice_status<>0";
+				String sql="select notice_no,notice_title,notice_content,"
+						+ " notice_status,notice_date"
+						+ " from notice where notice_no=? and notice_status<>0";
 				pstmt=con.prepareStatement(sql);
-				pstmt.setInt(1, noticeNum);
+				pstmt.setInt(1, noticeNo);
 				
 				rs=pstmt.executeQuery();
 				
@@ -189,12 +189,12 @@ public class NoticeDAO extends JdbcDAO{
 					notice=new NoticeDTO();
 					notice.setNoticeNo(rs.getInt("notice_no"));
 					notice.setNoticeTitle(rs.getString("notice_title"));
-					notice.setNoticeContent(rs.getString("notice_contnet"));
+					notice.setNoticeContent(rs.getString("notice_content"));
 					notice.setNoticeStatus(rs.getInt("notice_status"));
 					notice.setNoticeDate(rs.getString("notice_date"));
 				}
 			} catch (SQLException e) {
-				System.out.println("[에러]selectReviewByNum() 메소드의 SQL 오류 = "+e.getMessage());
+				System.out.println("[에러]selectNoticewByNum() 메소드의 SQL 오류 = "+e.getMessage());
 			} finally {
 				close(con, pstmt, rs);
 			}
