@@ -13,6 +13,7 @@
 <title>리뷰 작성하기</title>
 </head>
 <style type="text/css">
+ a {text-decoration: none !important}
 #write-wrap {
 	width: 720px;
 	height: 230px;
@@ -33,6 +34,12 @@ td {
 	text-align: center;
 	font-size: large;
 }
+textarea {
+    width: 100%;
+    height: 150px; 
+    overflow-y: auto; 
+    resize: vertical; 
+  }
 </style>
 <div id="write-wrap">	
 	<form action="<%=request.getContextPath()%>/index.jsp?workgroup=review&work=review_write_action"
@@ -51,7 +58,7 @@ td {
 		<tr>
 			<th>내용</th>
 			<td>
-				<textarea rows="7" cols="60" name="reviewContent" id="reviewContent"></textarea>
+				<textarea rows="7" cols="60" name="reviewContent" id="reviewContent" ></textarea>
 			</td>
 		</tr>
 		<tr>
@@ -71,6 +78,22 @@ td {
 </div>
 <div id="message" style="color: red;"></div>
 <script type="text/javascript">
+const textarea = document.getElementById('reviewContent');
+
+textarea.addEventListener('input', function() {
+    // Calculate number of lines
+    const lines = textarea.value.split('\n').length;
+
+    // Limit to 10 lines
+    if (lines > 10) {
+        // Truncate excess lines
+        textarea.value = textarea.value.split('\n').slice(0, 10).join('\n');
+        // Alternatively, you can disable further input or show an error message
+        // Example: textarea.setAttribute('disabled', 'disabled');
+        // Example: alert('Maximum 10 lines allowed!');
+    }
+});
+
 $("#reviewTitle").focus();
 
 $("#reviewForm").submit(function() {

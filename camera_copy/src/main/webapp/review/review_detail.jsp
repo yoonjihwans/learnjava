@@ -48,6 +48,7 @@
 }
 
 table {
+	background-color: #e9ecef;
 	border: 1px solid black;
 	border-collapse: collapse;
 	font-size: 17px;
@@ -61,7 +62,7 @@ th, td {
 
 th {
 	width: 100px;
-	background: black;
+	background-color: #ffc107;
 	color: white;
 }
 
@@ -135,13 +136,13 @@ td {
 <script type="text/javascript">
 $("#modifyBtn").click(function() {
 	location.href="<%=request.getContextPath()%>/index.jsp?workgroup=review&work=review_modify"
-		+"&reviewNum=<%=review.getReviewNo()%>&pageNum=<%=pageNum%>&pageSize=<%=pageSize%>";
+		+"&reviewNo=<%=review.getReviewNo()%>&pageNum=<%=pageNum%>&pageSize=<%=pageSize%>";
 });
 
 $("#removeBtn").click(function() {
 	if(confirm("게시글을 정말로 삭제 하시겠습니까?")) {
 		location.href="<%=request.getContextPath()%>/index.jsp?workgroup=review&work=review_remove_action"
-			+"&reviewNum=<%=review.getReviewNo()%>&pageNum=<%=pageNum%>&pageSize=<%=pageSize%>";
+			+"&reviewNo=<%=review.getReviewNo()%>&pageNum=<%=pageNum%>&pageSize=<%=pageSize%>";
 	}
 });
 

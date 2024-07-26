@@ -26,6 +26,7 @@
 	}
 %>
 <style type="text/css">
+ a {text-decoration: none !important}
 table {
 	margin: 0 auto;
 }

@@ -56,9 +56,8 @@ th, td {
 }
 
 th {
-background-color: #ffc107;
-	width: 100px;
-	
+	background-color: #ffc107;
+	width: 100px;	
 	color: white;
 }
 
@@ -90,7 +89,7 @@ td {
 		<tr>
 			<th>작성자</th>
 			<td>
-				Admin
+				관리자
 				
 			</td>
 		</tr>
