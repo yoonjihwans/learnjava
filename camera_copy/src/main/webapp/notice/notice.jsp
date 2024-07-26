@@ -9,6 +9,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<%@include file="/security/login_url.jspf" %> 
 <!-- <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -20,6 +21,7 @@
 </head> -->
 
 <%
+
 //페이징 처리에 필요한 전달값(페이지번호와 게시글갯수)을 반환받아 저장
 int pageNum = 1;//페이지번호 - 전달값이 없는 경우 사용할 기본값 저장
 if (request.getParameter("pageNum") != null) {//전달값이 있는 경우
@@ -61,10 +63,7 @@ if (endRow > totalNotice) {
 //List 객체를 반환하는 ReviewDAO 클래스의 메소드 호출
 List<NoticeDTO> noticeList = NoticeDAO.getDAO().selectNoticeList(startRow, endRow);
 
-//세션에 저장된 권한 관련 정보가 저장된 속성값을 객체로 반환받아 저장
-// => 로그인 사용자에게만 글쓰기 권한 제공
-// => 게시글이 비밀글인 경우 로그인 사용자가 게시글 작성자이거나 관리자인 경우에만 권한 제공
-UsersDTO loginUsers = (UsersDTO) session.getAttribute("loginUsers");
+
 
 //서버의 현재 날짜와 시간이 저장된 Date 객체를 생성하여 SimpleDateFormat 객체에 저장된
 //패턴의 문자열로 변환하여 저장

@@ -15,7 +15,7 @@ html{font-size: 62.5%;}/* 15px는 1.5rem!! */
 
 #nav-bar{width: 1500px; height: 100px;  text-align: center; margin:0 auto; }
 #nav-bar nav ul{width: 800px; height: 100px;  float: left; }
-#nav-bar ul li {float: left; width: 110px;  font-family: "Noto Sans KR", sans-serif; font-size: 20px; color: black; margin-top: 35px; position: relative;}
+#nav-bar ul li {float: left; width: 110px;   font-size: 20px; color: black; margin-top: 35px; position: relative;}
 #nav-bar ul li a{ color: black; display: inline-block; padding: 0 10px; line-height: 30px;}
 
  .dropdown-content {
@@ -86,7 +86,7 @@ html{font-size: 62.5%;}/* 15px는 1.5rem!! */
 #content{width: 100%; height: 100%; }
 #img-box{width: 1690px; height: 70rem;  text-align: center;  margin: 0 auto; overflow: hidden; position: relative;  padding-top: 50px; background-size: cover;}
 #img-slider{display: flex; transition: transform 0.5s ease;}
-.img-slide{min-width: 750px; flex: 0 0 auto;  background-image: url("./images/nana.jpg");
+.img-slide{min-width: 750px; flex: 0 0 auto;  ;
   background-size: cover;}
 .productmain{width: 100%; height: 190rem;}
 #product{width: 100%; height: 200rem; }
@@ -97,8 +97,9 @@ html{font-size: 62.5%;}/* 15px는 1.5rem!! */
 #product1{width: 170rem; height: 60rem;  margin: 0 auto; position: relative; top: 200px; display: flex; flex-direction: row; flex-wrap: wrap; justify-content:  center; margin-top: 100px;}
 #product-title{width: 160rem; height: 10rem;  margin: 0 auto;}
 #product-box{width: 40rem; height: 50rem; }
-#add-box{width: 50%; height: 3.9rem;  text-align: center; font-size: 18px; color: white; margin-top: 10px; margin: 0 auto;}
-#add-box:hover h1{background-color: #32343E; transition: 1s;}
+#add-box{width: 50%; height: 3.9rem;  text-align: center; font-size: 18px; color: white; margin-top: 10px; margin: 0 auto; }
+#add-box h1 a{color:black; font-family: "Noto Sans KR", sans-serif;}
+#add-box:hover h1{background-color: #32343E; transition: 1s; }
 #add-box h1 a:hover{ transition: 1s; color: white;}
 #productimg{width: 40rem; height: 35rem;} 
 #textbox{width: 40rem; height: 10rem; text-align: center;}
@@ -107,7 +108,7 @@ html{font-size: 62.5%;}/* 15px는 1.5rem!! */
 .seeimgbox-main{width: 100%; height: 125rem;   margin: 0 auto;}
 #imgbox{width: 100rem; height: 100rem; margin: 0 auto;}
 #seeimg{width: 70rem; height: 98.5rem;   margin: 0 auto;} 
-#font-box{width: 70rem; height: 13rem; background-color: #C9AD8D; margin: 0 auto; position: relative; top: 70px; text-align: center; border: 1px solid black;}
+#font-box{width: 70rem; height: 13rem; background-color: orange; margin: 0 auto; position: relative; top: 70px; text-align: center; }
 #font-box-wrap{width: 50rem; height: 13rem; border: 1px solid #D0AC88; margin: 0 auto;}
 #font-box h1{font-size: 26px; margin-top: 20px; }
 #font-box p{font-size: 15px; }
@@ -127,20 +128,12 @@ footer{width: 100%; height: 60rem;  display: flex; justify-content: center;  ali
 #productimglist3{width: 36rem; height: 27rem; border: 1px solid #D0AC88; margin: 0 auto; position: relative; top: 40px; text-align: center;}
 #productimglist4{width: 36rem; height: 27rem; border: 1px solid #D0AC88; margin: 0 auto; position: relative; top: 40px; text-align: center;}
 
-#productimglist1-1{width: 36rem; height: 27rem; border: 1px solid #D0AC88; margin: 0 auto; position: relative; top: 40px; text-align: center;}
-#productimglist1-1 img{position: relative; top: -40px;}
-#productimglist2-2 img{ position: relative; top: -30px;}
-#productimglist3-3 img{ position: relative; top: -60px;}
-#productimglist4-4 img{ position: relative; top: -1px;}
-#productimglist2-2{width: 36rem; height: 27rem; border: 1px solid #D0AC88; margin: 0 auto; position: relative; top: 40px; text-align: center;}
-#productimglist3-3{width: 36rem; height: 27rem; border: 1px solid #D0AC88; margin: 0 auto; position: relative; top: 40px; text-align: center;}
-#productimglist4-4{width: 36rem; height: 27rem; border: 1px solid #D0AC88; margin: 0 auto; position: relative; top: 40px; text-align: center;}
 
 #flimimglist1{width: 36rem; height: 27rem; border: 1px solid #D0AC88; margin: 0 auto; position: relative; top: 40px; text-align: center;}
-#flimimglist1 img{position: relative; top: 25px;}
+#flimimglist1 img{position: relative; top: -60px; right:25px;}
 #flimimglist2 img{ position: relative; top: 20px; left: 30px;}
 #flimimglist3 img{ position: relative; top: -3px;}
-#flimimglist4 img{ position: relative; top: -26px;}
+#flimimglist4 img{ position: relative; top: -60px;  right:25px;}
 #flimimglist2{width: 36rem; height: 27rem; border: 1px solid #D0AC88; margin: 0 auto; position: relative; top: 40px; text-align: center;}
 #flimimglist3{width: 36rem; height: 27rem; border: 1px solid #D0AC88; margin: 0 auto; position: relative; top: 40px; text-align: center;}
 #flimimglist4{width: 36rem; height: 27rem; border: 1px solid #D0AC88; margin: 0 auto; position: relative; top: 40px; text-align: center;}
@@ -149,7 +142,7 @@ footer{width: 100%; height: 60rem;  display: flex; justify-content: center;  ali
 
 
 #title-box{width: 50rem; height: 10rem; margin: 0 auto; text-align: center; } 
-#title-box h1{font-size: 45px;  border-top: 3px solid #D0AC88; } 
+#title-box h1{font-size: 45px;  border-top: 3px solid #D0AC88; font-family: "Noto Sans KR", sans-serif;} 
 #title-box p{font-size: 15px; font-family: "Noto Sans KR", sans-serif;}
 
 
