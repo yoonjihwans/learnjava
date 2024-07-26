@@ -57,16 +57,16 @@ if(keyword == null) {
                 <ul>
                     <li><a href="index.jsp?workgroup=product&work=camera_list" id="good">Camera</a></li>
                     <li><a href="index.jsp?workgroup=product&work=film_list" id="good">Film</a></li>
-                    <li><a href="index.jsp?workgroup=product&work=film_list" id="good">Acc</a></li>
+                    <li><a href="index.jsp?workgroup=product&work=acc_list" id="good" style="margin-right:10px;">Acc</a></li>
                     <li class="dropdown-item1">
-                        <a href="#">Commu</a>
+                        <a href="#" style="margin-right:20px;">COMMUNITY</a>
                         <div class="dropdown-content">
                             <a href="index.jsp?workgroup=notice&work=notice" id="good">Notice</a>
                             <a href="index.jsp?workgroup=users&work=qna_list" id="good">Q&A</a>
                         </div>
                     </li>
                     <li class="dropdown-item2">
-                        <a href="#">Shop</a>
+                        <a href="#" style="margin-left:30px;">SHOP</a>
                         <div class="dropdown-content">
                             <a href="index.jsp?workgroup=cart&work=cart" id="good">Cart</a>
                             <a href="index.jsp?workgroup=order&work=order_list" id="good">Order List</a>

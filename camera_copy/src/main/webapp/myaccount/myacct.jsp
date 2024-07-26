@@ -19,7 +19,7 @@
 --%>
 <%@include file="/security/login_check.jspf" %> 
 <style type="text/css">
-#account-wrap{
+ #account-wrap{
 width: 700px;
 height:450px;
 
@@ -45,10 +45,10 @@ margin-top: 50px;}
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	color: white;
 	font-family: Arial, sans-serif;
-	line-height: 1.5; /* Adding some line height for better spacing */
+	line-height: 1.5; 
 }
 #detail2 {
-font-size:12px;
+font-size:15px;
 	width: 500px;
 	margin: 0 auto;
 	text-align: left;
@@ -58,21 +58,21 @@ font-size:12px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	color: white;
 	font-family: Arial, sans-serif;
-	line-height: 1.5; /* Adding some line height for better spacing */
+	line-height: 1.5; 
 }
 
 #detail p:first-child {
-	font-weight: bold; /* Making the first paragraph (ID) bold */
-	margin-bottom: 10px; /* Adding margin bottom for separation */
+	font-weight: bold; 
+	margin-bottom: 10px;
 }
 
 #detail .date-info {
 	font-size:5px;
-	margin-top: 10px; /* Adding margin top to separate date information */
+	margin-top: 10px; 
 }
 
 #link {
-	font-size: 1.2em; /* Increasing font size */
+	font-size: 1.2em; 
 	margin-top: 20px;
 	text-align: center;
 }
@@ -81,17 +81,71 @@ font-size:12px;
 	text-decoration: none;
 	color: white;
 	background-color: #C9AD8D;
-	padding: 8px 15px; /* Increasing padding for better click area */
+	padding: 8px 15px;
 	border-radius: 5px;
 	transition: background-color 0.3s ease;
 }
 
 #link a:hover {
 	background-color: black;
+} 
+#account-box{width: 1100px; height: 600px; border: 1px solid green; margin: 0 auto;}
+#acc1-box{width: 200px; height: 600px; border: 1px solid black; float: left;}
+#acc2-box{width: 895px; height: 600px; border: 1px solid black; float: right;}
+
+#acc1-box nav ul{border: 1px solid red; height: 400px; margin: 0 auto; margin-top: 100px;;}
+#acc1-box nav ul li{border: 1px solid blue; width: 200px; text-align: center; height: 70px; }
+
+#acc1-box nav ul li a{margin-top:20px; font-size: 23px; color: black;}
+
+#detail {
+	width: 500px;
+	margin: 0 auto;
+	text-align: left;
 }
+#link {
+	font-size: 1.1em;
+}
+#link a:hover {
+	color: white;
+	background: black;
+}
+
+#good { 
+    color: #000;
+    display:inline-block; 
+    margin:0;
+    text-transform:uppercase; }
+    #good:after {
+    display:block;
+    content: '';
+    border-bottom: solid 3px #BBDEF0;  
+    transform: scaleX(0);  
+    transition: transform 250ms ease-in-out;
+  }
+  #good:hover:after { transform: scaleX(1); }
+  #good:after{ transform-origin:100% 50%; }
+  #good:after{  transform-origin:  0% 50%; }
+
 </style>
 
-<div id="account-wrap">
+ <div id="account-box">
+        <div id="acc1-box">
+            <nav>
+                <ul>
+                <li><a href="index.jsp?workgroup=myaccount&work=myacct" id="good">회원정보</a></li>
+                <li><a href="index.jsp?workgroup=myaccount&work=myacct_review" id="good">리뷰</a></li>
+                <li><a href="index.jsp?workgroup=myaccount&work=myacct_qna" id="good">Q&A</a></li>
+                <li><a href="index.jsp?workgroup=myaccount&work=myacct_orderlist" id="good">주문내역</a></li>
+                </ul>
+
+            </nav>
+
+        </div>
+        <div id="acc2-box">
+        
+        
+        <div id="account-wrap">
 <div id="account-wrap-middle">
 <h1 style="text-align: center; margin-bottom: 20px;">내정보</h1>
 <div id="detail1">
@@ -106,15 +160,15 @@ font-size:12px;
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=loginUsers.getUsersAddress2() %></p>
 </div>
 <div id="link">
-	<a href="<%=request.getContextPath()%>/index.jsp?workgroup=myaccount&work=password_confirm&action=modify">[회원정보변경]</a>&nbsp;&nbsp;
-	<a href="<%=request.getContextPath()%>/index.jsp?workgroup=myaccount&work=password_confirm&action=remove">[회원탈퇴]</a>
+	<a href="<%=request.getContextPath()%>/index.jsp?workgroup=myaccount&work=password_confirm&action=modify" style="font-size:17px;">[회원정보변경]</a>&nbsp;&nbsp;
+	<a href="<%=request.getContextPath()%>/index.jsp?workgroup=myaccount&work=password_confirm&action=remove" style="font-size:17px;">[회원탈퇴]</a>
 </div>
 	<div class="date-info">
-    <p><strong>회원가입날짜 =</strong> <%=loginUsers.getUsersSigndate().substring(0, 10) %></p>
+    <p><strong style="font-size:17px;">회원가입날짜 =</strong> <%=loginUsers.getUsersSigndate().substring(0, 10) %></p>
     <% if(loginUsers.getUsersLastLogin() == null) { %>
-        <p style="display: none;"><strong>마지막 로그인 날짜 =</strong></p>
+        <p style="display: none;"><strong style="font-size:17px;">마지막 로그인 날짜 =</strong></p>
     <% } else { %>
-        <p><strong>마지막 로그인 날짜 =</strong> <%=loginUsers.getUsersLastLogin() %></p>
+        <p><strong style="font-size:17px;">마지막 로그인 날짜 =</strong> <%=loginUsers.getUsersLastLogin() %></p>
     <% } %>
 </div>
  </div>
@@ -122,37 +176,14 @@ font-size:12px;
 
 
 
-<%-- <style type="text/css">
-#detail {
-	width: 500px;
-	margin: 0 auto;
-	text-align: left;
-}
-#link {
-	font-size: 1.1em;
-}
-#link a:hover {
-	color: white;
-	background: black;
-}
-</style>
-<h1>내정보</h1>
-<div id="detail">
-	<p>아이디 = <%=loginUsers.getUsersId() %></p>
-	<p>이름 = <%=loginUsers.getUsersName() %></p>
-	<p>이메일 = <%=loginUsers.getUsersEmail() %></p>
-	<p>전화번호 = <%=loginUsers.getUsersPhone() %></p>
-	<p>주소 = [<%=loginUsers.getUsersZipcode() %>]<%=loginUsers.getUsersAddress1() %> 
-		<%=loginUsers.getUsersAddress2() %></p>
-	<p>회원가입날짜 = <%=loginUsers.getUsersSigndate() %></p>
-	<p>마지막 로그인 날짜 = <%=loginUsers.getUsersLastLogin() %></p>
-</div>
-<div id="link">
-	<a href="<%=request.getContextPath()%>/index.jsp?workgroup=myaccount&work=password_confirm&action=modify">[회원정보변경]</a>&nbsp;&nbsp;
-	<a href="<%=request.getContextPath()%>/index.jsp?workgroup=myaccount&work=password_confirm&action=remove">[회원탈퇴]</a>
-</div>
+        
+        
+        </div>
 
- --%>
+    </div>
+
+
+
 
 
 
