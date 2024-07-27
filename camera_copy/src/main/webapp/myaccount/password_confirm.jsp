@@ -3,27 +3,37 @@
     pageEncoding="UTF-8"%>
     
     <style>
-		#password-wrap{
-		width: 100%;
-		height: 250px;
 
-		}	
 		
-		#password-wrap-middle{
-		width: 450px;
-		height: 250px;
-		margin: 0 auto;
-	
-		}
+		#account-box{width: 1100px; height: 600px; border: 1px solid green; margin: 0 auto;}
+#acc1-box{width: 200px; height: 600px; border: 1px solid black; float: left;}
+#acc2-box{width: 895px; height: 600px; border: 1px solid black; float: right;}
+
+#acc1-box nav ul{border: 1px solid red; height: 400px; margin: 0 auto; margin-top: 100px;;}
+#acc1-box nav ul li{border: 1px solid blue; width: 200px; text-align: center; height: 70px; }
+
+#acc1-box nav ul li a{margin-top:20px; font-size: 23px; color: black;}
 		
-		#last-wrap{
-		width: 450px;
-		height: 100px;
-		margin-top: 60px;
-		}
+		#good { 
+    color: #000;
+    display:inline-block; 
+    margin:0;
+    text-transform:uppercase; }
+    #good:after {
+    display:block;
+    content: '';
+    border-bottom: solid 3px #BBDEF0;  
+    transform: scaleX(0);  
+    transition: transform 250ms ease-in-out;
+  }
+  #good:hover:after { transform: scaleX(1); }
+  #good:after{ transform-origin:100% 50%; }
+  #good:after{  transform-origin:  0% 50%; }
+  
+  #confirm-wrap {
+  
+  }
 		
-		p{font-size:20px;}
-		}	
 		
 		
    </style>
@@ -50,9 +60,24 @@
 		session.removeAttribute("message");
 	}
 %>
-<div id="password-wrap">
-<div id="password-wrap-middle">
-<div id="last-wrap">
+
+
+ <div id="account-box">
+ <div id="acc1-box">
+            <nav>
+                <ul>
+                <li><a href="index.jsp?workgroup=myaccount&work=myacct" id="good">회원정보</a></li>
+                <li><a href="index.jsp?workgroup=myaccount&work=myacct_review" id="good">리뷰</a></li>
+                <li><a href="index.jsp?workgroup=myaccount&work=myacct_qna" id="good">Q&A</a></li>
+                <li><a href="index.jsp?workgroup=myaccount&work=myacct_orderlist" id="good">주문내역</a></li>
+                </ul>
+
+            </nav>
+
+        </div>
+        <div id="acc2-box">
+
+<div id="confirm-wrap">
 <% if(action.equals("modify")) { %>
 	<p>회원정보변경을 위해 비밀번호를 입력해 주세요.</p>
 <% } else { %>
@@ -65,9 +90,12 @@
 	<button type="button" id="submitBtn">입력완료</button>
 </form>
 <p id="message" style="color: red;"><%=message %></p><%-- <%=message %> member_modify 만든 후에 추가된 코드  --%>
-  </div>
-  </div>
 </div>
+
+ </div>
+
+</div>
+
 <script type="text/javascript">
 $("#passwd").focus();
 

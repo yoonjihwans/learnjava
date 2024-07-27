@@ -43,12 +43,12 @@ if(keyword == null) {
 <div id="header-bottom">
 	<div id="header-bottom-middle">
 		<div id="logo">
-			<a href="index.jsp" style="color: orange;">Filli Camera</a>
+			<a href="index.jsp" style="color: orange;"><img alt="" src="img/title1.png"" width="330px"; style="margin-top: 10px;"></a>
 		</div>
 		<div id="search_button">
 			<div id="search-middle">
 				<form action="" method="get">
-					<input id="search" type="text" name="search" placeholder="Search">
+					 <input id="search" type="text" name="search" placeholder="Search"> 
 				</form>
 			</div>
 		</div>
