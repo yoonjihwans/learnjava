@@ -1,6 +1,13 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="xyz.itwill.dto.UsersDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="xyz.itwill.dao.ReviewDAO"%>
+<%@page import="xyz.itwill.dto.ReviewDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="xyz.itwill.dao.ProductDAO" %>
 <%@ page import="xyz.itwill.dto.ProductDTO" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -396,22 +403,7 @@
         transition: all 0.3s ease-in-out;
     }
 
-    .tabs [class^="tab"] [type="radio"]:hover, 
-    .tabs [class^="tab"] [type="radio"]:focus,
-    .tabs [class*=" tab"] [type="radio"]:hover,
-    .tabs [class*=" tab"] [type="radio"]:focus {
-        border-bottom: 5px solid #f6d365; 
-    }
-
-    .tabs [class^="tab"] [type="radio"]:checked,
-    .tabs [class*=" tab"] [type="radio"]:checked {
-        border-bottom: 5px solid #fda085;
-    }
-
-    .tabs [class^="tab"] [type="radio"]:checked + div,
-    .tabs [class*=" tab"] [type="radio"]:checked + div {
-        opacity: 1;
-    }
+  
 
     .tabs [class^="tab"] [type="radio"] + div,
     .tabs [class*=" tab"] [type="radio"] + div {
@@ -466,7 +458,9 @@
         out.println("<script>alert('존재하지 않는 상품입니다.'); history.back();</script>");
         return;
     }
-
+	//추가
+    int prodAmount=product.getProdAmount();
+    
     String productName = product.getProdName();
     String productDescription = product.getProdInfo();
     int productPrice = product.getProdPrice();
@@ -509,7 +503,17 @@
             </div>
             <div class="buttons">
                 <button type="button" class="uni-btn btn-buy"><span>구매하기</span></button>
-                <button type="button" class="uni-btn btn-basket"><span>장바구니</span></button>
+               
+               <%-- 폼태그 추가 --%>
+                <form  action="<%=request.getContextPath()%>/index.jsp?workgroup=cart&work=addtocart2" method="post">   
+                	<button type="submit" class="uni-btn btn-basket"><span>장바구니</span></button>
+               	 	<input type="hidden" name="prodNo" value="<%= prodNo %>">
+         		 	<input type="hidden" id="finalQuantity" name="finalQuantity" value=""> <!-- /index.jsp?workgroup=cart&work=addtocart"2 --> 
+               <!--	 <input type="hidden" id="prodAmount" name="prodAmount" value="<%= prodAmount %>"> --> <!-- /index.jsp?workgroup=cart&work=addtocart" -->
+                 
+             	</form> 
+             	
+             	
             </div>
         </div>
         <div class="floating">
@@ -539,8 +543,12 @@
             <label for="tab3-3">리뷰</label>
             <input id="tab3-3" name="tabs-three" type="radio">
             <div>
-                <h4>리뷰</h4>
-                <p>리뷰내용</p>
+            	<h4>리뷰</h4>
+                <p>리뷰 내용</p>                          
+                
+
+
+               
             </div>
         </div>
     </div>
@@ -558,9 +566,14 @@
             var newQuantity = currentQuantity + amount;
             if (newQuantity > 0) {
                 quantityInput.value = newQuantity;
+                //추가) 최종수량 저장
+                finalQuantity = newQuantity;
+               
                 var productPrice = <%= productPrice %>;
                 var totalPriceElement = document.querySelector('.total-price .price');
                 totalPriceElement.textContent = (newQuantity * productPrice).toLocaleString('ko-KR') + '원';
+           		//추가) 최종수량
+                document.getElementById('finalQuantity').value = finalQuantity;
             }
         }
     </script>

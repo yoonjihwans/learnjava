@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <div id="footer-wrap">
 <div class="footer-main">
             <div id="info-left">
                 <div id="info-left-box1">
-                    <img alt="" src="img/title1.png">
+                    <img alt="" src="img/title1.jpg" width="350px;">
                 </div>
                 <div id="info-left-box2">
                    <div id="divtitle-1"><span>쇼핑몰 기본정보</span></div>
@@ -41,4 +42,5 @@
                 </div>
 
             </div>
+        </div>
         </div>

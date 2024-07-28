@@ -333,4 +333,38 @@ public class ProductDAO extends JdbcDAO {
         }
         return productList;
     }
+    
+    public List<ProductDTO> searchProducts(String keyword) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        List<ProductDTO> productList = new ArrayList<>();
+        try {
+            con = getConnection();
+            String sql = "SELECT * FROM product WHERE LOWER(PROD_NAME) LIKE ?";
+            pstmt = con.prepareStatement(sql);
+            pstmt.setString(1, "%" + keyword.toLowerCase() + "%");
+            rs = pstmt.executeQuery();
+            while (rs.next()) {
+                ProductDTO product = new ProductDTO();
+                product.setProdNo(rs.getInt("PROD_NO"));
+                product.setProdType(rs.getInt("PROD_TYPE"));
+                product.setProdName(rs.getString("PROD_NAME"));
+                product.setProdPrice(rs.getInt("PROD_PRICE"));
+                product.setProdAmount(rs.getInt("PROD_AMOUNT"));
+                product.setProdImage1(rs.getString("PROD_IMAGE1"));
+                product.setProdImage2(rs.getString("PROD_IMAGE2"));
+                product.setProdImage3(rs.getString("PROD_IMAGE3"));
+                product.setProdImage4(rs.getString("PROD_IMAGE4"));
+                product.setProdInfo(rs.getString("PROD_INFO"));
+                product.setProdInDate(rs.getString("PROD_IN_DATE"));
+                productList.add(product);
+            }
+        } catch (SQLException e) {
+            System.out.println("[에러]searchProducts() 메서드의 SQL 오류 = " + e.getMessage());
+        } finally {
+            close(con, pstmt, rs);
+        }
+        return productList;
+    }
 }

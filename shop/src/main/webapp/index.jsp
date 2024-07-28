@@ -1,9 +1,7 @@
-﻿﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%-- 템플릿 페이지를 구현한 JSP 문서 --%>    
 <%-- => 클라이언트의 모든 요청에 대한 응답 결과를 제공하는 페이지 --%>
 <%-- => 페이지의 몸체부에는 전달값으로 만들어진 JSP 문서의 실행결과(CSL)를 동적으로 포함 --%>
-    
 <%
 	request.setCharacterEncoding("utf-8");
 
@@ -52,6 +50,17 @@
 				return;
 			}
 		%>
+		
+		<%-- 검색 폼 추가 --%>
+		<div id="search_form">
+			<form action="index.jsp" method="get">
+				<input type="hidden" name="workgroup" value="product">
+				<input type="hidden" name="work" value="search_result">
+				<input type="text" name="keyword" placeholder="Search...">
+				<button type="submit">Search</button>
+			</form>
+		</div>
+		
 	</div>
 	
 	<%-- Footer 영역 : 저작권,약관,개인정보 보호정책,회사주소등 --%>
