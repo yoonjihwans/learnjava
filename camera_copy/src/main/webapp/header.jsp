@@ -15,8 +15,6 @@ if(search == null) {//전달값이 없는 경우 - 조회기능을 사용하지 
 String keyword=request.getParameter("keyword");//조회단어
 if(keyword == null) {
 	keyword="";
-	
-	
 }
 
 
@@ -53,13 +51,17 @@ if(keyword == null) {
 			<a href="index.jsp" style="color: orange;"><img alt="" src="img/title1.jpg"" width="330px"; style="margin-top: 10px;"></a>
 		</div>
 		<div id="search_button">
-			<div id="search_middle">
-  <form action=index.jsp?workgroup=product&work=product_list" method="get">
-    <input id="search" type="text" name="keyword" placeholder="검색">
-    <input type="submit" value="검색">
+			<div id="search_middle"> 
+   <form action="<%= request.getContextPath()%>/index.jsp?workgroup=product&work=product_list" method="post" id="form">
+
+    <select  name="search" id="searchInput">
+    <option id="searchInput" value="prod_name" <% if(search.equals("prod_name")) { %>selected<% } %>>&nbsp;name&nbsp;</option>
+    </select>
+    <input type="text" name="keyword"  value="<%=keyword%>" id="keyword" placeholder="search">
+    <button type="submit" id="searchButton">검색</button>
 </form>
 </div>
-		</div>
+		</div> 
 		<div id="nav-bar">
 			  <nav>
                 <ul>

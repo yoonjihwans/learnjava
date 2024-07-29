@@ -334,30 +334,54 @@ public class ProductDAO extends JdbcDAO {
         return productList;
     }
     
-    public List<ProductDTO> searchProducts(String keyword) {
+    
+    public List<ProductDTO> searchProducts(String keyword, String search, int startRow, int endRow, String filter) {
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         List<ProductDTO> productList = new ArrayList<>();
         try {
             con = getConnection();
-            String sql = "SELECT * FROM product WHERE LOWER(PROD_NAME) LIKE ?";
+            String sql = "SELECT * FROM (SELECT rownum rn, temp.* FROM (SELECT * FROM product WHERE ";
+            if (!keyword.equals("")) {
+                sql += search + " LIKE '%' || ? || '%' ";
+            } else {
+                sql += "1=1"; // 검색어가 없는 경우 모든 상품
+            }
+
+            if (filter != null) {
+                if (filter.equals("new")) {
+                    sql += " ORDER BY PROD_IN_DATE DESC";
+                } else if (filter.equals("lowestPrice")) {
+                    sql += " ORDER BY PROD_PRICE ASC";
+                } else if (filter.equals("highestPrice")) {
+                    sql += " ORDER BY PROD_PRICE DESC";
+                }
+            }
+
+            sql += ") temp) WHERE rn BETWEEN ? AND ?";
+
             pstmt = con.prepareStatement(sql);
-            pstmt.setString(1, "%" + keyword.toLowerCase() + "%");
+            int parameterIndex = 1;
+            if (!keyword.equals("")) {
+                pstmt.setString(parameterIndex++, keyword);
+            }
+            pstmt.setInt(parameterIndex++, startRow);
+            pstmt.setInt(parameterIndex++, endRow);
             rs = pstmt.executeQuery();
             while (rs.next()) {
                 ProductDTO product = new ProductDTO();
-                product.setProdNo(rs.getInt("PROD_NO"));
-                product.setProdType(rs.getInt("PROD_TYPE"));
-                product.setProdName(rs.getString("PROD_NAME"));
-                product.setProdPrice(rs.getInt("PROD_PRICE"));
-                product.setProdAmount(rs.getInt("PROD_AMOUNT"));
-                product.setProdImage1(rs.getString("PROD_IMAGE1"));
-                product.setProdImage2(rs.getString("PROD_IMAGE2"));
-                product.setProdImage3(rs.getString("PROD_IMAGE3"));
-                product.setProdImage4(rs.getString("PROD_IMAGE4"));
-                product.setProdInfo(rs.getString("PROD_INFO"));
-                product.setProdInDate(rs.getString("PROD_IN_DATE"));
+                product.setProdNo(rs.getInt("prod_no"));
+                product.setProdType(rs.getInt("prod_type"));
+                product.setProdName(rs.getString("prod_name"));
+                product.setProdPrice(rs.getInt("prod_price"));
+                product.setProdAmount(rs.getInt("prod_amount"));
+                product.setProdImage1(rs.getString("prod_image1"));
+                product.setProdImage2(rs.getString("prod_image2"));
+                product.setProdImage3(rs.getString("prod_image3"));
+                product.setProdImage4(rs.getString("prod_image4"));
+                product.setProdInfo(rs.getString("prod_info"));
+                product.setProdInDate(rs.getString("prod_in_date"));
                 productList.add(product);
             }
         } catch (SQLException e) {
@@ -367,4 +391,35 @@ public class ProductDAO extends JdbcDAO {
         }
         return productList;
     }
+
+
+    public int getTotalProducts(String keyword, String search) {
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        int total = 0;
+        try {
+            con = getConnection();
+            String sql = "SELECT COUNT(*) FROM product WHERE ";
+            if (!keyword.equals("")) {
+                sql += search + " LIKE '%' || ? || '%' ";
+            } else {
+                sql += "1=1"; // 검색어가 없는 경우 모든 상품
+            }
+            pstmt = con.prepareStatement(sql);
+            if (!keyword.equals("")) {
+                pstmt.setString(1, keyword);
+            }
+            rs = pstmt.executeQuery();
+            if (rs.next()) {
+                total = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            System.out.println("[에러]getTotalProducts() 메서드의 SQL 오류 = " + e.getMessage());
+        } finally {
+            close(con, pstmt, rs);
+        }
+        return total;
+    }
+
 }
