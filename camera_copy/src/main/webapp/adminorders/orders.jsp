@@ -3,7 +3,10 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+      <%@include file="/security/login_check.jspf" %>
 <% 
+
+
 String search=request.getParameter("search");
 if(search==null){
 	search="";
@@ -20,6 +23,14 @@ List<AdminOrdersDTO> orderList=AdminOrdersDAO.getDAO().selectOrdersList(search,k
     
 <!DOCTYPE html>
 <html lang="en">
+<style type="text/css">
+    .table-container {
+            max-width: 100%;
+            overflow-x: auto;
+            overflow-y: auto;
+            height: 500px; /* Adjust this height as needed */
+        }
+</style>
 <head>
 
     <meta charset="UTF-8">
@@ -29,20 +40,20 @@ List<AdminOrdersDTO> orderList=AdminOrdersDAO.getDAO().selectOrdersList(search,k
 </head>
 
 <body>
-    <!-- <form id="join" action="<%=request.getContextPath() %>/index.jsp?workgroup=member&work=member_join_action" method="post"> -->
+  
 
     <div class="container">
         <h1>관리자 페이지</h1>
-        <form action="<%= request.getContextPath()%>/index.jsp?workgroup=adminproduct&work=product" method="post">
+        <form action="<%= request.getContextPath()%>/index.jsp?workgroup=adminorders&work=orders" method="post">
         	<select  name="search">
-			<option id="searchInput" value="prod_name" <% if(search.equals("prod_name")) { %>selected<% } %>>&nbsp;name&nbsp;</option>
-			<option value="prod_type" <% if(search.equals("prod_type")) { %>selected<% } %>>&nbsp;type&nbsp;</option>
+			<option id="searchInput" value="ORDERS_USERS_NAME" <% if(search.equals("ORDERS_USERS_NAME")) { %>selected<% } %>>&nbsp;ORDERS_USERS_NAME&nbsp;</option>
+			<option value="Orders_users_id" <% if(search.equals("Orders_users_id")) { %>selected<% } %>>&nbsp;userId&nbsp;</option>
 		</select>
 		<input type="text" name="keyword" value="<%=keyword%>">
 		<button type="submit" id="searchButton">검색</button>
         </form>
        
-       
+     <div class="table-container">
         <table class="member-table">
             
                 <tr>
@@ -95,7 +106,7 @@ List<AdminOrdersDTO> orderList=AdminOrdersDAO.getDAO().selectOrdersList(search,k
         
         </table>
     </div>
-
+</div>
     <script type="text/javascript"> 
 
 	

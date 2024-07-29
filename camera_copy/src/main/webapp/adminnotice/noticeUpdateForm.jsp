@@ -112,9 +112,9 @@ th, td {
 			return false;
 		}
 		
-		if($("#reviewContent").val() == "") {
+		if($("#content").val() == "") {
 			$("#message").text("내용을 입력해 주세요.");
-			$("#reviewContent").focus();
+			$("#content").focus();
 			return false;
 		}
 	});

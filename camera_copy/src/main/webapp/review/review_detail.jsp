@@ -1,3 +1,5 @@
+<%@page import="java.io.UnsupportedEncodingException"%>
+<%@page import="java.net.URLDecoder"%>
 <%@page import="xyz.itwill.dto.UsersDTO"%>
 <%@page import="xyz.itwill.dao.ReviewDAO"%>
 <%@page import="xyz.itwill.dto.ReviewDTO"%>
@@ -24,8 +26,18 @@
 	
 	UsersDTO loginUsers=(UsersDTO)session.getAttribute("loginUsers");
 	
-
-    
+	String returnUrl = request.getParameter("returnUrl");
+	   if (returnUrl != null) {
+		    try {
+		      returnUrl = URLDecoder.decode(returnUrl, "UTF-8");
+		     
+		    } catch (UnsupportedEncodingException e) {
+		      // Handle the exception if decoding fails
+		      returnUrl = "index.jsp";
+		    }
+		  } else {
+		    returnUrl = "index.jsp";
+		  }
     %>
     
 
@@ -129,6 +141,7 @@ td {
 		<% } %>
 		
 		<button type="button" id="listBtn">글목록</button>
+		
 	</div>
 	</div>
 </div>
@@ -147,9 +160,7 @@ $("#removeBtn").click(function() {
 });
 
 
-
-$("#listBtn").click(function() {
-	location.href="<%=request.getContextPath()%>/index.jsp?workgroup=review&work=review"
-		+"&pageNum=<%=pageNum%>&pageSize=<%=pageSize%>";
-});
+document.getElementById("listBtn").addEventListener("click", function() {
+    location.href = "<%= returnUrl %>";
+	  });
 </script>

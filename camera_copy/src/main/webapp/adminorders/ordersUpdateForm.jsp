@@ -2,6 +2,7 @@
 <%@page import="xyz.itwill.dto.AdminOrdersDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@include file="/security/login_check.jspf" %>
 <%
     
    if(request.getParameter("no") == null) {
@@ -60,18 +61,24 @@ th, td {
 <body>
 	<h1>상품추가</h1>
 	<hr>
-	<form name="productForm" action="<%=request.getContextPath()%>/index.jsp?workgroup=adminorders&work=ordersUpdate" method="post"
-	enctype="multipart/form-data" >
-		
-		<input type="hidden" name="no" value="<%=order.getOrdersNo()%>"> 
+	<form name="productForm" action="<%=request.getContextPath()%>/index.jsp?workgroup=adminorders&work=ordersUpdate" method="post">
+		<%-- 
+		<input type="hidden" name="no" value="<%=order.getOrdersNo()%>">  --%>
 		
 	<table>
 	
 		<tr>
+			<th class="title">orderNo</th>
+			<td class="input">
+				<%-- <input type="text" name="type" <% if(products != null) { %>value="<%=products.getProdType()%>"<% } %>> --%>
+				<input type="text" name="no" value="<%=order.getOrdersNo()%>" readonly="readonly">
+			</td>
+		</tr>
+		<tr>
 			<th class="title">orderProdNo</th>
 			<td class="input">
 				<%-- <input type="text" name="type" <% if(products != null) { %>value="<%=products.getProdType()%>"<% } %>> --%>
-				<input type="text" name="prodno" value="<%=order.getOrdersProdNo()%>">
+				<input type="text" name="prodno" value="<%=order.getOrdersProdNo()%>" readonly="readonly">
 			</td>
 		</tr>
 		<tr>

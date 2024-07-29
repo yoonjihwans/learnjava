@@ -5,7 +5,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+  <%@include file="/security/login_check.jspf" %>
 <%
  String search=request.getParameter("search");
 if(search == null) {//전달값이 없는 경우 - 조회기능을 사용하지 않은 경우
@@ -25,6 +25,15 @@ if(users.getUsersNo() != 9){
     
 <!DOCTYPE html>
 <html lang="en">
+
+<style type="text/css">
+    .table-container {
+            max-width: 100%;
+            overflow-x: auto;
+            overflow-y: auto;
+            height: 500px; /* Adjust this height as needed */
+        }
+</style>
 <head>
 
     <meta charset="UTF-8">
@@ -33,6 +42,8 @@ if(users.getUsersNo() != 9){
      <link rel="stylesheet" href="<%=request.getContextPath() %>/adminnotice/styles.css">
 </head>
 <body>
+
+
     
 
     <div class="container">
@@ -49,7 +60,7 @@ if(users.getUsersNo() != 9){
     <button type="button" id="addBtn" class="status-button" data-status="100">추가</button>
     
 </div>
-       
+          <div class="table-container">
         <table class="member-table">
             
                 <tr>
@@ -83,7 +94,7 @@ if(users.getUsersNo() != 9){
         
         </table>
     </div>
-
+</div>
     <script type="text/javascript"> 
        document.getElementById("addBtn").onclick=function() {
 		location.href="<%=request.getContextPath()%>/index.jsp?workgroup=adminnotice&work=noticeAddForm";	

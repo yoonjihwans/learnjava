@@ -29,14 +29,31 @@
  a {text-decoration: none !important}
 table {
 	margin: 0 auto;
+	margin-top: 20px;
 }
 
 th {
 	width: 100px;
+	font-size:medium;	
 }
 
 td {
 	text-align: left;
+}
+h1 {
+	text-align: center;
+	margin-top: 50px;
+	font-size: 22px;
+}
+#message {
+text-align: center;
+font-size: large;
+}
+textarea {
+width: 100%;
+height: 150px;
+overflow-y: auto;
+resize: vertical;
 }
 </style>
 <h1>게시글 변경</h1>
@@ -83,6 +100,13 @@ td {
 <div id="message" style="color: red;"></div>
 
 <script type="text/javascript">
+const textarea = document.getElementById('reviewContent');
+textarea.addEventListener('input', function() {
+    const lines = textarea.value.split('\n').length;
+    if (lines > 10) {
+        textarea.value = textarea.value.split('\n').slice(0, 10).join('\n');
+    }
+});
 $("#reviewTitle").focus();
 
 $("#reviewForm").submit(function() {

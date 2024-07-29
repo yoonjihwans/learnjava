@@ -35,6 +35,6 @@
 	}
 	
 	
-	request.setAttribute("returnUrl", request.getContextPath()+"/index.jsp?workgroup=review&work=review"
+	request.setAttribute("returnUrl", request.getContextPath()+"/index.jsp?workgroup=myaccount&work=myacct_review"
 		+"&pageNum="+pageNum+"&pageSize="+pageSize);
 %>

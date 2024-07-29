@@ -3,6 +3,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+      <%@include file="/security/login_check.jspf" %>
 <%
 
 String search=request.getParameter("search");
@@ -20,6 +21,15 @@ if(keyword==null){
     
 <!DOCTYPE html>
 <html lang="en">
+
+<style type="text/css">
+    .table-container {
+            max-width: 100%;
+            overflow-x: auto;
+            overflow-y: auto;
+            height: 500px; /* Adjust this height as needed */
+        }
+</style>
 <head>
     <meta charset="UTF-8">
 <!--     <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
@@ -35,12 +45,13 @@ if(keyword==null){
           <form action="<%= request.getContextPath()%>/index.jsp?workgroup=adminusers&work=users" method="post">
         	<select  name="search">
 			<option id="searchInput" value="users_id" <% if(search.equals("users_id")) { %>selected<% } %>>&nbsp;id&nbsp;</option>
+			<option id="searchInput" value="users_name" <% if(search.equals("users_name")) { %>selected<% } %>>&nbsp;usersName&nbsp;</option>
 			<option id="searchInput" value="USERS_STATUS" <% if(search.equals("USERS_STATUS")) { %>selected<% } %>>&nbsp;status&nbsp;</option>
 		</select>
 		<input type="text" name="keyword" value="<%=keyword%>">
 		<button type="submit" id="searchButton">검색</button>
         </form>
-
+   <div class="table-container">
        
         <table class="member-table">
             
@@ -58,7 +69,7 @@ if(keyword==null){
                     <td>LAST LOGIN</td>
                     <td>STATUS</td>
                     <td>삭제</td>
-                    <td>삭제</td>
+                    <td>변경</td>
                 </tr>
             
       <%
@@ -85,7 +96,7 @@ if(keyword==null){
         
         </table>
     </div>
-
+</div>
     <script type="text/javascript"> 
 
 	function updateUsers(no) {

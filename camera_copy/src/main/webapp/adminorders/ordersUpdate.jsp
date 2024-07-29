@@ -2,6 +2,7 @@
 <%@page import="xyz.itwill.dto.AdminOrdersDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@include file="/security/login_check.jspf" %>
 <%
       
 
@@ -16,7 +17,7 @@
             	
             	//전달값을 반환받아 저장
             	
-            	int no=Integer.parseInt(request.getParameter("no"));
+            		int no=Integer.parseInt(request.getParameter("no"));
             	int prodno=Integer.parseInt(request.getParameter("prodno"));
             	String id=request.getParameter("id");
             	String name=request.getParameter("name");
