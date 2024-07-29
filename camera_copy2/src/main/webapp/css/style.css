@@ -1,0 +1,209 @@
+@charset "UTF-8";
+*{margin: 0; padding: 0; list-style: none; box-sizing: border-box; text-decoration: none; font-family: 'Do Hyeon', sans-serif; }
+html{font-size: 62.5%;}/* 15px는 1.5rem!! */
+#main-header{width: 100%; height: 150px;  box-shadow: 0px 0px 15px -3px rgba(0,0,0,0.7); background-color: #f4f4f4;} 
+#header-top{width: 100%; height: 50px; }
+#profile{width: 70%; height: 50px;   text-align: right; font-size: 25px; margin:0 auto;}
+#profile a{color:black; line-height: 50px; width: 30px; border:10px solid  #f4f4f4;}
+#header-bottom{width: 100%; height: 100px;  }
+#header-bottom-middle{width: 1600px; height: 100px;  margin: 0 auto;}
+#logo{width: 250px; height: 100px;  float: left; text-align: center;  font-size: 30px; color: orange; }
+#search_button{float: left; width: 400px; height: 70px; margin-left: 50px;  margin-top:20px ;}
+#search-middle{width: 280px; height: 100px;  margin: 0 auto;}
+#form{ margin: 0 auto; width: 270px; margin-top:5px; }
+#keyword{width:180px; height: 40px; background-color: #f4f4f4; border: 2px solid black; border-radius: 5px;}
+#searchButton{border: 1px solid  #f4f4f4;  font-size: 15px;  color: #f4f4f4; background-color: #f4f4f4;}
+#searchInput{color: black; width: 70px;height:30px; font-size: 15px; border-radius: 5px; background-color: #f4f4f4;}
+
+
+
+#nav-bar{width: 1500px; height: 100px;  text-align: center; margin:0 auto; }
+#nav-bar nav ul{width: 800px; height: 100px;  float: left; }
+#nav-bar ul li {float: left; width: 110px;   font-size: 20px; color: black; margin-top: 35px; position: relative;}
+#nav-bar ul li a{ color: black; display: inline-block; padding: 0 10px; line-height: 20px;}
+
+ .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+        width: 160px; /* 드롭다운 메뉴 전체 너비 */
+        max-height: 300px; /* 최대 높이를 지정하여 넘치지 않도록 함 */
+        overflow-y: auto; /* 넘칠 경우 스크롤바 추가 */
+    }
+
+    .dropdown-content li {
+        float: none;
+        
+    }
+
+    .dropdown-content li a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        text-align: center;
+        
+        
+    }
+    
+ 
+
+    .dropdown-content li a:hover {
+        background-color: #f1f1f1;
+    }
+
+    /* 개별 드롭다운 메뉴 스타일 */
+    #nav-bar ul li.dropdown-item1 .dropdown-content {
+        width: 180px;
+        height: 40px;
+    }
+
+    #nav-bar ul li.dropdown-item2 .dropdown-content {
+        width: 220px;
+        height: 40px;
+    }
+
+    /* 각 드롭다운 메뉴 아이템에 대한 마우스 오버 효과 */
+    #nav-bar ul li.dropdown-item1:hover .dropdown-content,
+    #nav-bar ul li.dropdown-item2:hover .dropdown-content {
+        display: block;
+    }
+
+#good { 
+    color: #000;
+    display:inline-block; 
+    margin:0;
+    text-transform:uppercase; }
+    #good:after {
+    display:block;
+    content: '';
+    border-bottom: solid 3px #BBDEF0;  
+    transform: scaleX(0);  
+    transition: transform 250ms ease-in-out;
+  }
+  #good:hover:after { transform: scaleX(1); }
+  #good:after{ transform-origin:100% 50%; }
+  #good:after{  transform-origin:  0% 50%; }
+
+#content{width: 100%; height: 100%; }
+#img-box{width: 1690px; height: 70rem;  text-align: center;  margin: 0 auto; overflow: hidden; position: relative;  padding-top: 50px; background-size: cover;}
+#img-slider{display: flex; transition: transform 0.5s ease;}
+.img-slide{min-width: 750px; flex: 0 0 auto;  ;
+  background-size: cover;}
+.productmain{width: 100%; height: 190rem;}
+#product{width: 100%; height: 200rem; }
+
+#pdbox{width: 100%; height: 160rem; }
+
+#product{width: 170rem; height: 60rem;  margin: 0 auto; position: relative; top: 200px; display: flex; flex-direction: row; flex-wrap: wrap; justify-content:  center;}
+#product1{width: 170rem; height: 60rem;  margin: 0 auto; position: relative; top: 200px; display: flex; flex-direction: row; flex-wrap: wrap; justify-content:  center; margin-top: 100px;}
+#product-title{width: 160rem; height: 10rem;  margin: 0 auto;}
+#product-box{width: 40rem; height: 50rem; }
+#add-box{width: 50%; height: 3.9rem;  text-align: center; font-size: 18px; color: white; margin-top: 10px; margin: 0 auto; }
+#add-box h1 a{color:black; font-family: "Noto Sans KR", sans-serif;}
+#add-box:hover h1{background-color: #32343E; transition: 1s; }
+#add-box h1 a:hover{ transition: 1s; color: white;}
+#productimg{width: 40rem; height: 35rem;} 
+#textbox{width: 40rem; height: 10rem; text-align: center;}
+#textbox h1{font-size: 20px;}
+#textbox p{font-size: 20px; }
+.seeimgbox-main{width: 100%; height: 125rem;   margin: 0 auto;}
+#imgbox{width: 100rem; height: 100rem; margin: 0 auto;}
+#seeimg{width: 70rem; height: 98.5rem;   margin: 0 auto;} 
+#font-box{width: 70rem; height: 13rem; background-color: orange; margin: 0 auto; position: relative; top: 70px; text-align: center; }
+#font-box-wrap{width: 50rem; height: 13rem; border: 1px solid #D0AC88; margin: 0 auto;}
+#font-box h1{font-size: 26px; margin-top: 20px; }
+#font-box p{font-size: 15px; }
+#font-box a{font-size: 25px; margin-top: 15px; border-radius: 1px solid #D0AC88;  color: black;}
+
+
+footer{width: 100%; height: 60rem;  display: flex; justify-content: center;  align-items: center; } 
+.footer-main{width: 160rem; height: 40rem; margin: 0 auto; }
+#footer-wrap{width:100%; height: 500px;  background-color: #f4f4f4;  }
+#info-left{width: 65rem; height: 40rem;  float: left;}
+#info-right{width: 65rem; height: 40rem;  float: right;}
+
+#productimglist1{width: 36rem; height: 27rem; border: 1px solid #D0AC88; margin: 0 auto; position: relative; top: 40px; text-align: center;}
+#productimglist2 img{ position: relative; top: -97px;}
+#productimglist3 img{ position: relative; top: -130px;}
+#productimglist4 img{ position: relative; top: 7px;}
+#productimglist2{width: 36rem; height: 27rem; border: 1px solid #D0AC88; margin: 0 auto; position: relative; top: 40px; text-align: center;}
+#productimglist3{width: 36rem; height: 27rem; border: 1px solid #D0AC88; margin: 0 auto; position: relative; top: 40px; text-align: center;}
+#productimglist4{width: 36rem; height: 27rem; border: 1px solid #D0AC88; margin: 0 auto; position: relative; top: 40px; text-align: center;}
+
+
+#flimimglist1{width: 36rem; height: 27rem; border: 1px solid #D0AC88; margin: 0 auto; position: relative; top: 40px; text-align: center;}
+#flimimglist1 img{position: relative; top: -60px; right:25px;}
+#flimimglist2 img{ position: relative; top: 20px; left: 30px;}
+#flimimglist3 img{ position: relative; top: -3px;}
+#flimimglist4 img{ position: relative; top: -60px;  right:25px;}
+#flimimglist2{width: 36rem; height: 27rem; border: 1px solid #D0AC88; margin: 0 auto; position: relative; top: 40px; text-align: center;}
+#flimimglist3{width: 36rem; height: 27rem; border: 1px solid #D0AC88; margin: 0 auto; position: relative; top: 40px; text-align: center;}
+#flimimglist4{width: 36rem; height: 27rem; border: 1px solid #D0AC88; margin: 0 auto; position: relative; top: 40px; text-align: center;}
+
+
+
+
+#title-box{width: 50rem; height: 10rem; margin: 0 auto; text-align: center; } 
+#title-box h1{font-size: 45px;  border-top: 3px solid #D0AC88; font-family: 'Do Hyeon', sans-serif;} 
+#title-box p{font-size: 15px; font-family: 'Do Hyeon', sans-serif;}
+
+
+
+#info-left-box1{width: 65rem; height: 10rem; margin-top:50px;}
+
+#info-left-box2{width: 65rem; height: 30rem;  }
+#divtitle-1{width: 65rem; height: 5rem;  font-size: 15.5px; font-weight: bold;}
+#box1{width: 10rem; height: 3rem;  }
+#box1 span{ font-size: 15.5px; font-weight: bold;}
+#box2{width: 10rem; height: 3rem; }
+#box2 span{font-size: 15.5px; font-weight: bold;}
+#box3{width: 30rem; height: 3rem;  }
+#box3 span{ font-size: 15.5px; font-weight: bold;}
+#box4{width: 30rem; height: 3rem;  }
+#box4 span{ font-size: 15.5px; font-weight: bold;}
+#box5{width: 30rem; height: 3rem; }
+#box5 span{ font-size: 15.5px; font-weight: bold;}
+#box6{width: 30rem; height: 3rem;  }
+#box6 span{ font-size: 15.5px; font-weight: bold;}
+#box7{width: 30rem; height: 3rem; }
+#box7 span{ font-size: 15.5px; font-weight: bold;}
+#block{width: 65rem; height:10rem;}
+#right-box1{width: 25rem; height: 29.8rem; margin-top:50px;}
+#right-box2{width: 25rem; height: 29.8rem;   float: left;margin-top:50px;}
+#right-box1{width: 25rem; height: 29.8rem; float: left;}
+#right-box3{width: 14.8rem; height: 29.8rem;  float: left;margin-top:50px;}
+#rbox1{width: 10rem; height: 3rem;  }
+#rbox1 span{ font-size: 15.5px; font-weight: bold;}
+#rbox2{width: 20rem; height: 3rem;  }
+#rbox2 span{ font-size: 15.5px; font-weight: bold;}
+#rbox3{width: 20rem; height: 3rem; }
+#rbox3 span{ font-size: 15.5px; font-weight: bold;}
+#rbox4{width: 20rem; height: 3rem;  }
+#rbox4 span{ font-size: 15.5px; font-weight: bold;}
+#rbox5{width: 10rem; height: 3rem; }
+#rbox5 span{ font-size: 15.5px; font-weight: bold;}
+#rbox6{width: 30rem; height: 3rem; }
+#rbox6 span{font-size: 15.5px; font-weight: bold;}
+#rrbox1{width: 10rem; height: 3rem;  }
+#rrbox1 span{ font-size: 15.5px; font-weight: bold;}
+#rrbox2{width: 15rem; height: 3rem;  }
+#rrbox2 span{ font-size: 15.5px; font-weight: bold;}
+#rrbox3{width: 25rem; height: 3rem; }
+#rrbox3 span{ font-size: 15.5px; font-weight: bold;}
+#sns1{width: 10rem; height: 3rem;  }
+#sns1 span{ font-size: 15.5px; font-weight: bold;}
+#sns2{width: 10rem; height: 3rem; }
+#sns2 a{ font-size: 15.5px; font-weight: bold;}
+#sns3{width: 10rem; height: 3rem;  }
+#sns3 a{ font-size: 15.5px; font-weight: bold;}
+#sns4{width: 10rem; height: 3rem; }
+#sns4 a{ font-size: 15.5px; font-weight: bold;}
+#sns5{width: 10rem; height: 3rem; }
+#sns5 a{ font-size: 15.5px; font-weight: bold;}
+#sns6{width: 10rem; height: 3rem;  }
+#sns6 a{ font-size: 15.5px; font-weight: bold;}
+
+
