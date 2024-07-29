@@ -57,25 +57,30 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     margin: 0;
-    padding: 10px;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 h1, h2 {
-	font-size: 1em;
-	font-weight: bold;
+    font-size: 1em;
+    font-weight: bold;
 }
 
-#detail {
+#detail, #newAddressForm {
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     padding: 15px;
     margin-top: 20px;
+    font-size: 20px;
 }
 
 #detail p {
     margin: 0 auto;
     line-height: 1.5;
+    font-size: 20px;
 }
 
 #detail p:first-child {
@@ -113,19 +118,15 @@ h1, h2 {
 
 #newAddressForm {
     margin-top: 20px;
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    padding: 15px;
 }
 
 #postSearch {
- 	font-size: 12px;
-	font-weight: bold;
-	cursor: pointer;
-	margin-left: 10px;
-	padding: 2px 10px;
-	border: 1px solid black;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 10px;
+    padding: 2px 10px;
+    border: 1px solid black;
     transition: transform 0.1s ease, background-color 0.1s ease;
 }
 
@@ -152,253 +153,205 @@ h1, h2 {
     background-color: #45a049; /* Darker green on hover */
     border-color: #45a049; /* Darker green border on hover */
 }
+
 .button-container {
     text-align: center;
-  }
-  
-/* CART CSS 작성 */
-
+    margin-top: 20px;
+}
 
 table {
-	margin: 5px auto;
-	border: 0.5px solid rgb(207, 207, 207);
-	border-collapse: collapse;
-	width: 900px;
+    margin: 0 auto;
+    border: 0.5px solid rgb(207, 207, 207);
+    border-collapse: collapse;
+    width: 900px;
 }
 
-th {
-	height: 40px;
-	border: 0.5px solid rgb(207, 207, 207);
-	text-align: center;
-}
-
-td {
-	height: 40px;
-	border: 0.5px solid rgb(207, 207, 207);
-	text-align: center;
+th, td {
+    height: 40px;
+    border: 0.5px solid rgb(207, 207, 207);
+    text-align: center;
 }
 
 .price .count {
-	display: inline-block;
-	position: relative;
-	vertical-align: top;
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
 }
 
-
 .cartTable table {
-	font-size: 13px;
+    font-size: 13px;
 }
 
 .cartTable table input {
-	text-align: center;
+    text-align: center;
 }
 
 .name {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .name:hover {
-	border-bottom: 1px solid rgb(207, 207, 207)
+    border-bottom: 1px solid rgb(207, 207, 207);
 }
 
 .cartTable .quantity button {
-	padding: 4px 8px;
-	margin: 8px 5px 8px;
-	border : none;
+    padding: 4px 8px;
+    margin: 8px 5px 8px;
+    border : none;
 }
 
 .name, .price, .total {
-	border: none;
-	font-size: 15px;
-}
-
-.name, .price, .total:focus {
-	outline: none;
-}
-
-
+    border: none;
+    font-size: 15px;
 }
 
 .empty { 
-	text-align: center;
-}
-
-/* cart만 고정 */
-body {
-	width: 100;
-	margin: 0 auto;   
-	height: 800px;  
-}
-#width {
-	width: 1000px;
-    margin: 0 auto; 
     text-align: center;
 }
-#selectedTotal{
-	font-size: 15px;
-	border:none;
-	padding-left: 4px;
-	line-height: 20px;
-	cursor: text;
+
+
+html, body {
+    height: 100%;
 }
-   
+
+.main-content {
+    flex: 1;
+    padding-bottom: 50px; /
+} 
+
+
 </style>
 <title>구매정보창</title>
 </head>
 <body>
+    <div class="main-content">
+        <h1 style="text-align:center; font-size: 40px; margin-top: 20px;">결제정보</h1>
+        <form id="joinForm" action="<%=request.getContextPath()%>/index.jsp?workgroup=cart&work=orders_action3" method="post">
+            <div id="detail">
+                <p>주문자 정보</p>
+                <hr class="hr-line"> 
 
-<h1>결제정보</h1>
-<form id="joinForm" action="<%=request.getContextPath()%>/index.jsp?workgroup=cart&work=orders_action3" method="post">
-<div id="detail">
-	<p>주문자 정보</p>
-	<hr class="hr-line"> 
- 
-    <p>아이디 : <%=loginUsers.getUsersId()%></p>
-    <p>이름 : <%=loginUsers.getUsersName()%></p>
-    <p>이메일 : <%=loginUsers.getUsersEmail()%></p>
-    <p>전화번호 : <%=loginUsers.getUsersPhone()%></p>
-    
-
-</div>
-<hr class="hr-line">
-<div id="newAddressForm">
-	<fieldset>
-	
-		<table>
-					<tr>
-						<th><input type="hidden" id="allCheck" name="allcheck"></th>
-						<th>Item</th>
-						<th>Qty</th>
-						<th>Price</th>
-						<th>Delivery</th>
-						<th>Total</th>
-					</tr>
-					<%
-		            int i = 0;
-		            for (; i < productList.size(); i++) {
-		            %>
-					<tr>
-						<td>
-							<input type="hidden" name="checkP" value="<%=cartList.get(i).getCartNo()%>" class="check">
-							<input type="hidden" name="prodNo" value="<%=productList.get(i).getProdNo()%>">
-						</td>
-						<td>
-							<input type="button" id="name<%=i%>" class="name" name="name" value="<%=productList.get(i).getProdName()%>" >
-						</td>
-						<td id="quantity<%=i%>" class="quantity">
-							<span class="count count-box"> 
-								
-								<input type="text" class="countInput" id = "quantity"<%=i %>
-									name="countInput" value="<%=qtylist.get(i) %>" readonly="readonly"
-									style="width: 20px; border: none;">
-								
-							</span>
-						</td>
-		
-						<td>
-							<input id="price<%=i%>" class="price" name="price" value="<%=productList.get(i).getProdPrice()%>" readonly="readonly">
-						</td>
-						<td>기본배송</td>
-						<td>
-							<input id="total<%=i%>" class="total"
-							value="<%=(productList.get(i).getProdPrice()*qtylist.get(i))%>" name="total" readonly="readonly">
-							
-						</td>
-						
-					</tr>
-					<%}%>
-					<tr>
-						<td colspan="5">결제예정금액</td>
-						<td><input id="selectedTotal" name="selectedTotal" readonly="readonly" value="0"></td>
-					</tr>
-				</table>
-	</fieldset>
-</div>
-
-<div id="newAddressForm">
-<h2>배송지 작성</h2>
-
-
-<div class="checkboxList">
-    <input type="checkbox" name="clientAddressCheckbox" class="clientaddressCheckbox" id="clientAddressCheckbox" checked>주문자 정보와 동일&nbsp;&nbsp;
-    <input type="checkbox" name="newAddressCheckbox" class="newAddressCheckbox" id="newAddressCheckbox">새로운 배송지 작성&nbsp;&nbsp;
-</div>
-
-	
-
-    <fieldset>
-        <legend>배송지 정보</legend>
-        <ul>
-        	  
-            
-            
-            <li>
-                <label for="name">받는사람</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="text" name="name" id="name" readonly="readonly">
-            </li>
-            <li>
-                <label for="phone">전화번호</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <input type="text" name="phone" id="phone" readonly="readonly">
-            </li>
-            <li>
-                <label>우편번호</label>
-                <input type="text" name="zipcode" id="zipcode" size="7" readonly="readonly">
-                <span id="postSearch">우편번호 검색</span>
-            </li>
-            <li>
-                <label for="address1">기본주소</label>
-                <input type="text" name="address1" id="address1" size="50" readonly="readonly">
-            </li>
-            <li>
-                <label for="address2">상세주소</label>
-                <input type="text" name="address2" id="address2" size="50" readonly="readonly">		
-            </li>
-            <li>
-                <label for="ordersrequest">배송 요청 사항</label>
-                <br>
-                <textarea name="ordersrequest" id="ordersrequest" rows="4" cols="50" placeholder="배송 요청 사항을 입력해주세요."></textarea>
-            </li>
-        </ul>
-    </fieldset>
- 
-</div>
-
- 	<hr class="hr-line">
- <div id="newAddressForm">
-
-    <fieldset>
-        <legend>결제 수단</legend>
-    
-     <div style="display: flex; flex-direction: column">
+                <p>아이디 : <%=loginUsers.getUsersId()%></p>
+                <p>이름 : <%=loginUsers.getUsersName()%></p>
+                <p>이메일 : <%=loginUsers.getUsersEmail()%></p>
+                <p>전화번호 : <%=loginUsers.getUsersPhone()%></p>
+            </div>
+            <hr class="hr-line">
+            <div id="newAddressForm">
+                <fieldset>
+                    <table>
+                        <tr>
+                            <th><input type="hidden" id="allCheck" name="allcheck"></th>
+                            <th>Item</th>
+                            <th>Qty</th>
+                            <th>Price</th>
+                            <th>Delivery</th>
+                            <th>Total</th>
+                        </tr>
+                        <%
+                        int i = 0;
+                        for (; i < productList.size(); i++) {
+                        %>
+                        <tr>
+                            <td>
+                                <input type="hidden" name="checkP" value="<%=cartList.get(i).getCartNo()%>" class="check">
+                                <input type="hidden" name="prodNo" value="<%=productList.get(i).getProdNo()%>">
+                            </td>
+                            <td>
+                                <input type="button" id="name<%=i%>" class="name" name="name" value="<%=productList.get(i).getProdName()%>">
+                            </td>
+                            <td id="quantity<%=i%>" class="quantity">
+                                <span class="count count-box"> 
+                                    <input type="text" class="countInput" id="quantity<%=i %>" name="countInput" value="<%=qtylist.get(i) %>" readonly="readonly" style="width: 20px; border: none;">
+                                </span>
+                            </td>
+                            <td>
+                                <input id="price<%=i%>" class="price" name="price" value="<%=productList.get(i).getProdPrice()%>" readonly="readonly">
+                            </td>
+                            <td>기본배송</td>
+                            <td>
+                                <input id="total<%=i%>" class="total" value="<%=(productList.get(i).getProdPrice()*qtylist.get(i))%>" name="total" readonly="readonly">
+                            </td>
+                        </tr>
+                        <%}%>
+                        <tr>
+                            <td colspan="5">결제예정금액</td>
+                            <td><input id="selectedTotal" name="selectedTotal" readonly="readonly" value="0"></td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
+            <div id="newAddressForm">
+                <h2>배송지 작성</h2>
+                <div class="checkboxList">
+                    <input type="checkbox" name="clientAddressCheckbox" class="clientaddressCheckbox" id="clientAddressCheckbox" checked>주문자 정보와 동일&nbsp;&nbsp;
+                    <input type="checkbox" name="newAddressCheckbox" class="newAddressCheckbox" id="newAddressCheckbox">새로운 배송지 작성&nbsp;&nbsp;
+                </div>
+                <fieldset>
+                    <legend>배송지 정보</legend>
+                    <ul>
+                        <li>
+                            <label for="name">받는사람</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" name="name" id="name" readonly="readonly">
+                        </li>
+                        <li>
+                            <label for="phone">전화번호</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="text" name="phone" id="phone" readonly="readonly">
+                        </li>
+                        <li>
+                            <label>우편번호</label>
+                            <input type="text" name="phone" id="phone" readonly="readonly">
+                             <span id="postSearch">우편번호 검색</span>
+                        </li>
+                        <li>
+                            <label for="address1">기본주소</label>
+                            <input type="text" name="address1" id="address1" size="50" readonly="readonly">
+                        </li>
+                        <li>
+                            <label for="address2">상세주소</label>
+                            <input type="text" name="address2" id="address2" size="50" readonly="readonly">
+                        </li>
+                        <li>
+                            <label for="ordersrequest">배송 요청 사항</label>
+                            <br>
+                            <textarea name="ordersrequest" id="ordersrequest" rows="4" cols="50" placeholder="배송 요청 사항을 입력해주세요."></textarea>
+                        </li>
+                    </ul>
+                </fieldset>
+            </div>
+            <hr class="hr-line">
+            <div id="newAddressForm">
+                <fieldset>
+                    <legend>결제 수단</legend>
+                    <div style="display: flex; flex-direction: column">
+                        <label>
+                            <input type="radio" name="payment" value="paytoss" onclick="setPayment(this)"> 토스
+                        </label>
+                        <label>
+                            <input type="radio" name="payment" value="paynaver" onclick="setPayment(this)"> 네이버페이
+                        </label>
+                        <label>
+                            <input type="radio" name="payment" value="paykakao" onclick="setPayment(this)"> 카카오페이
+                        </label>
+                        <label>
+                            <input type="radio" name="payment" value="paymoney" onclick="setPayment(this)"> 계좌이체
+                        </label>
+                        <label>
+                            <input type="radio" name="payment" value="paycard" onclick="setPayment(this)"> 카드결제
+                        </label>
+                        <label>
+                            <input type="radio" name="payment" value="payphone" onclick="setPayment(this)"> 휴대폰결제
+                        </label>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="button-container">
+                <button type="button" class="buttonpay"><a href="index.jsp?workgroup=cart&work=cart" style="color:white;">되돌아가기</a></button>
+                <button type="submit" class="buttonpay">결제하기</button>
+            </div>
+        </form>
         
-        <label>
-            <input type="radio" name="payment" value="paytoss" onclick="setPayment(this)"> 토스
-        </label>
-        <label>
-            <input type="radio" name="payment" value="paynaver" onclick="setPayment(this)"> 네이버페이
-        </label>
-        <label>
-            <input type="radio" name="payment" value="paykakao" onclick="setPayment(this)"> 카카오페이
-        </label>
-        <label>
-            <input type="radio" name="payment" value="paymoney" onclick="setPayment(this)"> 계좌이체
-        </label>
-         <label>
-            <input type="radio" name="payment" value="paycard" onclick="setPayment(this)"> 카드결제
-        </label>
-         <label>
-            <input type="radio" name="payment" value="payphone" onclick="setPayment(this)"> 휴대폰결제
-        </label>
-    </div>
-
-    </fieldset>	
- 	</div>
- 	
-        <div class="button-container">
-    		<button type="button"  class="buttonpay"><a href="index.jsp?workgroup=cart&work=cart" style="color:white;">되돌아가기 </a></button>
-    		<button type="submit" class="buttonpay">결제하기</button>
-		</div>
-</form>
+         </div>
 
 <script type="text/javascript">
 $(document).ready(function() {

@@ -72,7 +72,7 @@ if(keyword == null) {
                         <a href="#" style="margin-right:20px;">COMMUNITY</a>
                         <div class="dropdown-content">
                             <a href="index.jsp?workgroup=notice&work=notice" id="good">Notice</a>
-                            <a href="index.jsp?workgroup=users&work=qna_list" id="good">Q&A</a>
+                            <a href="index.jsp?workgroup=qna&work=qna_list" id="good">Q&A</a>
                         </div>
                     </li>
                     <li class="dropdown-item2">
