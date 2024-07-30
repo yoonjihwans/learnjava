@@ -87,7 +87,7 @@ html{font-size: 62.5%;}/* 15px는 1.5rem!! */
   #good:after{ transform-origin:100% 50%; }
   #good:after{  transform-origin:  0% 50%; }
 
-#content{width: 100%; height: 100%; }
+#content{width: 100%;  }
 #img-box{width: 1690px; height: 70rem;  text-align: center;  margin: 0 auto; overflow: hidden; position: relative;  padding-top: 50px; background-size: cover;}
 #img-slider{display: flex; transition: transform 0.5s ease;}
 .img-slide{min-width: 750px; flex: 0 0 auto;  ;
@@ -205,5 +205,7 @@ footer{width: 100%; height: 60rem;  display: flex; justify-content: center;  ali
 #sns5 a{ font-size: 15.5px; font-weight: bold;}
 #sns6{width: 10rem; height: 3rem;  }
 #sns6 a{ font-size: 15.5px; font-weight: bold;}
+
+
 
 
