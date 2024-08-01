@@ -1,0 +1,105 @@
+@charset "UTF-8";
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    width: 100%; /* 최대 너비를 100%로 설정 */
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow-x: auto; /* 가로 스크롤을 표시하도록 설정 */
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#searchInput {
+    padding: 10px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+}
+
+#searchButton {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-left: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+#searchButton:hover {
+    background-color: #0056b3;
+}
+
+.member-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    table-layout: fixed; /* 테이블의 너비를 고정 */
+}
+
+.member-table th, .member-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    word-wrap: break-word; /* 긴 텍스트 줄 바꿈 처리 */
+}
+
+.member-table th {
+    background-color: #f2f2f2;
+    color: #333;
+    font-size: 16px; /* 테이블 헤더 글자 크기 */
+}
+
+.member-table td {
+    font-size: 14px; /* 테이블 셀 글자 크기 */
+}
+
+.member-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.status-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 16px; /* 버튼 내용물 여백 */
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px; /* 버튼 글자 크기 */
+}
+
+.status-button:hover {
+    background-color: #218838;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    #searchInput {
+        width: 150px;
+    }
+    
+    .member-table th, .member-table td {
+        padding: 8px;
+    }
+}
