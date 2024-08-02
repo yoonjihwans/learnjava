@@ -44,7 +44,7 @@ public class LoginModel implements Action {
 			session.setAttribute("loginUserinfo", UserinfoService.getService().getUserinfo(userid));
 			
 			actionForward.setForward(false);
-			actionForward.setPath(request.getContextPath()+"/loginform.do");
+			actionForward.setPath("/loginform.do");
 		} catch (AuthFailException e) {
 			//Request Scope : 스레드가 이동된 웹프로그램(JSP)에서만 속성값을 객체로 반환받아 사용 가능
 			request.setAttribute("message", e.getMessage());
@@ -56,7 +56,7 @@ public class LoginModel implements Action {
 			e.printStackTrace();//콘솔에 예외 관련 정보를 출력 처리
 			//[/error.do] 주소로 리다이렉트 이동하기 위한 정보를 ActionForward 객체에 저장
 			actionForward.setForward(false);
-			actionForward.setPath(request.getContextPath()+"/error.do");
+			actionForward.setPath("/error.do");
 		}
 		
 		return actionForward;
