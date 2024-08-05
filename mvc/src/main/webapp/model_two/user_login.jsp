@@ -25,7 +25,8 @@
 <head>
 <title>MVC</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel=stylesheet href="<%=request.getContextPath() %>/model_two/css/user.css" type="text/css">
+<%-- <link rel=stylesheet href="<%=request.getContextPath() %>/model_two/css/user.css" type="text/css"> --%>
+<link rel=stylesheet href="${pageContext.request.contextPath }/model_two/css/user.css" type="text/css">
 <script language="JavaScript">
 function userLogin() {
 	if ( f.userid.value == "" ) {
@@ -106,7 +107,7 @@ function userLogin() {
 					<button type="button" onclick="location.href='<%=request.getContextPath()%>/list.do';">회원목록</button>
 					<button type="button" onclick="location.href='<%=request.getContextPath()%>/logout.do';">로그아웃</button>
 					<% if(loginUserinfo.getAuth() == 9) { %>
-					<button type="button" onclick="location.href='<%=request.getContextPath()%>/writeform.do';">회원등록</button>
+						<button type="button" onclick="location.href='<%=request.getContextPath()%>/writeform.do';">회원등록</button>
 					<% } %>
 				</td>
 			  </tr>
