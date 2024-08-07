@@ -1,17 +1,12 @@
-﻿<%@page import="java.util.List"%>
-<%@page import="xyz.itwill.dto.UserinfoDTO"%>
+﻿
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+      <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <%-- request 객체의 속성값을 반환받아 HTML 태그에 포함해 응답하는 JSP 문서 --%> 
 <%-- => 회원정보에서 [회원이름] 태그를 클릭한 경우 [/view.do] 주소를 요청하여 페이지 이동 - 아이디 전달 --%>
 <%-- => [로그아웃] 태그를 클릭한 경우 [/logout.do] 주소를 요청하여 페이지 이동 --%>
 <%-- => [회원등록] 태그를 클릭한 경우 [/writeform.do] 주소를 요청하여 페이지 이동 - 관리자에게만 태그 제공 --%>
-<%
-	UserinfoDTO loginUserinfo=(UserinfoDTO)session.getAttribute("loginUserinfo");
-
-	//request 객체의 속성값을 객체로 반환받아 저장
-	List<UserinfoDTO> userinfoList=(List<UserinfoDTO>)request.getAttribute("userinfoList");
-%>   
+ 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -39,33 +34,33 @@
 				<td width=200 align=center bgcolor="E6ECDE">이메일</td>
 		  	</tr>
 		  	
-		  	<% for(UserinfoDTO userinfo : userinfoList) { %>
+		  	<c:forEach var="userinfo" items="${userinfoList}">
 		  	<tr>
 				<td width=190 align=center bgcolor="ffffff" height="20">
-					<%=userinfo.getUserid() %>
+					${userinfo.userid }
 				</td>
 				<td width=200 align=center bgcolor="ffffff">
-					<a href="<%=request.getContextPath() %>/view.do?userid=<%=userinfo.getUserid() %>" class="user">
-						<%=userinfo.getName() %>
+					<a href="${pageContext.request.contextPath }/view.do?userid=${userinfo.userid}" class="user">
+						${userinfo.userid }
 					</a>
 				</td>
 				<td width=200 align=center bgcolor="ffffff">
-					<% if(userinfo.getEmail() != null) { %>
-						<%=userinfo.getEmail() %>
-					<% } %>
+				<c:if test="${!empty(userinfo.email) }">
+						${userinfo.email }
+					</c:if>
 				</td>
 		  	</tr>
-		  	<% } %>
+		  	</c:forEach>
 	  	</table>
 
 		<br>
 	  	<table border="0" cellpadding="0" cellspacing="1" width="590">
 			<tr>
 				<td align="right">
-					<% if(loginUserinfo.getAuth() == 9) { %>
-						<input type="button" value="회원등록" onclick="location.href='<%=request.getContextPath()%>/writeform.do';"/>
-					<% } %>
-					<input type="button" value="로그아웃" onclick="location.href='<%=request.getContextPath()%>/logout.do';"/>
+					<c:if test="${loginUserinfo.auth eq 9}">
+						<input type="button" value="회원등록" onclick="location.href='${pageContext.request.contextPath }/writeform.do';"/>
+					</c:if>
+					<input type="button" value="로그아웃" onclick="location.href='${pageContext.request.contextPath }/logout.do';"/>
 				</td>
 			</tr>
 		</table>		
