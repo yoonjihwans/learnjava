@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- mybatis 환경설정파일 : SqlSessionFactory 객체를 생성하기 위해 필요한 정보를 제공하는 파일 -->
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- properties : property 엘리먼트(1개 이상)를 등록하기 위한 엘리먼트 -->
+	<!-- resource 속성 : Properties 파일의 파일 시스템 경로를 속성값으로 설정 -->
+	<!-- => property 엘리먼트 대신 Properties 파일에 저장된 값을 제공받아 사용 -->
+	<properties resource="oracle_url.properties">
+		<!-- property : mybatis 환경설정파일에 값을 제공하기 위한 엘리먼트 -->
+		<!-- => mybatis 환경설정파일에서는 ${이름} 형식으로 값을 제공받아 사용 -->
+		<!-- => 다수의 엘리먼트에서 공통적으로 사용되는 값을 제공하기 위한 사용 - 유지보수의 효율성 증가 -->
+		<property name="oracleDriver" value="oracle.jdbc.driver.OracleDriver"/>
+	</properties>
+	
+	<!-- settings : setting 엘리먼트(1개 이상)를 등록하기 위한 엘리먼트 -->
+	<settings>
+		<!-- setting : SqlSession 객체에 실행해 필요한 정보를 제공하기 위한 엘리먼트 -->
+		<!-- => setting 엘리먼트를 사용하지 않아도 실행에 필요한 값은 기본값을 제공받아 사용 -->
+		<!-- => 실행에 필요한 값이 기본값이 아닌 경우에만 setting 엘리먼트를 작성  -->
+		<!-- mapUnderscoreToCamelCase 옵션을 [true]로 설정하면 SELECT 명령으로 검색된 행에서 
+		스네이크 표기법으로 작성된 컬럼명을 자동으로 카멜 표현법의 컬럼명로 변환하는 기능 제공-->
+		<!-- <setting name="mapUnderscoreToCamelCase" value="true"/> -->
+		<!-- jdbcTypeForNull 옵션을 [NULL]로 설정하면 SQL 명령 실행에 필요한 객체를 전달받은
+		경우 객체의 필드값이 [NULL]인 경우 [NULL]로 처리하는 기능 제공 -->
+		<setting name="jdbcTypeForNull" value="NULL"/>
+		<!-- callSettersOnNulls 옵션을 [true]로 설정하면 UPDATE 명령 실행시 컬럼값을 [NULL]로
+		변경할 수 있는 기능 제공 -->
+		<setting name="callSettersOnNulls" value="true"/>
+	</settings>
+	
+	<!-- typeAliases : typeAlias 엘리먼트(1개 이상)를 등록하기 위한 엘리먼트 -->
+	<typeAliases>
+		<!-- typeAlias : XML 기반의 매퍼파일에서 Java 자료형(DTO 클래스) 대신 사용할 별칭을 
+		설정하기 위한 엘리먼트 -->
+		<!-- type 속성 : Java 자료형을 속성값으로 설정  -->
+		<!-- alias 속성 : Java 자료형 대신 사용할 별칭을 속성값으로 설정 -->
+		<!-- => 내부적으로 Java 자료형에 대한 별칭이 제공되어 사용 가능 -->
+		<typeAlias type="xyz.itwill.dto.Student" alias="Student"/>
+		<typeAlias type="xyz.itwill.dto.MyMember" alias="MyMember"/>
+	</typeAliases>
+
+	<!-- environments : environment 엘리먼트(1개 이상)를 등록하기 위한 엘리먼트 -->
+	<!-- default 속성 : environment 엘리먼트의 식별자(id 속성값)를 속성값으로 설정 -->
+	<environments default="development">
+		<!-- environment : DBMS 서버 접속에 필요한 정보를 설정하기 위한 엘리먼트 -->
+		<!-- => Connection 객체를 생성하기 위한 정보 제공 -->
+		<!-- id 속성 : environment 엘리먼트를 구분하기 위한 식별자를 속성값으로 설정 -->
+		<environment id="development">
+			<!-- transactionManager : 트렌젝션을 관리(커밋 또는 롤백)하는 기능을 설정하기 위한 엘리먼트 -->
+			<!-- type 속성 : [JDBC] 또는 [MANAGED] 중 하나를 속성값으로 설정 -->
+			<!-- => JDBC 속성값 : JDBC 기능을 사용해 트렉젝션 관리 -->
+			<!-- => MANAGED 속성값 : 트렌젝션 관리 프로그램을 사용해 트렉젝션 관리 -->
+			<transactionManager type="JDBC"/>
+			<!-- dataSource : Connection 객체 생성에 필요한 정보를 제공하는 엘리먼트 -->
+			<!-- type 속성 : [UNPOOLED], [POOLED], [JNDI] 중 하나를 속성값으로 설정 -->
+			<!-- => type 속성값에 따라 하위 엘리먼트를 다르게 설정 -->
+			<!-- => UNPOOLED 속성값 : Connection 객체를 미리 생성하지 않고 실행시 생성해 제공 -->
+			<!-- => POOLED 속성값 : Connection 객체를 미리 생성하여 실행시 제공 - DBCP -->
+			<!-- => JNDI 속성값 : WAS 프로그램에 등록된 자원(객채)를 사용해 Connection 객체를 실행시 제공  -->
+			<dataSource type="POOLED">
+				<!-- property : Connection 객체 생성에 필요한 값을 제공하기 위한 엘리먼트 -->
+				<!-- name 속성 : 전달값을 구분하기 위한 이름을 속성값으로 설정 -->
+				<!-- value 속성 : 전달값을 속성값으로 설정 -->
+				<!-- <property name="driver" value="oracle.jdbc.driver.OracleDriver"/> -->
+				<property name="driver" value="${oracleDriver}"/>
+				<!-- <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/> -->
+				<property name="url" value="${local}"/>
+				<property name="username" value="scott"/>
+				<property name="password" value="tiger"/>
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<!-- mappers : mapper 엘리먼트(1개 이상)를 등록하기 위한 엘리먼트 -->
+	<mappers>
+		<!-- mapper : 매퍼 파일(Mapper File)을 매퍼로 등록하기 위한 엘리먼트 -->
+		<!-- 매퍼(Mapper) : SQL 명령에 필요한 값을 전달받아 SQL 명령을 등록하고 SQL 명령의
+		실행결과를 Java 객체(값)으로 매핑하기 위한 정보를 제공 -->
+		<!-- => mybatis 프레임워크에서는 XML 기반의 매퍼파일과 Interface 기반의 매퍼파일을 
+		사용해 매퍼 등록 -->
+		<!-- => ibatis 프레임워크에서는 XML 기반의 매퍼파일만 사용해 매퍼 등록 가능 -->
+		<!-- resource 속성 : XML 기반의 매퍼파일에 파일 시스템 경로를 속성값으로 설정 -->
+		<mapper resource="xyz/itwill/mapper/StudentMapper.xml"/>
+		<mapper resource="xyz/itwill/mapper/MyMemberXMLMapper.xml"/>
+	</mappers>
+</configuration>

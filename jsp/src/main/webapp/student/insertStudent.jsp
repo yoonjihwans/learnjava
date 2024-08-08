@@ -1,5 +1,5 @@
 <%@page import="xyz.itwill.dao.StudentDAO"%>
-<%@page import="xyz.itwill.dto.StudentDTO"%>
+<%@page import="xyz.itwill.dto.Student"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%-- 사용자로부터 변경할 학생정보을 입력받아 위한 JSP 문서 --%>    
@@ -8,7 +8,7 @@
 <%-- => [학생변경] 태그를 클릭한 경우 [updateStudent.jsp] 문서를 요청하여 페이지 이동 - 입력값(학생정보) 전달 --%>    
 <%-- => [학생목록] 태그를 클릭한 경우 [displayStudent.jsp] 문서를 요청하여 페이지 이동 --%>
 <%
-	//비정상적인 요청에 대한 응답 처리
+//비정상적인 요청에 대한 응답 처리
 	if(request.getParameter("no") == null) {
 		response.sendError(HttpServletResponse.SC_BAD_REQUEST);
 		return;
@@ -19,7 +19,7 @@
 	
 	//학번를 전달받아 STUDENT 테이블에 저장된 하나의 행을 검색하여 검색된 학생정보(StudentDTO 
 	//객체)를 반환하는 StudentDAO 클래스의 메소드 호출
-	StudentDTO student=StudentDAO.getDAO().selectStudent(no);
+	Student student=StudentDAO.getDAO().selectStudent(no);
 	
 	//비정상적인 요청에 대한 응답 처리
 	if(student == null) {

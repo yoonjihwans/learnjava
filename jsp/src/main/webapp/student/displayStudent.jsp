@@ -1,4 +1,4 @@
-<%@page import="xyz.itwill.dto.StudentDTO"%>
+<%@page import="xyz.itwill.dto.Student"%>
 <%@page import="java.util.List"%>
 <%@page import="xyz.itwill.dao.StudentDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -8,8 +8,8 @@
 <%-- => 학생정보의 [삭제] 태그를 클릭한 경우 [deleteStudent.jsp] 문서를 요청하여 페이지 이동 - 학번 전달 --%>    
 <%-- => 학생정보의 [변경] 태그를 클릭한 경우 [updateFormStudent.jsp] 문서를 요청하여 페이지 이동 - 학번 전달 --%>
 <%
-	//STUDENT 테이블에 저장된 모든 행을 검색하여 List 객체로 반환하는 StudentDAO 클래스의 메소드 호출
-	List<StudentDTO> studentList=StudentDAO.getDAO().selectStudentList();
+//STUDENT 테이블에 저장된 모든 행을 검색하여 List 객체로 반환하는 StudentDAO 클래스의 메소드 호출
+	List<Student> studentList=StudentDAO.getDAO().selectStudentList();
 %>    
 <!DOCTYPE html>
 <html>
@@ -72,7 +72,9 @@ th, td {
 		</tr>
 		<%-- List 객체에 저장된 요소값(StudentDTO 객체)을 차례대로 제공받아 변수에 저장하는 반복문 --%>
 		<%-- => StudentDTO 객체의 필드값을 반환받아 HTML 태그에 포함하여 출력 처리 --%> 
-		<% for(StudentDTO student : studentList) { %>
+		<%
+ 		for(Student student : studentList) {
+ 		%>
 		<tr align="center">
 			<td><%=student.getNo() %></td>				
 			<td><%=student.getName() %></td>				
