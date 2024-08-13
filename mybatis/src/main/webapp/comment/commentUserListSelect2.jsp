@@ -51,7 +51,12 @@ td {
 					<%=commentUser.getComment().getCommentContent()%>
 				</a>
 				--%>
+				<%-- 
 				<a href="commentReplySelect2.jsp?commentNo=<%=commentUser.getComment().getCommentNo()%>">
+					<%=commentUser.getComment().getCommentContent()%>
+				</a>
+				--%>
+				<a href="commentUserReplyUserSelect.jsp?commentNo=<%=commentUser.getComment().getCommentNo()%>">
 					<%=commentUser.getComment().getCommentContent()%>
 				</a>
 			</td>

@@ -5,6 +5,8 @@ import java.util.List;
 //MYCOMMENT 테이블과 MYREPLY 테이블에 저장된 행을 1:N 관계로 결합하여 검색된 결과값을 저장하기
 //위한 클래스 - 검색행의 컬럼값이 저장된 객체를 필드에 저장
 public class MyCommentReply {
+	private int commentNo;
+	
 	//MYCOMMENT 테이블의 검색행(게시글정보) 1개를 MyComment1 객체로 제공받아 저장하기 위한 필드
 	private MyComment1 comment;
 	
@@ -13,6 +15,14 @@ public class MyCommentReply {
 	
 	public MyCommentReply() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public int getCommentNo() {
+		return commentNo;
+	}
+
+	public void setCommentNo(int commentNo) {
+		this.commentNo = commentNo;
 	}
 
 	public MyComment1 getComment() {

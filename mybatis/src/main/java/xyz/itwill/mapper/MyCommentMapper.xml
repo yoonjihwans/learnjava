@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="xyz.itwill.mapper.MyCommentMapper">
+	<!-- cache : SELECT 명령의 실행 결과로 생성된 Java 객체를 임시 메모리(Cache Memory)에
+	저장하여 재검색시 제공하기 위한 엘리먼트 - 가독성 증가 -->
+	<!-- => INSERT, UPDATE, DELETE 명령이 실행되면 임시 메모리에 저장된 모든 객체를 자동으로 소멸 처리 -->
+	<!-- => 검색결과가 저장한 저장된 객체의 클래스는 객체 입출력 처리를 위해 객체 직렬화 클래스로 작성 -->
+	<!-- <cache/> -->
+
 	<insert id="insertComment1" parameterType="MyComment1">
 		insert into mycomment values(mycomment_seq.nextval, #{commentId}, #{commentContent}, sysdate)
 	</insert>
@@ -158,7 +164,13 @@
 			from mycomment where comment_no=#{commentNo}
 	</select>	
 	
+	<!-- 문제점 : resultMap 엘리먼트의 첫번째 하위 엘리먼트로 association 엘리먼트를 사용한 경우 
+	하나의 검색행을 Java 객체로 만들어 제공하기 때문에 다수의 행이 검색되면 TooManyResultsException 발생 -->
+	<!-- 해결법 : 다수의 행을 검색할 경우 resultMap 엘리먼트의 첫번째 하위 엘리먼트로 association
+	엘리먼트외 다른 하위 엘리먼트(constructor, id, result)를 사용하여 작성 -->
 	<resultMap type="MyCommentReply" id="myCommentReplyResultMap">
+		<id column="comment_no" property="commentNo"/>
+	
 		<association property="comment" javaType="MyComment1">
 			<id column="comment_no" property="commentNo"/>
 			<result column="comment_id" property="commentId"/>
@@ -183,23 +195,80 @@
 		</collection>
 	</resultMap>
 	
-	<!-- 게시글번호을 전달받아 MYCOMMENT 테이블에 저장된 행과 MYREPLY 테이블에 저장된 행을 
+	<!-- 게시글번호를 전달받아 MYCOMMENT 테이블에 저장된 행과 MYREPLY 테이블에 저장된 행을 
 	1:N 관계로 결합하여 MyCommentReply 객체로 제공하는 엘리먼트 -->
 	<select id="selectCommentReply" parameterType="int" resultMap="myCommentReplyResultMap">
 		select comment_no, comment_id, comment_content, comment_date, reply_no, reply_id
 			, reply_content, reply_date, reply_comment_no from mycomment left join myreply on 
 			comment_no=reply_comment_no where comment_no=#{commentNo} order by reply_no desc
 	</select>
+	
+	<!-- 
+	<resultMap type="MyCommentUserReplyUser" id="myCommentUserReplyUserResultMap">
+		<id column="comment_no" property="commentNo"/>
+		<result column="comment_id" property="commentId"/>
+		<result column="comment_content" property="commentContent"/>
+		<result column="comment_date" property="commentDate"/>
+		<association property="user" javaType="MyUser">
+			<id column="user_id" property="userId"/>
+			<result column="user_name" property="userName"/>
+		</association>
+		<collection property="replyUserList" ofType="MyReplyUser">
+			<association property="reply" javaType="MyReply">
+				<id column="reply_no" property="replyNo"/>
+				<result column="reply_id" property="replyId"/>
+				<result column="reply_content" property="replyContent"/>
+				<result column="reply_date" property="replyDate"/>
+				<result column="reply_comment_no" property="replyCommentNo"/>
+			</association>
+			<association property="user" javaType="MyUser">
+				<id column="reply_user_id" property="userId"/>
+				<result column="reply_user_name" property="userName"/>
+			</association>
+		</collection>
+	</resultMap>
+	-->
+
+	<!-- 게시글번호를 전달받아 MYCOMMENT 테이블(MYUSER 테이블)에 저장된 행과 MYREPLY 테이블(MYUSER 
+	테이블)에 저장된 행을 1:N 관계로 결합하여 MyCommentUserReplyUser 객체로 제공하는 엘리먼트 -->
+	<!-- 
+	<select id="selectCommentUserReplyUser" parameterType="int" resultMap="myCommentUserReplyUserResultMap">
+		select comment_no, comment_id, comment_content, comment_date, user_id, user_name
+			, reply_no, reply_id, reply_content, reply_date, reply_comment_no, reply_user_id
+			, reply_user_name from mycomment join myuser on comment_id=user_id left join
+			(select reply_no, reply_id, reply_content, reply_date, reply_comment_no
+			, user_id reply_user_id, user_name reply_user_name from myreply join myuser 
+			on reply_id=user_id) on comment_no=reply_comment_no where comment_no=#{commentNo}
+			order by reply_no desc
+	</select>
+	-->
+	
+	<!-- autoMapping 속성 : false(기본값) 또는 true 중 하나를 속성값으로 설정 -->
+	<!-- => autoMapping 속성값을 [true]로 설정한 경우 검색행의 컬럼명과 같은 이름의 필드에
+	검색행의 컬럼값을 자동으로 저장되도록 처리 -->
+	<resultMap type="MyCommentUserReplyUser" id="myCommentUserReplyUserResultMap" autoMapping="true">
+		<id column="comment_no" property="commentNo"/>
+		<association property="user" javaType="MyUser" autoMapping="true"/>
+		<collection property="replyUserList" select="selectReplyUser" column="comment_no"/>
+	</resultMap>
+	
+	<resultMap type="MyReplyUser" id="myReplyUserResulyMap">
+		<association property="reply" javaType="MyReply" autoMapping="true"/>
+		<association property="user" javaType="MyUser" autoMapping="true"/>
+	</resultMap>
+	
+	<!-- 게시글번호를 전달받아 MYREPLY 테이블과 MYUSER 테이블에 저장된 행을 1:1 관계로 
+	결합하여 MyReplyUser 객체로	제공하기 위한 엘리먼트 -->
+	<select id="selectReplyUser" parameterType="int" resultMap="myReplyUserResulyMap">
+		select reply_no, reply_id, reply_content, reply_date, reply_comment_no
+			, user_id, user_name from myreply join myuser on reply_id=user_id
+			where reply_comment_no=#{commentNo} order by reply_no desc
+	</select>
+
+	<!-- 게시글번호를 전달받아 MYCOMMENT 테이블과 MYUSER 테이블에 저장된 행을 1:1 관계로 
+	결합하여 MyCommentUserReplyUser 객체로 제공하기 위한 엘리먼트 -->	
+	<select id="selectCommentUserReplyUser" parameterType="int" resultMap="myCommentUserReplyUserResultMap">
+		select comment_no, comment_id, comment_content, comment_date, user_id, user_name
+			from mycomment join myuser on comment_id=user_id where comment_no=#{commentNo} 
+	</select>	
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
