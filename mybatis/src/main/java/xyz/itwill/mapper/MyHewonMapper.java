@@ -28,4 +28,5 @@ public interface MyHewonMapper {
 	List<MyHewon> selectDynamicIdNameHewonList(Map<String, Object> map);
 	int updateHewon(MyHewon hewon);
 	int updateDynamicHewon(MyHewon hewon);
+	List<MyHewon> selectMultiIdDynamicHewonList(List<String> list); 
 }
