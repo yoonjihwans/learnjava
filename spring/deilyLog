@@ -1,0 +1,8 @@
+[17:01:18]INFO  : xyz.itwill00.log.LogHelloWorldApp - 시작
+[17:01:18]INFO  : xyz.itwill00.log.LogHelloWorld - 시작
+[17:01:18]INFO  : xyz.itwill00.log.LogHelloWorld - 종료
+[17:01:18]INFO  : xyz.itwill00.log.LogHelloWorldApp - 종료
+[17:01:52]INFO  : xyz.itwill00.log.LogHelloWorldApp - 시작
+[17:01:52]INFO  : xyz.itwill00.log.LogHelloWorld - 시작
+[17:01:52]INFO  : xyz.itwill00.log.LogHelloWorld - 종료
+[17:01:52]INFO  : xyz.itwill00.log.LogHelloWorldApp - 종료
