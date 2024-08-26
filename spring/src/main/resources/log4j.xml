@@ -3,13 +3,13 @@
 <!-- log4j.xml : 로그 구현체 실행에 필요한 정보를 제공하기 위한 환경설정파일 -->
 <!-- => 로그 구현체 : 로그 팩토리로부터 발생된 로깅정보를 제공받아 기록하기 위한 프로그램 -->
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
-
+		
 	<!-- Appenders -->
 	<!-- appender : 로그 구현체를 설정하기 위한 엘리먼트 -->
 	<!-- name 속성 : 로그 구현체(appender 엘리먼트)를 구분하기 위한 식별자를 속성값으로 설정 -->
 	<!-- class 속성 : 로그 구현체로 실행하기 위한 클래스를 속성값으로 설정 -->
 	<!-- => http://logging.apache.org/log4j/1.2/apidocs 사이트 참조 -->
-	<!-- => class 속성값으로 설정될 클래스는 반드시 Appender 인터페이스를 상속받은 클래스로만 설정 -->
+	<!-- => class 속성값으로 설정될 클래스는 반드시 Appender 인터페이스를 상속받은 자식클래스로만 설정 -->
 	<!-- => ConsoleAppender 클래스 : 로그정보를 제공받아 콘솔에 기록하기 위한 클래스 -->
 	<appender name="console" class="org.apache.log4j.ConsoleAppender">
 		<!-- param : Appender 클래스에 필요한 값을 제공하기 위한 엘리먼트 -->
@@ -61,7 +61,6 @@
 		<!-- level : 클래스에 적용될 로그 이벤트를 설정하기 위한 엘리먼트 -->
 		<!-- => root 엘리먼트의 priority 엘리먼트로 제공되는 로그 이벤트보다 우선 처리 -->
 		<!-- value 속성 : 로그 이벤트를 속성값으로 설정 -->
-		<!-- => 속성값으로 설정된 로그 이벤트보다 상위 로그 이벤트가 발생된 경우에도 로깅정보 기록 -->
 		<level value="info" />
 	</logger>
 	
@@ -75,6 +74,10 @@
 		<level value="info"/>
 		<appender-ref ref="hello" />
 		<appender-ref ref="daily" />
+	</logger>
+	
+	<logger name="xyz.itwill05.lombok">
+		<level value="info" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
@@ -100,6 +103,7 @@
 	<root>
 		<!-- priority : 모든 클래스에 적용될 로그 이벤트를 설정하기 위한 엘리먼트 -->
 		<!-- value 속성 : 로그 이벤트를 속성값으로 설정 -->
+		<!-- => 속성값으로 설정된 로그 이벤트보다 상위 로그 이벤트가 발생된 경우에도 로깅정보 기록 -->
 		<priority value="warn" />
 		<!-- appender-ref : 로깅정보를 제공받아 기록하기 위한 로그 구현체(Appender)를 설정하는 엘리먼트 -->
 		<!-- ref 속성 : appender 엘리먼트의 식별자를 속성값으로 설정 -->

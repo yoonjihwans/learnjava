@@ -14,6 +14,10 @@
 		<config>src/main/resources/05-1_di.xml</config>
 		<config>src/main/resources/05-3_autowire.xml</config>
 		<config>src/main/resources/05-2_collection.xml</config>
+		<config>src/main/resources/05-4_diAnnotation.xml</config>
+		<config>src/main/resources/05-5_lombok.xml</config>
+		<config>src/main/resources/06-1_aop.xml</config>
+		<config>src/main/resources/06-2_param.xml</config>
 	</configs>
 	<autoconfigs>
 		<config>src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml</config>
