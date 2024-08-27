@@ -20,7 +20,7 @@ public class JoinPointBean {
 	}
 	
 	public void calc(int num1, int num2) {
-		System.out.println("*** JoinPointBean 클래스의calc(int num1, int num2) 메소드 호출 ***");
+		System.out.println("*** JoinPointBean 클래스의 calc(int num1, int num2) 메소드 호출 ***");
 		System.out.println("몫 = "+(num1 / num2));
 	}
 }
