@@ -4,5 +4,9 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		
+	<!-- root-context.xml : 모든 Front Controller에게 객체를 제공할 수 있도록 클래스를 Spring
+	Bean으로 등록하기 위한 Spring Bean Configuration File -->
+	<!-- => DAO 클래스 작성에 필요한 객체를 제공하기 위한 클래스를 Spring Bean으로 등록 -->
+	<!-- => DataSource, SqlSessionFactory, SqlSession, TransactionManager 등 -->	
+	
 </beans>

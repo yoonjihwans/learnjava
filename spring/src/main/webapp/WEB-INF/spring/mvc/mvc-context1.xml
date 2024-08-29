@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Controller 인터페이스를 상속받은 자식클래스(요청 처리 클래스)를 Spring Bean으로 등록 -->
+	<bean class="xyz.itwill08.spring.ListController" id="listController"/>
+	<bean class="xyz.itwill08.spring.ViewController" id="viewController"/>
+	
+	<!-- spring-webmvc 라이브러리로 제공된 SimpleUrlHandlerMapping 클래스를 Spring Bean으로 등록  -->
+	<!-- SimpleUrlHandlerMapping 객체 : 컨트롤러(DispatcherServlet 객체)에게 클라이언트의 요청정보(Command)를 전달받아
+	요청 처리 클래스(Controller 클래스 - Model) 의 객체를 반환하는 기능을 제공하는 객체 -->
+	<!-- => SimpleUrlHandlerMapping 클래스의 mappings 필드에 Map 객체를 저장하고 Map 객체에는
+	요청정보를 맵키로 설정하고 요청 처리 클래스의 식별자(beanName)를 맵값으로 설정한 엔트리 추가 -->
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<!-- Map 객체를 생성하기 위해 map 엘리먼트 사용 - map 엘리먼트 대신 pros 엘리먼트 사용 가능 -->
+			<props>
+				<prop key="/list.do">listController</prop>
+				<prop key="/view.do">viewController</prop>
+			</props>
+		</property>
+	</bean>
+	
+	
+</beans>
+
+
+
+
+
+
+
+
+
