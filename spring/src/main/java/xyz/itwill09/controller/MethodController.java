@@ -18,7 +18,7 @@ public class MethodController {
 	}
 	
 	//전달값을 반환받아 Request Scope 속성값으로 저장하고 속성값을 제공받아 출력할 수 있는
-	//JSP 문서의 뷰이름을 반환하는 메소드 
+	//JSP 문서의 뷰이름을 반환하는 요청 처리 메소드 
 	// => 요청 처리 메소드의 명령으로 POST 방식으로 요청한 경우에만 명령이 실행되도록 설정
 	@RequestMapping("/method_output")
 	public String outputOne(HttpServletRequest request, HttpServletResponse response) 
@@ -48,10 +48,10 @@ public class MethodController {
 	}
 	
 	//전달값을 반환받아 Request Scope 속성값으로 저장하고 속성값을 제공받아 출력할 수 있는
-	//JSP 문서의 뷰이름을 반환하는 메소드 
-	// => @RequestMapping 어노테이션으로 POST 방식으로 요청한 경우에만 명령이 실행되도록 설정
+	//JSP 문서의 뷰이름을 반환하는 요청 처리 메소드 
+	// => method 속성을 사용해 POST 방식으로 요청한 경우에만 요청 처리 메소드가 실행되도록 설정
 	// => @RequestMapping 어노테이션의 value 속성값이 중복돼도 method 속성값이 다르면 에러 미발생
-	//@RequestMapping 어노테이션 대신 @PostMapping 어노테이션을 사용해 GET 방식으로 요청한
+	//@RequestMapping 어노테이션 대신 @PostMapping 어노테이션을 사용해 POST 방식으로 요청한
 	//경우에만 요청 처리 메소드가 호출되도록 설정 가능
 	@RequestMapping(value = "/method", method = RequestMethod.POST)
 	public String outputTwo(HttpServletRequest request, HttpServletResponse response) 

@@ -31,9 +31,9 @@ public class ModelController {
 		return "model_display3";
 	}
 
-	//@ModelAttribute : 메소드의 반환값을 현재 Controller 클래스에 작성된 모든 요청 처리 
-	//메소드의 뷰에게 속성값으로 제공하기 위한 어노테이션
-	// => @ModelAttribute 어노테이션을 메소드에 작성한 경우에만 적용
+	//@ModelAttribute : 값(객체)를 뷰(View)에게 제공하기 위한 어노테이션
+	// => 요청 처리 클래스의 메소드에 @ModelAttribute 어노테이션을 사용하면 메소드 반환값을
+	//현재 Controller 클래스에 작성된 모든 요청 처리 메소드의 뷰에게 제공
 	//value 속성 : 메소드의 반환값을 뷰에서 사용하기 위한 속성명을 속성값으로 설정
 	// => value 속성외에 다른 속성이 없는 경우 속성값만 설정 가능
 	@ModelAttribute("now")
