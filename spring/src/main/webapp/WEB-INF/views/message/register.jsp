@@ -8,6 +8,9 @@
 <head>
 <meta charset="UTF-8">
 <title>SPRING</title>
+<style type="text/css">
+.error { color: red; }
+</style>
 </head>
 <body>
 	<h1>제품등록</h1>
@@ -22,7 +25,7 @@
 			<td><spring:message code="product.code"/></td>
 			<td>
 				<form:input path="productCode"/>
-				<form:errors path="productCode" element="span"/>
+				<form:errors path="productCode" element="span" cssClass="error"/>
 			</td>	
 		</tr>
 		<tr>
@@ -30,7 +33,7 @@
 			<td><spring:message code="product.name"/></td>
 			<td>
 				<form:input path="productName"/>
-				<form:errors path="productName" element="span"/>
+				<form:errors path="productName" element="span" cssClass="error"/>
 			</td>	
 		</tr>
 		<tr>
@@ -38,7 +41,7 @@
 			<td><spring:message code="product.qty"/></td>
 			<td>
 				<form:input path="productQuantity"/>
-				<form:errors path="productQuantity" element="span"/>
+				<form:errors path="productQuantity" element="span" cssClass="error"/>
 			</td>	
 		</tr>
 		<tr>
