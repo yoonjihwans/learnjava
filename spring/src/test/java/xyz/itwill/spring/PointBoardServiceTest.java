@@ -14,11 +14,19 @@ import xyz.itwill09.dto.PointBoard;
 import xyz.itwill09.dto.PointUser;
 import xyz.itwill09.service.PointBoardService;
 
-//SpringMVC 기능을 사용한 웹프로그램에서 TransactionManager를 사용해 트렌젝션을 관리하는 방법
+//SpringMVC 기능을 사용한 웹프로그램에서 TransactionManager 객체를 사용해 트렌젝션을 관리하는 방법
 //1.spring-tx 라이브러리를 프로젝트에 빌드 처리 - 메이븐 : pom.xml
 // => spring-jdbc 라이브러리를 프로젝트에 빌드 처리하면 라이브러리 의존관계에 의해 자동으로 빌드 처리
 //2.Spring Bean Configuration File(root-context.xml)에 TransactionManager 관련 클래스를 Spring Bean으로 등록
 //3.Spring Bean Configuration File(servlet-context.xml)에 트렌젝션 처리를 위한 Spring AOP 설정
+// => 트렌젝션 관리를 위한 AOP 설정 대신 @Transcational 어노테이션 사용 가능
+
+//TransactionManager 객체의 의해 트렌젝션 관리될 메소드에 @Transcational 어노테이션를 사용하면
+//예외가 발생하지 않은 경우 커밋 처리하고 예외가 발생된 경우 롤백 처리
+// => @Transcational 어노테이션을 사용하기 위해서는 Spring Bean Configuration File(root-context.xml)에
+//annotation-driven 엘리먼트 작성
+// => Spring Bean Configuration File에서 tx 네임스페이스에 spring-tx.xsd 파일을 제공 받아야만
+//annotation-driven 엘리먼트를 사용 가능
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
@@ -37,7 +45,7 @@ public class PointBoardServiceTest {
 		//PointBoardService 객체로 addPointBoard() 매소드를 호출하여 POINT_BOARD 테이블에 행 삽입
 		// => POINT_USER 테이블에서 게시글의 작성자에 대한 행의 POINT 컬럼값을 증가되도록 변경
 		// => POINT_USER 테이블에서 게시글의 작성자에 대한 행을 검색하여 회원정보로 반환
-		// => 게시글의 작성자에 대한 회원정보가 POINT_USER 테이블에 행으로 저장되어 있지 않은 경우 예외 발생
+		// => 게시글의 작성자에 대한 회원정보가 POINT_USER 테이블에 저장되어 있지 않은 경우 예외 발생
 		//문제점 : 예외 발생전에 게시글 삽입에 대한 SQL 명령은 이미 실행되어 POINT_BAORD 테이블에는
 		//비정상적인 행 삽입 처리
 		//해결법 : 예외가 발생되기 전에 실행된 모든 SQL 명령(INSERT, UPDATE, DELETE)은 롤백 처리되도록 설정

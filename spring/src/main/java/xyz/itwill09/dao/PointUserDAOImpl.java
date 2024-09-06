@@ -10,7 +10,7 @@ import xyz.itwill09.mapper.PointUserMapper;
 @Repository
 @RequiredArgsConstructor
 public class PointUserDAOImpl implements PointUserDAO {
-	private final SqlSession sqlSession; 
+	private final SqlSession sqlSession;
 	
 	@Override
 	public int insertPointUser(PointUser user) {

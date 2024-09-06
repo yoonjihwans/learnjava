@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.itwill09.mapper.FileBoardMapper">
+	<insert id="insertFileBoard">
+		<selectKey resultType="int" keyProperty="num" order="BEFORE">
+			select file_board_seq.nextval from dual
+		</selectKey>	
+		insert into file_board values(#{num}, #{writer}, #{subject}, #{filename})
+	</insert>
+	
+	<delete id="deleteFileBoard">
+		delete from file_board where num=#{num}
+	</delete>
+	
+	<select id="selectFileBoard" resultType="FileBoard">
+		select num, writer, subject, filename from file_board where num=#{num} 
+	</select>
+	
+	<select id="selectFileBoardCount" resultType="int">
+		select count(*) from file_board	
+	</select>
+	
+	<select id="selectFileBoardList" resultType="FileBoard">
+		select * from (select rownum rn, board.* from (select num, writer, subject, filename 
+			from file_board order by num desc) board) where rn between #{startRow} and #{endRow}
+	</select>
+	
+</mapper>
+
+

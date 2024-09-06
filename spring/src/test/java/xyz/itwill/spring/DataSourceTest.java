@@ -28,23 +28,23 @@ import lombok.extern.slf4j.Slf4j;
 //value 속성 : 테스트 프로그램을 실행하기 위한 클래스의 Class 객체를 속성값으로 설정
 // => value 속성외에 다른 속성이 없는 경우 속성값만 설정 가능
 //SpringJUnit4ClassRunner 클래스는 스프링 컨테이너(ApplicationContext 객체)를 생성하여 테스트
-//클래스에게 객체 제공
+//클래스에서 사용할 객체 제공 가능
 @RunWith(SpringJUnit4ClassRunner.class)
 
 //@WebAppConfiguration : SpringJUnit4ClassRunner 클래스에서 생성되는 스프링 컨테이너를  
 //ApplicationContext 객체가 아닌 WebApplicationContext 객체로 제공하기 위한 어노테이션
 @WebAppConfiguration
 
-//@ContextConfiguration : 스프링 컨테이너에게 Spring Bean Configuration File을 제공하는 어노테이션
-//locations 속성 : Spring Bean Configuration File 경로를 속성값으로 설정
+//@ContextConfiguration : 스프링 컨테이너에게 Spring Bean Configuration File을 제공하기 위한 어노테이션
+//locations 속성 : Spring Bean Configuration File의 경로를 속성값으로 설정
 // => Spring Bean Configuration File이 여러개인 경우 {} 기호를 사용해 배열 형식으로 속성값 제공
 // => Spring Bean Configuration File의 경로는 file 접두사를 사용해 파일 시스템 경로로 작성해 제공 
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
 @Slf4j
 public class DataSourceTest {
 	//테스트 클래스의 메소드에서 사용될 객체를 저장하기 위한 필드 작성
-	// => @Autowired 어노테이션을 사용하여 필드에 객체가 저장된 의존성 주입
-	// => 필드 레벨의 의존성 주입 가능 - 생성자 레벨의 의존성 주입 불가능
+	// => @Autowired 어노테이션을 사용하여 필드에 객체가 저장되도록 의존성 주입
+	// => 필드 레벨의 의존성 주입만 가능 - 생성자 레벨의 의존성 주입 불가능
 	@Autowired
 	private DataSource dataSource;
 

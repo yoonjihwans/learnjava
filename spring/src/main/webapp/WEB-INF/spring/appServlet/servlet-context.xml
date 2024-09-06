@@ -110,7 +110,7 @@
 	<!-- TransactionManager 객체를 사용해 트렌젝션를 관리할 수 있도록 설정하기 위해 tx 네임스페이스에
 	spring-tx.xsd 파일을 제공받아 엘리먼트를 사용할 수 있도록 설정 -->
 	<!-- advice : TransactionManager 객체로 Advisor를 생성하기 위한 엘리먼트 -->
-	<!-- Advisor : 삽입위치(JoinPoint)가 정해져 있는 횡단관심코드가 작성된 Advice 클래스 -->
+	<!-- Advisor : 삽입위치(JoinPoint)가 정해져 있는 횡단관심코드가 작성된 Advice 객체 -->
 	<!-- id 속성 : advice 엘리먼트를 구분하기 위한 식별자를 속성값으로 설정 -->
 	<!-- transaction-manager 속성 : TransactionManager 기능을 제공하는 Spring Bean의 식별자
 	(beanName)를 속성값으로 설정 -->
@@ -119,10 +119,11 @@
 	<!-- attributes : TransactionManager 객체에 의해 커밋 또는 롤백 처리될 메소드의 목록을
 	설정하기 위한 엘리먼트 - 하위 엘리먼트 : method 엘리먼트 -->
 	<!-- method : TransactionManager 객체에 관리될 메소드의 이름과 트렌젝션 처리 방식을 설정하기 위한 엘리먼트 -->
-	<!-- => 메소드의 이름에는 [*] 기호를 사용해 설정 가능 -->
 	<!-- name 속성 : TransactionManager 객체에 관리될 메소드의 이름을 속성값으로 설정 -->
+	<!-- => 메소드의 이름에는 [*] 기호를 사용해 설정 가능 -->
 	<!-- rollback-for 속성 : 롤백 처리하기 위한 예외를 속성값으로 설정 -->
-	<!-- read-only 속성 : false(기본) 또는 true(롤백처리 불필요) 중 하나를 속성값으로 설정 -->
+	<!-- read-only 속성 : false(기본) 또는 true(트렌젝션 불필요) 중 하나를 속성값으로 설정 -->
+	<!-- 
 	<tx:advice id="txAdvisor" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="add*" rollback-for="Exception"/>
@@ -131,12 +132,25 @@
 			<tx:method name="get*" read-only="true"/>
 		</tx:attributes>
 	</tx:advice>
+	-->
 	
 	<!-- Spring AOP 기능을 사용하기 위해 aop 네임스페이스에 spring-aop.xsd 파일을 제공받아 
 	엘리먼트를 사용할 수 있도록 설정 -->
 	<!-- advisor : Advisor를 제공받아 사용하기 위한 엘리먼트 -->
 	<!-- advice-ref 속성 : Advisor를 생성한 advice 엘리먼트의 식별자를 속성값으로 설정 -->
+	<!-- 
 	<aop:config>
 		<aop:advisor advice-ref="txAdvisor" pointcut="execution(* xyz.itwill09.service..*(..))"/>
 	</aop:config>
+	-->
+	
+	<!-- [multipart/form-data] 형식으로 전달되는 값 또는 파일을 처리하는 기능을 제공하는 
+	클래스(CommonsMultipartResolver)를 Spring Bean으로 등록  -->
+	<!-- => Spring Bean의 식별자(beanName)을 반드시 [multipartResolver]로 설정 -->
+	<beans:bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+		<!-- maxUploadSize 필드에 최대 업로드 가능한 파일의 제한용량이 저장되도록 값 주입 -->
+		<beans:property name="maxUploadSize" value="20971520"/>	
+		<!-- defaultEncoding 필드에 전달값에 대한 문자형태가 저장되도록 값 주입 -->
+		<beans:property name="defaultEncoding" value="utf-8"/>	
+	</beans:bean>
 </beans:beans>

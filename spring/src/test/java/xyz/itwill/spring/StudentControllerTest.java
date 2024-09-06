@@ -30,12 +30,13 @@ public class StudentControllerTest {
 	// => MockMvc 객체 : 요청과 응답을 가상으로 제공하기 위한 객체 - Front Controller 기능 제공
 	private MockMvc mvc;
 	
-	//@Before : 테스트 메소드 호출 전에 실행될 명령이 작성된 메소드를 호출하여 초기화 처리하는
-	//기능을 제공하는 어노테이션
+	//@Before : 테스트 메소드 호출 전에 실행될 명령이 작성된 메소드에 사용하는 어노테이션
+	// => 초기화 처리하는 기능을 제공하는 메소드
 	@Before
 	public void setup() {
+		//MockMvc 객체를 생성하여 필드에 저장
 		//MockMvcBuilders.webAppContextSetup(WebApplicationContext context)
-		// => MockMvcBuilder 객체를 생성하여 반환하는 메소드
+		// => MockMvcBuilder 객체를 생성하여 반환하는 정적메소드
 		// => Front Controller 기능을 제공하는 MockMvc 객체에 스프링 컨테이너를 제공하기 위해
 		//매개변수에 WebApplicationContext 객체 전달
 		//MockMvcBuilder.build() : MockMvc 객체를 반환하는 메소드
@@ -48,9 +49,10 @@ public class StudentControllerTest {
 		//MockMvcRequestBuilders.get(String url) :  요청 URL 주소의 페이지를 GET 방식으로 
 		//요청하기 위한 RequestBuilder 객체를 반환하는 정적메소드
 		//MockMvc.perform(RequestBuilder requestBuilder) : RequestBuilder 객체에 저장된 정보를
-		//사용해 페이지를 요청하는 메소드 - 요청 처리 메소드 호출
+		//사용해 페이지를 요청하는 메소드 - MockMvc 객체에 의해 요청 처리 메소드 호출
 		// => 요청 처리 메소드의 실행결과가 저장된 ResultActions 객체 반환
-		//ResultActions.andReturn() :  요청 처리 메소드의 반환값이 저장된 MvcResult 객체를 반환하는 메소드
+		//ResultActions.andReturn() : 요청 처리 메소드의 반환값(ModelAndView 객체)이 저장된 
+		//MvcResult 객체를 반환하는 메소드
 		MvcResult result=mvc.perform(MockMvcRequestBuilders.get("/student/display")).andReturn();
 		
 		log.info(result.getModelAndView().getViewName());
