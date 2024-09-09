@@ -44,6 +44,9 @@ public class Pager {
 		
 		startPage=(pageNum-1)/blockSize*blockSize+1;
 		endPage=startPage+blockSize-1;
+		if(endPage > totalPage) {
+			endPage=totalPage;
+		}
 
 		prevPage=startPage-blockSize;
 		nextPage=startPage+blockSize;

@@ -5,7 +5,9 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:task="http://www.springframework.org/schema/task"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/task https://www.springframework.org/schema/task/spring-task.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd
@@ -68,6 +70,15 @@
 				<beans:value>/WEB-INF/spring/appServlet/tiles.xml</beans:value>
 			</beans:list>
 		</beans:property>
+	</beans:bean>
+	
+	<!-- BeanNameViewResolver 클래스를 Spring Bean으로 등록 -->
+	<!-- BeanNameViewResolver 객체 : 요청 처리 메소드의 반환값(ViewName)과 같은 이름을 식별자
+	(beanName)의 객체로 메소드를 호출해 클라이언트에게 응답 처리하기 위한 기능을 제공하는 객체  -->
+	<!-- => JSP 문서로 응답 처리하지 않고 클래스의 메소드를 호출해 응답 처리 -->
+	<!-- => 다른 ViewResovler 객체보다 우선 순위가 높도록 설정 -->
+	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<beans:property name="order" value="1"/>
 	</beans:bean>
 	
 	<context:component-scan base-package="xyz.itwill09.controller" />
@@ -153,4 +164,35 @@
 		<!-- defaultEncoding 필드에 전달값에 대한 문자형태가 저장되도록 값 주입 -->
 		<beans:property name="defaultEncoding" value="utf-8"/>	
 	</beans:bean>
+	
+	<!-- 파일 다운로드 기능을 제공하는 응답 처리 클래스를 Spring Bean으로 등록 -->
+	<!-- => Spring Bean의 식별자(beanName)을 요청 처리 메소드의 반환값(ViewName)과 같도록 작성 -->
+	<beans:bean class="xyz.itwill09.util.FileDownload" id="fileDownload"/>
+	
+	<!-- 스케줄링 관련 클래스를 Spring Bean으로 등록 -->
+	<beans:bean class="xyz.itwill09.util.Scheduler" id="scheduler"/>
+	
+	<!-- 스케줄링 기능을 구현하기 위해 Spring Bean Configuration File에 task 네임스페이스를
+	추가해 spring-task.xsd 파일의 엘리먼트를 사용할 수 있도록 설정 -->
+	<!-- scheduler  : 스케줄링 기능을 제공하기 위한 엘리먼트 -->
+	<!-- id 속성 : scheduler 엘리먼트를 구분하기 위한 식별자를 속성값으로 설정 -->
+	<!-- pool-size 속성 : 스케줄링 기능을 구현하기 위한 스레드의 갯수를 속성값으로 설정 -->
+	<task:scheduler id="baseScheduler" pool-size="10"/>
+	
+	<!-- scheduled-tasks : scheduler 엘리먼트로 실행될 객체를 설정하기 위한 엘리먼트 -->
+	<!-- scheduler 속성 : 스케줄링 기능을 제공하기 위한 스케줄러(scheduler 엘리먼트)의 
+	식별자를 속성값으로 설정 -->
+	<!-- scheduled : 스케줄러에 의해 실행될 객체와 메소드를 설정하기 위한 엘리먼트 -->
+	<!-- ref 속성 : 스케줄러에 의해 실행될 객체의 Spring Bean 식별자(beanName)을 속성값으로 설정 -->
+	<!-- method 속성 : 스케줄링 기능을 제공하는 객체로 호출될 메소드의 이름을 속성값으로 설정 -->
+	<!-- cron 속성 : 스케줄링 기능을 실행하기 위한 날짜 및 시간을 속성값으로 설정 -->
+	<!-- => 속성값 : 초 분 시 일 월 요일 - 패턴문자 사용 가능 -->
+	<!-- 
+	<task:scheduled-tasks scheduler="baseScheduler">
+		<task:scheduled ref="scheduler" method="autoUpdate" cron="1 * * * * *"/>
+	</task:scheduled-tasks>
+	 -->
+	 
+	<!-- annotation-driven : 스케줄링 관련 어노테이션을 사용하기 위해 설정하는 엘리먼트 --> 
+	<task:annotation-driven/>
 </beans:beans>
