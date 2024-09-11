@@ -187,6 +187,8 @@
 	<!-- method 속성 : 스케줄링 기능을 제공하는 객체로 호출될 메소드의 이름을 속성값으로 설정 -->
 	<!-- cron 속성 : 스케줄링 기능을 실행하기 위한 날짜 및 시간을 속성값으로 설정 -->
 	<!-- => 속성값 : 초 분 시 일 월 요일 - 패턴문자 사용 가능 -->
+	<!-- 스케줄링 관련 클래스의 메소드에 @Scheduled 어노테이션을 사용해 메소드가 특정 날짜 및 
+	시간마다 자동 호출되도록 설정 가능 -->
 	<!-- 
 	<task:scheduled-tasks scheduler="baseScheduler">
 		<task:scheduled ref="scheduler" method="autoUpdate" cron="1 * * * * *"/>
@@ -195,4 +197,41 @@
 	 
 	<!-- annotation-driven : 스케줄링 관련 어노테이션을 사용하기 위해 설정하는 엘리먼트 --> 
 	<task:annotation-driven/>
+	
+	<beans:bean class="xyz.itwill09.util.AdminAuthInterceptor" id="adminAuthInterceptor"/>
+	<beans:bean class="xyz.itwill09.util.LoginAuthInterceptor" id="loginAuthInterceptor"/>
+	
+	<!-- interceptors : interceptor 엘리먼트를 등록하기 위한 엘리먼트 -->
+	<interceptors>
+		<!-- interceptor : Front Controller로 Interceptor 객체의 메소드를 호출하기 위한 
+		규칙을 제공하기 위한 엘리먼트 -->
+		<interceptor>
+			<!-- mapping : 인터셉터가 동작될 요청 페이지 경로를 제공하는 엘리먼트 -->
+			<!-- path 속성 : 요청 페이지 경로를 속성값으로 설정 -->
+			<mapping path="/userinfo/write"/>
+			<mapping path="/userinfo/modify"/>
+			<mapping path="/userinfo/remove"/>
+			<!-- ref : Front Controller에 의해 사용될 Interceptor 객체를 제공하기 위한 엘리먼트 -->
+			<!-- bean 속성 : Interceptor 클래스의 Spring Bean 식별자(beanName)를 속성값으로 설정 -->
+			<beans:ref bean="adminAuthInterceptor"/>
+		</interceptor>	
+		
+		<interceptor>
+			<!-- 
+			<mapping path="/userinfo/list"/>
+			<mapping path="/userinfo/view"/>
+			<beans:ref bean="loginAuthInterceptor"/>
+			 -->
+			 
+			<!-- mapping 엘리먼트의 path 속성값으로 [*] 기호를 사용해 요청 페이지 설정 가능 -->
+			<!-- [*] : 폴더의 모든 페이지를 요청한 경우 --> 
+			<!-- <mapping path="/*"/>  --> 
+			<!-- [**] : 폴더 및 하위 폴더의 모든 페이지를 요청한 경우 --> 
+			<!-- <mapping path="/**"/> --> 
+			<mapping path="/userinfo/*"/>
+			<!-- exclude-mapping : 인터셉터가 동작되지 않는 요청 페이지 경로를 제공하는 엘리먼트 -->
+			<exclude-mapping path="/userinfo/login"/> 
+			<beans:ref bean="loginAuthInterceptor"/>
+		</interceptor>	
+	</interceptors>
 </beans:beans>
