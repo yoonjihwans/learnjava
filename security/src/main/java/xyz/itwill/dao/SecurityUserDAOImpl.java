@@ -22,4 +22,9 @@ public class SecurityUserDAOImpl implements SecurityUserDAO {
 		return sqlSession.getMapper(SecurityUserMapper.class).insertSecurityAuth(auth);
 	}
 
+	@Override
+	public SecurityUser selectSecurityUserByUserid(String userid) {
+		return sqlSession.getMapper(SecurityUserMapper.class).selectSecurityUserByUserid(userid);
+	}
+
 }

@@ -22,6 +22,5 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="xyz.itwill.security" />
-	<context:component-scan base-package="xyz.itwill.dao" />
 	<context:component-scan base-package="xyz.itwill.service" />
 </beans:beans>

@@ -21,6 +21,9 @@ public class SecurityUserServiceImpl implements SecurityUserService {
 	public void addSecurityAuth(SecurityAuth auth) {
 		securityUserDAO.insertSecurityAuth(auth);
 	}
-	
-	
+
+	@Override
+	public SecurityUser getSecurityUserByUserid(String userid) {
+		return securityUserDAO.selectSecurityUserByUserid(userid);
+	}
 }

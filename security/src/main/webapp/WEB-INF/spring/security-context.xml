@@ -111,15 +111,38 @@
  		</authentication-provider>
  	</authentication-manager> 
  	
- 	<beans:bean class="xyz.itwill.security.CustomPasswordEncoder" id="customPasswordEncoder"/>
+ 	<beans:bean class="xyz.itwill.auth.CustomPasswordEncoder" id="customPasswordEncoder"/>
  	-->
 
+	<!-- 사용자 정보를 저장한 테이블과 권한 정보를 저장한 테이블을 원하는 형태로 생성하여  
+	인증 처리하기 위해 jdbc-user-service 엘리먼트에 users-by-username-query 속성과 
+	authorities-by-username-query 속성을 설정 -->
+	<!-- users-by-username-query 속성 : 전달받은 아이디를 비교해 같은 행의 아이디, 비밀번호
+	, 활성화 상태 등을 검색하는 SELECT 명령을 속성값으로 설정 - 인증 처리 -->
+	<!-- authorities-by-username-query 속성 : 전달받은 아이디를 비교해 같은 행의 아이디와
+	권한(ROLE)을 검색하는 SELECT 명령을 속성값으로 설정 - 인증 성공한 사용자에게 권한 제공 -->
+	<!-- 
  	<authentication-manager>
  		<authentication-provider>
- 			<jdbc-user-service data-source-ref="dataSource"/>
+ 			<jdbc-user-service data-source-ref="dataSource"
+ 				users-by-username-query="select userid, passwd, enabled from security_user where userid=?"
+ 				authorities-by-username-query="select userid, auth from security_auth where userid=?"/>
+ 			<password-encoder ref="passwordEncoder"/>
+ 		</authentication-provider>
+ 	</authentication-manager>
+ 	 --> 
+ 	 
+ 	<!-- user-service-ref 속성 : 인증에 필요한 사용자 정보 및 권한 정보를 테이블에서 검색해
+ 	UserDetails 객체(CustomUserDetails 객체)로 반환하는 메소드가 작성된 클래스의 Spring Bean의 
+ 	식별자(beanName)를 속성값으로 설정 --> 
+ 	<authentication-manager>
+ 		<authentication-provider user-service-ref="customUserDetailsService">
  			<password-encoder ref="passwordEncoder"/>
  		</authentication-provider>
  	</authentication-manager> 
+ 	
+ 	<context:component-scan base-package="xyz.itwill.auth"/>
+ 	<context:component-scan base-package="xyz.itwill.dao"/>
  	
  	<!-- BCryptPasswordEncoder 클래스 : 문자열을 암호화 처리하거나 암호화 처리된 문자열을 비교하여
  	비교결과를 제공하기 위한 클래스 -->
