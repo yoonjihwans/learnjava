@@ -103,6 +103,7 @@
  	위한 기능을 제공하는 엘리먼트 -->
  	<!-- ref 속성 : PasswordEncoder 인터페이스를 상속받은 클래스의 Spring Bean 식별자(beanName)을 
  	속성값으로 설정 -->
+ 	<!-- 
  	<authentication-manager>
  		<authentication-provider>
  			<jdbc-user-service data-source-ref="dataSource"/>
@@ -111,6 +112,18 @@
  	</authentication-manager> 
  	
  	<beans:bean class="xyz.itwill.security.CustomPasswordEncoder" id="customPasswordEncoder"/>
+ 	-->
+
+ 	<authentication-manager>
+ 		<authentication-provider>
+ 			<jdbc-user-service data-source-ref="dataSource"/>
+ 			<password-encoder ref="passwordEncoder"/>
+ 		</authentication-provider>
+ 	</authentication-manager> 
+ 	
+ 	<!-- BCryptPasswordEncoder 클래스 : 문자열을 암호화 처리하거나 암호화 처리된 문자열을 비교하여
+ 	비교결과를 제공하기 위한 클래스 -->
+ 	<beans:bean class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" id="passwordEncoder"/>
 </beans:beans>
 
 
