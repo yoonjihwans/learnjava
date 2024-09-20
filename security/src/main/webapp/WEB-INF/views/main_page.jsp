@@ -14,6 +14,8 @@
 	<h3><a href="<c:url value="/user/"/>">User</a></h3>
 	<h3><a href="<c:url value="/manager/"/>">Manager</a></h3>
 	<h3><a href="<c:url value="/admin/"/>">Admin</a></h3>
+	<%-- [/login] 페이지에 대한 요청 처리 메소드 및 뷰를 생성하지 않아도 Spring Security에서
+	로그인 페이지를 제공받아 사용 가능 --%>
 	<h3><a href="<c:url value="/login"/>">로그인</a></h3>
 </body>
 </html>

@@ -1,11 +1,9 @@
-
 package xyz.itwill.security;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 //비밀번호를 전달받아 암호화 처리하여 반환하거나 암호화 처리된 비밀번호를 비교한 결과를 반환하는
-//기능의 메소드가 작성된 클래스
-// => PasswordEncoder 인터페이스를 상속받아 작성
+//기능의 메소드가 작성된 클래스 - PasswordEncoder 인터페이스를 상속받아 작성
 public class CustomPasswordEncoder implements PasswordEncoder {
 	//매개변수로 전달받은 문자열을 암호화 처리해 반환하는 메소드
 	@Override

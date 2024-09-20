@@ -3,6 +3,8 @@ package xyz.itwill.security;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /*
 create table users(username varchar2(100) primary key, password varchar2(100), enabled varchar2(1));
@@ -28,6 +30,18 @@ commit;
 
 @Controller
 public class LoginController {
+	@RequestMapping(value = "/csrf", method = RequestMethod.GET)
+	public String form() {
+		return "csrf";
+	}
+	
+	@RequestMapping(value = "/csrf", method = RequestMethod.POST)
+	@ResponseBody
+	public String form(@RequestParam String name) {
+		System.out.println("name = "+name);
+		return "ok";
+	}
+	
 	@RequestMapping(value = "/loginPage", method = RequestMethod.GET)
 	public String loginPage() {
 		return "login_page";

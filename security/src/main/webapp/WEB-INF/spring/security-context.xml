@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- 기본 네임스페이스를 [security]로 설정하여 사용하는 것을 권장 -->
+<!-- => [security] 네임스페이스의 spring-security.xsd 파일에서 제공하는 다수의 엘리먼트 사용 -->
 <beans:beans xmlns="http://www.springframework.org/schema/security"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
@@ -9,21 +11,22 @@
 
 	<!-- http : Spring Security 기능을 SpringMVC 프로그램에 적용하기 위한 정보를 제공하는 엘리먼트 -->
 	<!-- => Spring Security 관련 환경 설정이 시작되는 위치를 제공 -->
-	<!-- auto-config : false 또는 true(기본값) 중 하나를 속성값으로 설정 -->
+	<!-- auto-config 속성 : false 또는 true(기본값) 중 하나를 속성값으로 설정 -->
 	<!-- => auto-config 속성값을 [true]로 설정한 경우 기본값으로 환경 설정 -->
-	<!-- use-expressions : false 또는 true(기본값) 중 하나를 속성값으로 설정 -->
+	<!-- use-expressions 속성 : false 또는 true(기본값) 중 하나를 속성값으로 설정 -->
 	<!-- => use-expressions 속성을 [true]로 설정하면 SpEL 표현식을 사용하여 페이지 접근 여부 설정 가능 -->
-	<!-- SpEL 표현식 : 권한을 표현하는 표현식 -->
-	<!-- => hasRole('role') : 권한을 가지고 있는 경우를 나타내는 표현식 -->
-	<!-- => hasAny0Role('role1','role2',...) : 나열된 권한 중 하나를 가지고 있는 경우를 나타내는 표현식 -->
-	<!-- => permitAll : 모든 사용자의 접근 가능을 나타내는 표현식 -->
-	<!-- => denyAll : 모든 사용자의 접근 불가능을 나타내는 표현식 -->
-	<!-- => isAnonymous() : Anonymous 사용자(인증 받지 않은 사용자)인 경우에만 접근 가능을 나타내는 표현식 -->
-	<!-- => isRememnberMe() : Remember-me 기능으로 인증받은 사용자인 경우에만 접근 가능을 나타내는 표현식 -->
-	<!-- => isAuthentucated() : 인증 처리된 사용자(Remember-me 기능으로 인증받은 사용자 포함)인 
-	경우에만 접근 가능을 나타내는 표현식 -->
-	<!-- => isFullyAuthentucated : 인증 처리된 사용자(Remember-me 기능으로 인증받은 사용자 제외)인 
-	경우에만 접근 가능을 나타내는 표현식 -->
+	<!-- SpEL 표현식 : 접근 권한을 나타내는 표현식 -->
+	<!-- => hasRole('role') : 권한을 가지고 있는 경우에만 접근 가능하도록 나타내는 표현식 -->
+	<!-- => hasAnyRole('role1','role2',...) : 나열된 권한 중 하나를 가지고 있는 경우에만 접근 
+	가능하도록 나타내는 표현식 -->
+	<!-- => permitAll : 모든 사용자의 접근이 가능하도록 나타내는 표현식 -->
+	<!-- => denyAll : 모든 사용자의 접근이 불가능하도록 나타내는 표현식 -->
+	<!-- => isAnonymous() : Anonymous 사용자(인증 받지 않은 사용자)인 경우에만 접근 가능하도록 나타내는 표현식 -->
+	<!-- => isRememnberMe() : Remember-me 기능으로 인증받은 사용자인 경우에만 접근 가능하도록 나타내는 표현식 -->
+	<!-- => isAuthenticated() : 인증 처리된 사용자(Remember-me 기능으로 인증받은 사용자 포함)인 
+	경우에만 접근 가능하도록 나타내는 표현식 -->
+	<!-- => isFullyAuthenticated : 인증 처리된 사용자(Remember-me 기능으로 인증받은 사용자 제외)인 
+	경우에만 접근 가능하도록 나타내는 표현식 -->
  	<http auto-config="true" use-expressions="true">
  	
  		<!-- use-expressions 속성을 [false]로 설정한 경우 access 속성값으로 SpEL 사용 불가능 -->
@@ -34,8 +37,8 @@
  		<intercept-url pattern="/admin/**" access="ROLE_ADMIN"/>
  	 	-->
  	 	
- 		<!-- intercept-url : 요청 페이지에 접근 가능을 권한을 설정하는 엘리먼트 -->
- 		<!-- => 특정 페이지에 대한 권한 설정을 먼저하고 나머지는 마지막에 설정하는 것을 권장 -->
+ 		<!-- intercept-url : 요청 페이지에 접근 가능 권한을 설정하는 엘리먼트 -->
+ 		<!-- => 특정 페이지에 대한 권한 설정을 먼저하고 전체 페이지의 권한은 마지막에 설정하는 것을 권장 -->
  		<!-- pattern 속성 : 요청 페이지의 경로를 속성값으로 설정 -->
  		<!-- => * 또는 ** 등의 패턴문자를 사용하여 속성값 설정 가능 -->
  		<!-- access 속성 : 페이지에 접근 가능한 권한(Role)을 속성값으로 설정 -->
@@ -52,12 +55,18 @@
  		<!-- => 속성을 설정하지 않은 경우 Spring Security에서 제공하는 로그인 페이지 사용 -->
  		<!-- login-processing-url 속성 : 아이디와 비밀번호를 전달받아 인증 처리하는 페이지의 경로를 속성값으로 설정 -->
  		<!-- <form-login login-page="/loginPage" login-processing-url="/loginPage"/> -->
+ 		
+ 		<!-- csrf : CSRF 토큰 사용 여부를 설정하기 위한 엘리먼트 -->
+ 		<!-- disabled 속성 : false 또는 true(기본값) 중 하나를 속성값으로 설정 -->
+ 		<!-- => disabled 속성값을 [true]로 설정하면 CSRF 토큰을 발행하지 않으므로 form 태그에서
+ 		CSRF 토큰을 전달해 비교 처리하지 않도록 설정 가능 -->
+ 		<!-- <csrf disabled="true"/> -->
  	</http>
  	
  	<!-- authentication-manager : 인증 관리자를 등록하기 위한 엘리먼트 -->
  	<!-- => 다양한 형태의 인증 방식 제공 -->
  	<!-- authentication-provider : 인증 제공자를 등록하기 위한 엘리먼트 -->
- 	<!-- => 실질적인 인증 작업을 진행하는 기능 제공 -->
+ 	<!-- => 실질적인 인증 처리를 진행하는 기능 제공 -->
  	<!-- user-service : 인증 정보를 등록하기 위한 엘리먼트 -->
  	<!-- => 인증 처리를 이용해 사용자의 권한 관련 정보를 반환하는 기능 -->
  	<!-- user : 인증을 위한 정보 및 사용자의 권한 정보를 설정하는 엘리먼트 -->
@@ -86,11 +95,12 @@
  	<!-- jdbc-user-service : Spring Security가 JDBC를 이용해 인증 처리하기 위한 엘리먼트 -->
  	<!-- => JdbcUserDetailsManager 클래스를 사용해 인증과 인가 처리 -->
  	<!-- => USERS 테이블을 생성해 사용자 정보를 저장하고 AUTHORITIES 테이블을 생성하여 사용자의 
- 	권한 정보를 저장할 경우 SQL 명령을 작성하지 않아도 기본적으로 제공되는 SQL 명령으로 인증 
- 	처리 후 사용자 정보(UserDetails 객체)를 반환 -->
+ 	권한 정보를 저장하면 SQL 명령을 작성하지 않아도 기본적으로 제공되는 SQL 명령으로 인증 처리 
+ 	후 사용자 정보(UserDetails 객체)를 반환 -->
  	<!-- data-source-ref : Connection 객체를 제공하기 위한 DataSource 관련 클래스의 Spring
  	Bean 식별자(beanName)을 속성값으로 설정 --> 
- 	<!-- password-encoder : 암호화 처리된 비밀번호를 비교하기 위한 기능을 제공하는 엘리먼트 -->
+ 	<!-- password-encoder : 비밀번호를 암호화 처리하거나 암호화 처리된 비밀번호를 비교하기 
+ 	위한 기능을 제공하는 엘리먼트 -->
  	<!-- ref 속성 : PasswordEncoder 인터페이스를 상속받은 클래스의 Spring Bean 식별자(beanName)을 
  	속성값으로 설정 -->
  	<authentication-manager>
