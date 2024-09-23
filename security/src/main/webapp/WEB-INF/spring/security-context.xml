@@ -15,7 +15,7 @@
 	<!-- => auto-config 속성값을 [true]로 설정한 경우 기본값으로 환경 설정 -->
 	<!-- use-expressions 속성 : false 또는 true(기본값) 중 하나를 속성값으로 설정 -->
 	<!-- => use-expressions 속성을 [true]로 설정하면 SpEL 표현식을 사용하여 페이지 접근 여부 설정 가능 -->
-	<!-- SpEL 표현식 : 접근 권한을 나타내는 표현식 -->
+	<!-- SpEL(Spring Expression Language) 표현식 : 접근 권한을 나타내는 표현식 -->
 	<!-- => hasRole('role') : 권한을 가지고 있는 경우에만 접근 가능하도록 나타내는 표현식 -->
 	<!-- => hasAnyRole('role1','role2',...) : 나열된 권한 중 하나를 가지고 있는 경우에만 접근 
 	가능하도록 나타내는 표현식 -->
@@ -28,6 +28,13 @@
 	<!-- => isFullyAuthenticated : 인증 처리된 사용자(Remember-me 기능으로 인증받은 사용자 제외)인 
 	경우에만 접근 가능하도록 나타내는 표현식 -->
  	<http auto-config="true" use-expressions="true">
+ 		<headers>
+ 			<!-- frame-options : iframe 태그 또는 emded 태그 등으로 내장 브라우저 사용할 경우
+ 			허용 유무를 설정하기 위한 엘리머트 -->
+ 			<!-- policy 속성 : DENY(기본값), SAMEORIGIN, ALLOW-FROM 중 하나를 속성값으로 설정 -->
+ 			<frame-options policy="SAMEORIGIN"/>
+ 		</headers>
+ 	
  	
  		<!-- use-expressions 속성을 [false]로 설정한 경우 access 속성값으로 SpEL 사용 불가능 -->
  		<!-- intercept-url 엘리먼트를 사용해 페이지에 접근 가능한 권한을 하나만 설정 가능 -->
@@ -51,16 +58,55 @@
  		<intercept-url pattern="/**" access="permitAll"/>
  		
  		<!-- form-login : form 태그를 사용한 로그인 페이지를 설정하기 위한 엘리먼트 -->
+ 		<!-- => form-login 엘리먼트를 설정하지 않은 경우 Spring Security에서 제공하는 
+ 		로그인 페이지(/login) 사용 -->
  		<!-- login-page 속성 : 아이디와 비밀번호를 입력받기 위한 페이지의 경로를 속성값으로 설정 -->
- 		<!-- => 속성을 설정하지 않은 경우 Spring Security에서 제공하는 로그인 페이지 사용 -->
- 		<!-- login-processing-url 속성 : 아이디와 비밀번호를 전달받아 인증 처리하는 페이지의 경로를 속성값으로 설정 -->
- 		<!-- <form-login login-page="/loginPage" login-processing-url="/loginPage"/> -->
+ 		<!-- login-processing-url 속성 : 아이디와 비밀번호를 전달받아 인증 처리하는 페이지의 
+ 		경로를 속성값으로 설정 -->
+ 		<!-- username-parameter : 로그인 처리 페이지에게 아이디를 전달할 때 사용할 이름(name 
+ 		속성값)을 속성값으로 설정 - 미설정시 아이디는 반드시 [username] 속성값으로 설정 -->
+ 		<!-- password-parameter : 로그인 처리 페이지에게 비밀번호를 전달할 때 사용할 이름(name
+ 		속성값)을 속성값으로 설정 - 미설정시 아이디는 반드시 [password] 속성값으로 설정 -->
+ 		<!-- default-target-url 속성 : 인증 성공 후 이동될 페이지 경로를 속성값으로 설정 -->
+ 		<!-- authentication-failure-forward-url : 인증 실패 후 이동될 페이지 경로를 속성값으로 설정  -->
+ 		<!-- authentication-failure-handler-ref : 인증 실패 후 호출될 메소드가 작성된 클래스의 
+ 		Spring 식별자(beanName)를 속성값으로 설정 -->
+ 		<!-- authentication-success-forward-url : 인증 성공 후 이동될 페이지 경로를 속성값으로 설정  -->
+ 		<!-- authentication-success-handler-ref : 인증 성공 후 호출될 메소드가 작성된 클래스의 
+ 		Spring 식별자(beanName)를 속성값으로 설정 -->
+ 		
+ 		<!--
+ 		<form-login login-page="/user_login" login-processing-url="/user_login"
+ 			username-parameter="userid" password-parameter="passwd"
+ 			default-target-url="/"
+ 			authentication-failure-handler-ref="customLoginFailureHandler" 
+ 			authentication-success-handler-ref="customLoginSuccessHandler"/>
+ 		-->
+ 		
+ 		<form-login login-page="/user_login" login-processing-url="/user_login"
+ 			username-parameter="userid" password-parameter="passwd"
+ 			default-target-url="/"
+ 			authentication-failure-handler-ref="customLoginFailureHandler"/>
+ 		
+ 		<!-- logout : 로그아웃 처리 기능을 설정하기 위한 엘리먼트 -->
+ 		<!-- logout-url 속성 : 로그아웃 처리를 제공하기 위한 요청 페이지의 경로를 속성값으로 설정 -->
+ 		<!-- logout-success-url 속성 : 로그아웃 처리 후 요청 페이지의 경로를 속성값으로 설정 -->
+ 		<!-- invalidate-session 속성 : false 또는 true(기본값) 중 하나를 속성값으로 설정 -->
+ 		<!-- => invalidate-session 속성값을 [true]로 설정하면 로그아웃 처리 후 세션 언바인딩 처리 -->
+ 		<!-- delete-cookies 속성 : 로그아웃 처리 후 삭제될 쿠키의 이름을 속성값으로 설정 -->
+ 		<logout logout-url="/logout" logout-success-url="/" invalidate-session="true"
+ 			delete-cookies="JSESSIONID"/>
  		
  		<!-- csrf : CSRF 토큰 사용 여부를 설정하기 위한 엘리먼트 -->
  		<!-- disabled 속성 : false 또는 true(기본값) 중 하나를 속성값으로 설정 -->
  		<!-- => disabled 속성값을 [true]로 설정하면 CSRF 토큰을 발행하지 않으므로 form 태그에서
  		CSRF 토큰을 전달해 비교 처리하지 않도록 설정 가능 -->
  		<!-- <csrf disabled="true"/> -->
+ 		
+ 		<!-- access-denied-handler : AccessDeniedException이 발생된 경우 403 에러코드 대신 
+ 		에러 페이지로 응답 처리하기 위한 기능을 제공하는 엘리먼트 -->
+ 		<!-- error-page 속성 : 에러 메세지를 제공하기 위한 페이지의 경로를 속성값으로 설정 -->
+ 		<access-denied-handler error-page="/access_denied"/>
  	</http>
  	
  	<!-- authentication-manager : 인증 관리자를 등록하기 위한 엘리먼트 -->
@@ -148,9 +194,3 @@
  	비교결과를 제공하기 위한 클래스 -->
  	<beans:bean class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" id="passwordEncoder"/>
 </beans:beans>
-
-
-
-
-
-
