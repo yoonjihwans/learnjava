@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
@@ -31,6 +30,11 @@
 			<td colspan="2"><button type="submit">로그인</button></td>
 		</tr>
 	</table>
+	
+	<%-- 브라우저가 종료돼도 로그인이 유지되는 기능을 제공하기 위한 태그 --%>
+	<%-- => input 태그의 type 속성값을 [checkbox]로 설정하고 name 속성값을 [remember-me]로 설정 --%>
+	<input type="checkbox" name="remember-me">자동 로그인
+	
 	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 	</form>
 	<%-- SPRING_SECURITY_LAST_EXCEPTION : Spring Security에 의해 마지막에 발생된 예외(Exception 객체)가
@@ -62,7 +66,6 @@
 	</script>
 </body>
 </html>
-
 
 
 

@@ -51,4 +51,9 @@ public class LoginController {
 	public String accessDenied() {
 		return "access_denied";
 	}
+	
+	@RequestMapping(value = "/session_error", method = RequestMethod.GET)
+	public String sessionError() {
+		return "session_error";
+	}
 }
