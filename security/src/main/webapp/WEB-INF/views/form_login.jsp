@@ -49,6 +49,11 @@
 	</c:if>
 	
 	<hr>
+	<a href="<c:url value="/kakao/login"/>">
+		<img alt="카카오 로그인" src="<c:url value="/resources/images/kakao_login_medium_narrow.png"/>">
+	</a>
+	
+	<hr>
 	<h3><a href="<c:url value="/"/>">메인페이지</a></h3>
 	
 	<script type="text/javascript">
@@ -66,6 +71,7 @@
 	</script>
 </body>
 </html>
+
 
 
 

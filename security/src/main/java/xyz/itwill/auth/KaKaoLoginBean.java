@@ -18,14 +18,20 @@ import com.github.scribejava.core.oauth.OAuth20Service;
 //Kakao OpenAPI를 요청하기 위한 클래스
 @Component
 public class KaKaoLoginBean {
-	private final static String KAKAO_CLIENT_ID="9f127646d59dd6ac2e797e6b4083fa7b";
-	private final static String KAKAO_CLIENT_SECRET="WbBVtdcJnUhpJKnTPFnk9gkwZNyGJKnZ";
-	private final static String KAKAO_REDIRECT_URI="http://localhost:8000/kakao/callback";
+	//Kakao Developers의 애플리케이션에서 발급받은 [REST API 키]를 저장
+	private final static String KAKAO_CLIENT_ID="60beec81d2241355b5b21b5a2c1317cd";
+	//Kakao Developers의 애플리케이션에서 발급받은 [Client Secret]를 저장
+	private final static String KAKAO_CLIENT_SECRET="3ccjsKyGyTrFVDDy6zJl7y4A8zoxGUIp";
+	//Kakao Developers의 애플리케이션에 등록된 [Redirect URI 주소]를 저장
+	private final static String KAKAO_REDIRECT_URI="http://localhost:8000/security/kakao/callback";
+	//세션 속성값으로 저장될 속성명을 저장
 	private final static String SESSION_STATE="kakao_oauth_state";
-	//카카오 간편 로그인 후 사용자의 프로필 정보를 조회하기 위한 OpenAPI의 URL 주소
+	//카카오 로그인 후 발급받는 토큰을 사용해 사용자의 프로필 정보를 조회하기 위한 OpenAPI의 URL 주소 저장
 	private final static String PROFILE_API_URL="https://kapi.kakao.com/v2/user/me";
 	
 	/* 세션 유효성 검증을 위한 난수값을 생성하여 반환하는 메소드 */
+	/* => 카카오로 로그인한 클라이언트와 접근토큰으로 사용자 프로필을 요청하는 클라이언트가
+	동일한지를 검사할 목적으로 사용 */
 	private String generateRandomString() {
 		return UUID.randomUUID().toString();
 	}
@@ -40,7 +46,7 @@ public class KaKaoLoginBean {
 		return (String)session.getAttribute(SESSION_STATE);
 	}
 	
-	/* 인증 처리하는 URL 주소를 생성하기 위한 메소드 */
+	/* 카카오 로그인 페이지를 요청하는 URL 주소를 생성하기 위한 메소드 */
 	public String getAuthorizationUrl(HttpSession session) {
 		/* 세션 유효성 검증을 위한 난수값을 생성하여 저장 */
 		String state=generateRandomString();
@@ -87,9 +93,9 @@ public class KaKaoLoginBean {
 				.apiSecret(KAKAO_CLIENT_SECRET)
 				.build(KakaoLoginApi.instance());
 		
-		OAuthRequest request = new OAuthRequest(Verb.GET, PROFILE_API_URL, oauth20Service);
+		OAuthRequest request=new OAuthRequest(Verb.GET, PROFILE_API_URL, oauth20Service);
 		oauth20Service.signRequest(oAuth2AccessToken, request);
-		Response response = request.send();
+		Response response = request.send(); 
 		
 		return response.getBody();
 	}

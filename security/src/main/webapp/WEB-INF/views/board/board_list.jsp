@@ -57,7 +57,9 @@ th, td {
 							 <td>${securityBoard.num }</td>
 							 <td>${securityBoard.name }</td>
 							 <td style="text-align: left;">
+							 	<a href="<c:url value="/board/detail"/>?num=${securityBoard.num}&pageNum=${resultMap.pager.pageNum}&pageSize=${resultMap.pager.pageSize }&column=${searchMap.column}&keyword=${searchMap.keyword}">
 							 	${securityBoard.subject }
+							 	</a>
 							 </td>
 							 <td>${securityBoard.regdate }</td>
 						</tr>
@@ -69,7 +71,7 @@ th, td {
 		<div style="text-align: center;">
 			<c:choose>
 				<c:when test="${resultMap.pager.startPage > resultMap.pager.blockSize }">
-					<a href="<c:url value="/board/list"/>?pageNum=${resultMap.pager.prevPage}&pageSize=5&column=${searchMap.column}&keyword=${searchMap.keyword}">
+					<a href="<c:url value="/board/list"/>?pageNum=${resultMap.pager.prevPage}&pageSize=${resultMap.pager.pageSize }&column=${searchMap.column}&keyword=${searchMap.keyword}">
 						[이전]
 					</a>
 				</c:when>
@@ -81,7 +83,7 @@ th, td {
 			<c:forEach var="i" begin="${resultMap.pager.startPage }" end="${resultMap.pager.endPage }" step="1">
 				<c:choose>
 					<c:when test="${resultMap.pager.pageNum != i }">
-						<a href="<c:url value="/board/list"/>?pageNum=${i}&pageSize=5&column=${searchMap.column}&keyword=${searchMap.keyword}">
+						<a href="<c:url value="/board/list"/>?pageNum=${i}&pageSize=${resultMap.pager.pageSize }&column=${searchMap.column}&keyword=${searchMap.keyword}">
 							[${i }]
 						</a>
 					</c:when>
@@ -93,7 +95,7 @@ th, td {
 			
 			<c:choose>
 				<c:when test="${resultMap.pager.endPage != resultMap.pager.totalPage }">
-					<a href="<c:url value="/board/list"/>?pageNum=${resultMap.pager.nextPage}&pageSize=5&column=${searchMap.column}&keyword=${searchMap.keyword}">
+					<a href="<c:url value="/board/list"/>?pageNum=${resultMap.pager.nextPage}&pageSize=${resultMap.pager.pageSize }&column=${searchMap.column}&keyword=${searchMap.keyword}">
 						[다음]
 					</a>
 				</c:when>
@@ -118,6 +120,7 @@ th, td {
 	</div>
 </body>
 </html>
+
 
 
 

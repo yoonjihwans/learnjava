@@ -1,4 +1,3 @@
-
 package xyz.itwill.auth;
 
 import java.io.IOException;

@@ -1,7 +1,5 @@
 package xyz.itwill.security;
 
-import java.security.Principal;
-
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,8 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import xyz.itwill.auth.CustomUserDetails;
-import xyz.itwill.dto.SecurityUser;
-import xyz.itwill.service.SecurityUserService;
 
 //Spring Security : 인증과 인가 기능을 제공하는 보안 프레임워크
 //인증(Authentication) : 프로그램을 사용할 수 있는 사용자가 맞는지를 확인하는 절차
@@ -72,7 +68,8 @@ public class HomeController {
 	// => Principal 객체 : 로그인 사용자 정보가 저장된 객체 - 로그인 사용자의 아이디 제공
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Principal principal) {
-		if(principal != null) {//로그인 사용자가 있는 경우
+		if(principal != null) {//인증 처리된 사용자인 경우
+			//Principal.getName() : 인증 처리된 사용자의 식별자(아이디)를 반환하는 메소드
 			//log.warn("아이디 = "+principal.getName());
 			
 			SecurityUser user=securityUserService.getSecurityUserByUserid(principal.getName());
@@ -89,10 +86,10 @@ public class HomeController {
 	
 	//요청 처리 메소드의 매개변수를 Authentication 인터페이스로 작성하면 Front Controller에게
 	//Authentication 객체를 제공받아 사용 가능
-	// => Authentication : 로그인 사용자 및 권한 정보가 저장된 객체
+	// => Authentication 객체 : 로그인 사용자 및 권한 정보가 저장된 객체
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Authentication authentication) {
-		if(authentication != null) {//로그인 사용자가 있는 경우
+		if(authentication != null) {//인증 처리된 사용자인 경우
 			//Authentication.getPrincipal() : 로그인 사용자 및 권한 정보가 저장된 UserDetailes
 			//객체(CustomUserDetailes 객체)를 반환하는 메소드
 			// => Object 객체를 반환하므로 명시적 객체 형변환 후 사용
