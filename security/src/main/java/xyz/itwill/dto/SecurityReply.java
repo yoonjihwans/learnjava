@@ -7,7 +7,7 @@ import lombok.Data;
 /*
 create table security_reply(num number primary key, writer varchar2(100), content varchar2(1000)
 	, regdate date, board_num number, constraint reply_board_num_fk foreign key(board_num) 
-	references security_board(num) on delete cascade);
+	references security_board(num) on delete cascade);sdsd  
 	    
 create sequence security_reply_seq;   
 */
