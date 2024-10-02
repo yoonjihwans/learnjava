@@ -28,10 +28,11 @@
 	<context:component-scan base-package="xyz.itwill.service" />
 	
 	<!-- global-method-security : Controller 클래스의 요청 처리 메소드에 권한 관련 어노테이션을
-	제공하기 위한 엘리먼트 -->
-	<!-- => security 네임스페이스를 추가하여 spring-securit.xsd 파일의 엘리먼트를 사용할 수 있도록 설정 -->
+	사용할 수 있도록 제공하는 엘리먼트 -->
+	<!-- => security 네임스페이스를 추가하여 spring-security.xsd 파일의 엘리먼트를 사용할 수 있도록 설정 -->
 	<!-- pre-post-annotations 속성 : disabled(기본값) 또는 enabled 중 하나를 속성값으로 설정 -->
-	<!-- => 속성값을 [enabled]로 설정하면 @PreAuthorize 어노테이션 또는 @PostAuthorize 어노테이션을 사용할 수 있도록 제공 -->
+	<!-- => 속성값을 [enabled]로 설정하면 @PreAuthorize 어노테이션 또는 @PostAuthorize 어노테이션을
+	사용할 수 있도록 제공 -->
 	<!-- secured-annotations 속성 : disabled(기본값) 또는 enabled 중 하나를 속성값으로 설정 -->
 	<!-- => 속성값을 [enabled]로 설정하면 @Secured 어노테이션을 사용할 수 있도록 제공 -->
 	<security:global-method-security pre-post-annotations="enabled" secured-annotations="enabled"/>

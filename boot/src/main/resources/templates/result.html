@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!-- html 태그에 th 네임스페이스를 추가해야만 Thymeleaf 사용 가능 -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>BOOT</title>
+</head>
+<body>
+	<h1>Thymeleaf</h1>
+	<hr>
+	<!-- text 속성 : 변경될 태그내용을 속성값으로 설정 -->
+	<!-- => ${속성명} 형식으로 표현해 요청 처리 메소드에서 제공된 Scope 속성값으로 태그내용 변경 -->
+	<h2 th:text="${dataOne}">Hello, Thymeleaf!!!</h2>
+	<!-- [[${속성명}]] 형식으로 표현해 Scope 속성값으로 태그내용 변경 가능 - inline 표현식 -->
+	<!-- => JavaScript에서 Scope 속성값을 제공받기 위해 사용하는 표현식 -->
+	<!-- <h2>[[${dataOne}]]</h2>  -->
+	<hr>
+	
+	<!-- text 속성은 Scope 속성값에 html 태그가 포함되어 있는 경우 html 태그를 문자값으로 출력 처리 -->
+	<h2 th:text="${dataTwo}">Hello, Thymeleaf!!!</h2>
+	<!-- utext 속성 : 변경될 태그내용을 속성값으로 설정 -->
+	<!-- => text 속성은 Scope 속성값에 html 태그가 포함되어 있는 경우 html 태그로 출력 처리 -->
+	<h2 th:utext="${dataTwo}">Hello, Thymeleaf!!!</h2>
+	<!-- [(${속성명})] 형식으로 표현해 Scope 속성값으로 태그내용 변경 가능 - inline 표현식 -->
+	<!-- <h2>[(${dataTwo})]</h2> -->
+	<hr>
+	
+	<h2>아이디 = <span th:text="${user.id}">test</span></h2>
+	<h2>이름 = <span th:text="${user.getName()}">테스트</span></h2>
+	<h2>이메일 = <span th:text="${user['email']}">test@aaa.com</span></h2>
+</body>
+</html>
+
+
+
+
+
+
+
+

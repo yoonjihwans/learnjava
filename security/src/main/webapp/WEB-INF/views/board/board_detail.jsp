@@ -131,8 +131,8 @@ th, td {
 	
 	replyListDisplay();
 	
-	//ajaxSend() 메소드를 호출하여 페이지를 Ajax 기능으로 요청할 경우 무조건 CSRF 토큰 전달
-	$(document).ajaxSend(function() {
+	//ajaxSend() 메소드를 호출하여 페이지를 Ajax 기능으로 페이지를 요청할 경우 무조건 CSRF 토큰 전달
+	$(document).ajaxSend(function(event, xhr) {
 		xhr.setRequestHeader("${_csrf.headerName}","${_csrf.token}");
 	});
 	
@@ -169,10 +169,6 @@ th, td {
 			success: function(result) {
 				if(result == "success") {
 					replyListDisplay();
-				} else {
-					if(result.content) {
-						alert(result.content);
-					}					
 				}
 			},
 			error: function(xhr) {
